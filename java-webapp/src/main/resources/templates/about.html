@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">About - RhythmIQ</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/}">
+                <i class="fas fa-heartbeat"></i> RhythmIQ
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" title="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/}">
+                            <i class="fas fa-home"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/upload}">
+                            <i class="fas fa-upload"></i> Upload ECG
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" th:href="@{/about}">
+                            <i class="fas fa-info-circle"></i> About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/api-docs}">
+                            <i class="fas fa-code"></i> API
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <!-- Page Header -->
+                <div class="text-center mb-5">
+                    <h1 class="display-4 fw-bold text-primary">
+                        <i class="fas fa-heartbeat"></i> About RhythmIQ
+                    </h1>
+                    <p class="lead text-muted">Advanced AI-powered ECG analysis for better cardiac care</p>
+                </div>
+
+                <!-- Overview Section -->
+                <div class="card shadow-sm mb-5">
+                    <div class="card-body p-5">
+                        <h2 class="text-primary mb-4">
+                            <i class="fas fa-bullseye"></i> Our Mission
+                        </h2>
+                        <p class="lead">
+                            RhythmIQ is an AI-powered ECG monitoring system designed to analyze heart signals in real time. 
+                            Our mission is to democratize access to advanced cardiac analysis by providing healthcare 
+                            professionals with powerful, accurate, and easy-to-use diagnostic tools.
+                        </p>
+                        <p>
+                            We process electrocardiogram (ECG) data, detect irregularities, and classify them into 
+                            common arrhythmia types while predicting severity levels to help healthcare providers 
+                            prioritize urgent cases and optimize patient outcomes.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Technology Section -->
+                <div class="row mb-5">
+                    <div class="col-md-6">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <h3 class="text-primary mb-3">
+                                    <i class="fas fa-brain"></i> AI Technology
+                                </h3>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="fas fa-check text-success"></i> Machine Learning Classification</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success"></i> Deep Learning Analysis</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success"></i> Real-time Processing</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success"></i> High Accuracy Models</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body">
+                                <h3 class="text-primary mb-3">
+                                    <i class="fas fa-cogs"></i> Technical Stack
+                                </h3>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="fas fa-check text-success"></i> Python Machine Learning</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success"></i> Spring Boot Backend</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success"></i> Bootstrap Frontend</li>
+                                    <li class="mb-2"><i class="fas fa-check text-success"></i> RESTful APIs</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ECG Classifications -->
+                <div class="card shadow-sm mb-5">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="card-title mb-0">
+                            <i class="fas fa-list"></i> ECG Classifications Supported
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <h5><span class="badge bg-primary">N</span> Normal Beats</h5>
+                                    <p>Sinus rhythm, bundle branch blocks, and other normal cardiac patterns.</p>
+                                </div>
+                                <div class="mb-4">
+                                    <h5><span class="badge bg-info">S</span> Supraventricular Beats</h5>
+                                    <p>Atrial premature beats and supraventricular ectopic rhythms.</p>
+                                </div>
+                                <div class="mb-4">
+                                    <h5><span class="badge bg-warning">V</span> Ventricular Beats</h5>
+                                    <p>Premature Ventricular Contractions (PVCs) and ventricular ectopics.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-4">
+                                    <h5><span class="badge bg-secondary">F</span> Fusion Beats</h5>
+                                    <p>Combination of ventricular and normal beats occurring simultaneously.</p>
+                                </div>
+                                <div class="mb-4">
+                                    <h5><span class="badge bg-dark">Q</span> Unknown/Paced Beats</h5>
+                                    <p>Paced beats and unclassifiable cardiac patterns.</p>
+                                </div>
+                                <div class="mb-4">
+                                    <h5><span class="badge bg-danger">M</span> Myocardial Infarction</h5>
+                                    <p>Heart attack indicators and ischemic changes.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Severity Levels -->
+                <div class="card shadow-sm mb-5">
+                    <div class="card-header bg-warning text-dark">
+                        <h3 class="card-title mb-0">
+                            <i class="fas fa-exclamation-triangle"></i> Severity Assessment
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="text-center p-3">
+                                    <div class="mb-3">
+                                        <i class="fas fa-circle fa-3x text-success"></i>
+                                    </div>
+                                    <h4 class="text-success">Mild</h4>
+                                    <p>Low risk condition requiring routine monitoring and follow-up care.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center p-3">
+                                    <div class="mb-3">
+                                        <i class="fas fa-circle fa-3x text-warning"></i>
+                                    </div>
+                                    <h4 class="text-warning">Moderate</h4>
+                                    <p>Medium risk condition requiring closer monitoring and medical attention.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="text-center p-3">
+                                    <div class="mb-3">
+                                        <i class="fas fa-circle fa-3x text-danger"></i>
+                                    </div>
+                                    <h4 class="text-danger">Severe</h4>
+                                    <p>High risk condition requiring immediate medical intervention and care.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Stats -->
+                <div class="card shadow-sm mb-5">
+                    <div class="card-header bg-success text-white">
+                        <h3 class="card-title mb-0">
+                            <i class="fas fa-chart-bar"></i> Performance Metrics
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col-md-3">
+                                <h3 class="display-4 fw-bold text-primary">100%</h3>
+                                <p class="h5">Model Accuracy</p>
+                            </div>
+                            <div class="col-md-3">
+                                <h3 class="display-4 fw-bold text-success">&lt;1s</h3>
+                                <p class="h5">Analysis Time</p>
+                            </div>
+                            <div class="col-md-3">
+                                <h3 class="display-4 fw-bold text-warning">6</h3>
+                                <p class="h5">ECG Classes</p>
+                            </div>
+                            <div class="col-md-3">
+                                <h3 class="display-4 fw-bold text-danger">3</h3>
+                                <p class="h5">Severity Levels</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Call to Action -->
+                <div class="text-center">
+                    <h3 class="mb-4">Ready to try RhythmIQ?</h3>
+                    <a th:href="@{/upload}" class="btn btn-primary btn-lg me-3">
+                        <i class="fas fa-upload"></i> Analyze ECG Now
+                    </a>
+                    <a th:href="@{/api-docs}" class="btn btn-outline-primary btn-lg">
+                        <i class="fas fa-code"></i> View API Documentation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p>&copy; 2025 RhythmIQ ECG Analysis System. AI-Powered Heart Health Monitoring.</p>
+            <p class="mb-0">
+                <small>Powered by Machine Learning &amp; Spring Boot</small>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>
