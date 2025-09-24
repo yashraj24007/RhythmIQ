@@ -5,7 +5,7 @@ echo "🫀 RhythmIQ ECG Analysis System"
 echo "=================================="
 
 # Change to webapp directory
-cd java-webapp
+cd "$(dirname "$0")/../java-webapp"
 
 echo "📦 Building application..."
 ./mvnw clean package -DskipTests

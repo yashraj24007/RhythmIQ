@@ -2,7 +2,7 @@
 echo RhythmIQ ECG Analysis System - Java Web Application
 echo ====================================================
 
-cd java-webapp
+cd "%~dp0\..\java-webapp"
 
 echo Checking for Maven installation...
 where mvn >nul 2>&1

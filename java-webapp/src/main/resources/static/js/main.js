@@ -3,12 +3,110 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🫀 RhythmIQ ECG Analysis System Loaded');
     
-    // Initialize features
+    // Initialize enhanced features
+    initializeNavbarEffects();
+    initializeAnimations();
+    initializeCounters();
+    initializeSmoothScrolling();
     initializeImagePreview();
     initializeFileValidation();
     initializeFormSubmission();
     initializeTooltips();
 });
+
+/**
+ * Initialize navbar scroll effects
+ */
+function initializeNavbarEffects() {
+    const navbar = document.querySelector('.navbar');
+    
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+}
+
+/**
+ * Initialize scroll-triggered animations
+ */
+function initializeAnimations() {
+    // Animate elements on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+            }
+        });
+    }, observerOptions);
+    
+    // Observe all cards and sections
+    document.querySelectorAll('.feature-card, .card, .hero-section').forEach(el => {
+        observer.observe(el);
+    });
+}
+
+/**
+ * Initialize animated counters
+ */
+function initializeCounters() {
+    const counters = document.querySelectorAll('[data-counter]');
+    
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounter(entry.target);
+                counterObserver.unobserve(entry.target);
+            }
+        });
+    });
+    
+    counters.forEach(counter => counterObserver.observe(counter));
+}
+
+/**
+ * Animate counter numbers
+ */
+function animateCounter(element) {
+    const target = parseInt(element.getAttribute('data-counter'));
+    const increment = target / 100;
+    let current = 0;
+    
+    const timer = setInterval(() => {
+        current += increment;
+        element.textContent = Math.floor(current) + (element.getAttribute('data-suffix') || '');
+        
+        if (current >= target) {
+            element.textContent = target + (element.getAttribute('data-suffix') || '');
+            clearInterval(timer);
+        }
+    }, 20);
+}
+
+/**
+ * Initialize smooth scrolling for anchor links
+ */
+function initializeSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+}
 
 /**
  * Initialize image preview functionality

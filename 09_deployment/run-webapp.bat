@@ -5,7 +5,7 @@ echo 🫀 RhythmIQ ECG Analysis System
 echo ==================================
 
 REM Change to webapp directory
-cd java-webapp
+cd "%~dp0\..\java-webapp"
 
 echo 📦 Building application...
 call mvnw.cmd clean package -DskipTests
