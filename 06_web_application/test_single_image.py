@@ -17,6 +17,9 @@ warnings.filterwarnings('ignore')
 
 # Import your existing modules
 try:
+    import sys
+    sys.path.append('../02_preprocessing')
+    sys.path.append('../03_model_training')
     from ecg_preprocessor import ECGPreprocessor
     from severity_predictor import SeverityPredictor
 except ImportError as e:
@@ -39,7 +42,7 @@ def analyze_single_ecg(image_path):
             }
         
         # Load the trained model
-        model_path = "rythmguard_model.joblib"
+        model_path = "../05_trained_models/rythmguard_model.joblib"
         if not os.path.exists(model_path):
             return {
                 "error": f"Model file not found: {model_path}",
