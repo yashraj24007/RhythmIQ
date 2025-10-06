@@ -6,14 +6,20 @@ This script evaluates the trained model on the COMPLETE test dataset.
 """
 
 import os
+import sys
 import numpy as np
 import joblib
 from PIL import Image
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.metrics import classification_report, accuracy_score, confusion_matrix
-from ecg_preprocessor import ECGPreprocessor
 import time
+
+# Add paths for custom modules
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '02_preprocessing'))
+
+from ecg_preprocessor import ECGPreprocessor
 
 def evaluate_full_test_dataset(max_images_per_class=None):
     """Evaluate model on the complete test dataset"""

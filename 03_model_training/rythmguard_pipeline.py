@@ -1,5 +1,24 @@
 """
-Complete RythmGuard Pipeline
+Comimport os
+import sys
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+import joblib
+import warnings
+warnings.filterwarnings('ignore')
+
+# Add paths for custom modules
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '02_preprocessing'))
+
+# Import custom modules
+from ecg_preprocessor import ECGPreprocessor
+from severity_predictor import SeverityPredictor Pipeline
 ==========================
 
 This script combines ECG preprocessing, classification, and severity prediction

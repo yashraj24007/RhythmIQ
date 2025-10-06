@@ -3,7 +3,7 @@ package com.rhythmiq.model;
 import java.time.LocalDateTime;
 
 /**
- * ECG Analysis Result Model
+ * Plain Java object to hold ECG classification & severity output.
  */
 public class ECGAnalysisResult {
     private String filename;
@@ -16,64 +16,49 @@ public class ECGAnalysisResult {
     private LocalDateTime analysisTime;
     private String imagePath;
 
-    // Constructors
-    public ECGAnalysisResult() {}
+    public ECGAnalysisResult() { this.analysisTime = LocalDateTime.now(); }
 
-    public ECGAnalysisResult(String filename, String predictedClass, double confidence, 
-                           String severity, double severityConfidence) {
+    public ECGAnalysisResult(String filename, String predictedClass, double confidence,
+                             String severity, double severityConfidence) {
+        this();
         this.filename = filename;
-        this.predictedClass = predictedClass;
-        this.confidence = confidence;
-        this.severity = severity;
-        this.severityConfidence = severityConfidence;
-        this.analysisTime = LocalDateTime.now();
-        this.classDescription = getClassDescription(predictedClass);
-        this.severityDescription = getSeverityDescription(severity);
+        setPredictedClass(predictedClass);
+        setConfidence(confidence);
+        setSeverity(severity);
+        setSeverityConfidence(severityConfidence);
     }
 
-    // Getters and Setters
     public String getFilename() { return filename; }
     public void setFilename(String filename) { this.filename = filename; }
 
     public String getPredictedClass() { return predictedClass; }
-    public void setPredictedClass(String predictedClass) { 
+    public void setPredictedClass(String predictedClass) {
         this.predictedClass = predictedClass;
-        this.classDescription = getClassDescription(predictedClass);
+        this.classDescription = describeClass(predictedClass);
     }
 
     public double getConfidence() { return confidence; }
     public void setConfidence(double confidence) { this.confidence = confidence; }
 
     public String getSeverity() { return severity; }
-    public void setSeverity(String severity) { 
+    public void setSeverity(String severity) {
         this.severity = severity;
-        this.severityDescription = getSeverityDescription(severity);
+        this.severityDescription = describeSeverity(severity);
     }
 
     public double getSeverityConfidence() { return severityConfidence; }
-    public void setSeverityConfidence(double severityConfidence) { 
-        this.severityConfidence = severityConfidence; 
-    }
+    public void setSeverityConfidence(double severityConfidence) { this.severityConfidence = severityConfidence; }
 
     public String getClassDescription() { return classDescription; }
-    public void setClassDescription(String classDescription) { 
-        this.classDescription = classDescription; 
-    }
-
     public String getSeverityDescription() { return severityDescription; }
-    public void setSeverityDescription(String severityDescription) { 
-        this.severityDescription = severityDescription; 
-    }
-
     public LocalDateTime getAnalysisTime() { return analysisTime; }
     public void setAnalysisTime(LocalDateTime analysisTime) { this.analysisTime = analysisTime; }
-
     public String getImagePath() { return imagePath; }
     public void setImagePath(String imagePath) { this.imagePath = imagePath; }
 
-    // Helper methods
-    private String getClassDescription(String className) {
-        switch (className.toUpperCase()) {
+    private String describeClass(String cls) {
+        if (cls == null) return "Unknown classification";
+        switch (cls.toUpperCase()) {
             case "N": return "Normal beats (sinus rhythm, bundle branch block)";
             case "S": return "Supraventricular beats (atrial premature beats)";
             case "V": return "Ventricular beats (PVC - Premature Ventricular Contractions)";
@@ -84,8 +69,9 @@ public class ECGAnalysisResult {
         }
     }
 
-    private String getSeverityDescription(String severity) {
-        switch (severity.toLowerCase()) {
+    private String describeSeverity(String sev) {
+        if (sev == null) return "Severity assessment unavailable";
+        switch (sev.toLowerCase()) {
             case "mild": return "Low risk - routine monitoring recommended";
             case "moderate": return "Medium risk - closer monitoring advised";
             case "severe": return "High risk - immediate medical attention required";
@@ -94,6 +80,7 @@ public class ECGAnalysisResult {
     }
 
     public String getSeverityColorClass() {
+        if (severity == null) return "secondary";
         switch (severity.toLowerCase()) {
             case "mild": return "success";
             case "moderate": return "warning";
@@ -104,9 +91,9 @@ public class ECGAnalysisResult {
 
     public String getConfidenceLevel() {
         if (confidence >= 0.9) return "Very High";
-        else if (confidence >= 0.8) return "High";
-        else if (confidence >= 0.7) return "Medium";
-        else if (confidence >= 0.6) return "Low";
-        else return "Very Low";
+        if (confidence >= 0.8) return "High";
+        if (confidence >= 0.7) return "Medium";
+        if (confidence >= 0.6) return "Low";
+        return "Very Low";
     }
 }

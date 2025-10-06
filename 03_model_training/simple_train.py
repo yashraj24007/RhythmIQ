@@ -17,8 +17,9 @@ from sklearn.metrics import classification_report, accuracy_score, confusion_mat
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Add current directory to path for imports
+# Add current directory and preprocessing directory to path for imports
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '02_preprocessing'))
 
 from ecg_preprocessor import ECGPreprocessor
 from severity_predictor import SeverityPredictor
@@ -232,7 +233,8 @@ class SimpleTrainer:
 
 def main():
     """Main function to run simple training."""
-    data_path = Path(__file__).parent
+    # Use the correct data path (01_data directory)
+    data_path = Path(__file__).parent.parent / '01_data'
     
     # Get user preference for dataset size
     print("🫀 RythmGuard Simple Training Setup")

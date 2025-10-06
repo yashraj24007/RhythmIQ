@@ -6,15 +6,21 @@ This script tests the specific trained model created by simple_train.py
 """
 
 import os
+import sys
 import numpy as np
 import joblib
 from PIL import Image
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.metrics import classification_report, accuracy_score, confusion_matrix
+import random
+
+# Add paths for custom modules
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '02_preprocessing'))
+
 from ecg_preprocessor import ECGPreprocessor
 from severity_predictor import SeverityPredictor
-import random
 
 def test_trained_model():
     """Test the trained RythmGuard model"""
