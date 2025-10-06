@@ -1,10 +1,10 @@
 services:
   - type: web
     name: rhythmiq-webapp
-    env: java
+    env: docker
     plan: free
-    buildCommand: cd java-webapp && chmod +x mvnw && ./mvnw clean package -DskipTests
-    startCommand: cd java-webapp && java -Dserver.port=$PORT -jar target/rhythmiq-webapp-1.0.0.jar
+    dockerfilePath: ./java-webapp/Dockerfile
+    dockerContext: ./java-webapp
     envVars:
       - key: JAVA_OPTS
         value: "-Xmx512m -XX:MaxMetaspaceSize=128m"
