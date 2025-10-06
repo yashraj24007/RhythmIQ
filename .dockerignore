@@ -1,0 +1,60 @@
+# Ignore unnecessary files for Docker build
+
+# Git files
+.git/
+.gitignore
+
+# Documentation
+*.md
+README*
+DOCUMENTATION*
+
+# Python components (not needed for Java app)
+**/01_data_collection/
+**/02_preprocessing/
+**/03_model_training/
+**/04_model_evaluation/
+**/05_model_deployment/
+**/06_web_application/
+**/08_documentation/
+**/09_deployment/
+tests/
+pytest.ini
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Node modules (if any)
+node_modules/
+
+# Build artifacts (will be created during build)
+java-webapp/target/
+*.jar
+*.war
+*.ear
+*.class
+
+# Keep only necessary files for Java build
+!java-webapp/
+!java-webapp/src/
+!java-webapp/pom.xml
+!java-webapp/mvnw
+!java-webapp/mvnw.cmd
+!java-webapp/.mvn/
