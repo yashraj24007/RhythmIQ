@@ -1,5 +1,5 @@
 # Multi-stage Docker build for RhythmIQ Java Spring Boot application
-FROM openjdk:21-jdk-slim as builder
+FROM eclipse-temurin:21-jdk-alpine as builder
 
 # Set working directory
 WORKDIR /app
@@ -21,17 +21,17 @@ COPY java-webapp/src src/
 RUN ./mvnw clean package -DskipTests
 
 # Production stage
-FROM openjdk:21-jre-slim
+FROM eclipse-temurin:21-jre-alpine
 
-# Install curl for health checks
-RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+# Install curl for health checks (Alpine Linux)
+RUN apk add --no-cache curl
 
 # Create app directory
 WORKDIR /app
 
-# Create non-root user for security
-RUN addgroup --system --gid 1001 rhythmiq && \
-    adduser --system --uid 1001 rhythmiq
+# Create non-root user for security (Alpine Linux)
+RUN addgroup -g 1001 -S rhythmiq && \
+    adduser -u 1001 -S rhythmiq -G rhythmiq
 
 # Copy JAR from builder stage
 COPY --from=builder /app/target/*.jar app.jar
