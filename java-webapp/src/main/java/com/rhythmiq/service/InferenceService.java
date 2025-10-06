@@ -19,7 +19,9 @@ import java.util.UUID;
 @Service
 public class InferenceService {
 
-    private final Path uploadDir = Paths.get("java-webapp-uploads");
+    // Use /tmp for uploads on Render (ephemeral storage)
+    // This ensures compatibility with cloud deployment where filesystem is read-only
+    private final Path uploadDir = Paths.get(System.getProperty("java.io.tmpdir"), "rhythmiq-uploads");
 
     public InferenceService() throws IOException {
         Files.createDirectories(uploadDir);
