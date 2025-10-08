@@ -53,8 +53,18 @@ class ECGAnalysisAPI:
             # Load the main ECG classification model
             model_path = '05_trained_models/rythmguard_model.joblib'
             if os.path.exists(model_path):
-                self.model = joblib.load(model_path)
-                print(f"✅ Loaded ECG model from {model_path}")
+                loaded_data = joblib.load(model_path)
+                
+                # Handle both direct model and dictionary format
+                if isinstance(loaded_data, dict) and 'model' in loaded_data:
+                    self.model = loaded_data['model']
+                    # Also load class names from the saved data if available
+                    if 'class_names' in loaded_data:
+                        self.class_names = loaded_data['class_names']
+                    print(f"✅ Loaded ECG model from dictionary in {model_path}")
+                else:
+                    self.model = loaded_data
+                    print(f"✅ Loaded ECG model directly from {model_path}")
             else:
                 print(f"❌ Model file not found: {model_path}")
                 return False
@@ -261,4 +271,4 @@ if __name__ == '__main__':
     print("🔗 Ready for integration with Java web app")
     print()
     
-    app.run(host='0.0.0.0', port=8083, debug=True)
+    app.run(host='0.0.0.0', port=8083, debug=False)
