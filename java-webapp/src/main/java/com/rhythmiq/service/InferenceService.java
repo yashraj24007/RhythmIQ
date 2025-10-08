@@ -30,7 +30,6 @@ public class InferenceService {
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
     private final String pythonApiUrl = "http://localhost:8083/analyze";
-    
     public InferenceService() throws IOException {
         Files.createDirectories(uploadDir);
         this.restTemplate = new RestTemplate();

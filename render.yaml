@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: rhythmiq-webapp
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: "production"
+      - key: JAVA_TOOL_OPTIONS
+        value: "-Xmx512m -XX:MaxMetaspaceSize=128m -XX:+UseG1GC"

@@ -1,0 +1,48 @@
+# Docker ignore file for RhythmIQ Java webapp
+# Ignore build artifacts
+target/
+*.jar
+*.war
+*.ear
+*.class
+
+# Ignore IDE files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore logs
+*.log
+logs/
+
+# Ignore temporary files
+*.tmp
+*.temp
+.cache/
+
+# Ignore node modules (if any)
+node_modules/
+
+# Ignore git
+.git/
+.gitignore
+
+# Ignore test files (optional - include if you don't want tests in Docker image)
+src/test/
+
+# Ignore documentation files (optional)
+README.md
+*.md
+
+# Keep necessary files for build
+!mvnw
+!mvnw.cmd
+!pom.xml
+!.mvn/
+!src/
