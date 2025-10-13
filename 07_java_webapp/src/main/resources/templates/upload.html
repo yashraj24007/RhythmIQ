@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Upload ECG - RhythmIQ</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Upload ECG</h1>
+    <nav>
+      <a href="/">Home</a>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <h2>Upload an ECG Image</h2>
+      <form action="/analyze" method="post" enctype="multipart/form-data">
+        <label for="ecgImage">Select ECG image (.png, .jpg)</label><br>
+        <input type="file" id="ecgImage" name="ecgImage" accept="image/png,image/jpeg" required><br><br>
+        <button type="submit">Analyze ECG</button>
+      </form>
+      <div th:if="${error}" class="error" th:text="${error}"></div>
+    </section>
+  </main>
+  <footer>
+    <small>&copy; 2025 RhythmIQ</small>
+  </footer>
+</body>
+</html>

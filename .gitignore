@@ -102,26 +102,109 @@ dmypy.json
 # VS Code
 .vscode/
 
-# Model files (too large for git)
+# ==============================================
+# 🔒 SECURITY & PRIVACY EXCLUSIONS
+# ==============================================
+
+# Model files (contains trained algorithms - KEEP PRIVATE)
 *.joblib
 *.pkl
 *.h5
 *.model
+*.onnx
+*.pb
+05_trained_models/
+**/trained_models/
+**/models/
+*model*.joblib
+*model*.pkl
+*model*.h5
 
-# Data directories (too large for git)
-train/
-test/
-data/
+# Dataset (contains medical data - KEEP PRIVATE)
+01_data/
+01_data/**/train/
+01_data/**/test/
+**/data/
+**/dataset/
+**/images/
+*.csv
+*.json
+**/ECG_*
 
-# Output files
+# Configuration files with potential secrets
+config.ini
+settings.yaml
+secrets.*
+.env
+.env.local
+.env.production
+*.config
+
+# API keys and credentials
+api_keys.txt
+credentials.*
+auth_*
+token*
+*key*
+*.pem
+*.p12
+*.pfx
+
+# Personal documentation and notes
+notes.txt
+todo.txt
+personal_*
+private_*
+confidential_*
+
+# Temporary uploads and outputs
+uploads/
+**/uploads/
+temp/
+tmp/
+output/
+results/
+logs/
+*.log
+
+# Image outputs and results
 *.png
 *.jpg
 *.jpeg
 *.gif
-*.txt
+*.bmp
+*.tiff
 rythmguard_output/
+**/visualizations/
+**/plots/
+confusion_matrix*
+*_matrix*
 
-# OS generated files
+# Generated reports
+*.pdf
+*.docx
+*.xlsx
+report_*
+summary_*
+analysis_*
+
+# Jupyter notebook outputs
+*.ipynb_checkpoints/
+.ipynb_checkpoints/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Backup files
+*.bak
+*.backup
+*~
+*.swp
+*.swo
+
+# OS and IDE generated files
 .DS_Store
 .DS_Store?
 ._*
@@ -129,3 +212,37 @@ rythmguard_output/
 .Trashes
 ehthumbs.db
 Thumbs.db
+*.lnk
+
+# ==============================================
+# 🔐 ADDITIONAL SECURITY MEASURES
+# ==============================================
+
+# Docker secrets
+docker-compose.override.yml
+.dockerignore
+
+# Deployment configurations (may contain secrets)
+kubernetes/
+helm/
+terraform/
+ansible/
+
+# CI/CD files with potential secrets
+.github/workflows/
+.gitlab-ci.yml
+azure-pipelines.yml
+Jenkinsfile
+
+# Cloud provider configurations
+.aws/
+.azure/
+.gcp/
+gcloud/
+
+# IDE project files (may contain paths/settings)
+.idea/
+*.iml
+.project
+.classpath
+.settings/

@@ -1,0 +1,9 @@
+@echo off
+echo Starting Java RhythmIQ Webapp...
+cd java-webapp
+:start
+echo Starting webapp on port 8082...
+java -jar target/rhythmiq-webapp-1.0.0.jar --server.port=8082 --logging.level.root=INFO
+echo Webapp stopped. Restarting in 3 seconds...
+timeout /t 3 /nobreak >nul
+goto start
