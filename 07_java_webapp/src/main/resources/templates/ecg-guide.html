@@ -1,0 +1,4216 @@
+<!DOCTYPE html><!DOCTYPE html><!DOCTYPE html><!DOCTYPE html><!DOCTYPE html><!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head><html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><head><html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+    <title>ECG Classification Guide - RhythmIQ</title>
+
+    <link rel="icon" type="image/svg+xml" th:href="@{/images/favicon.svg}">    <meta charset="UTF-8">
+
+    <style>
+
+        * {    <meta name="viewport" content="width=device-width, initial-scale=1.0"><head><html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+            margin: 0;
+
+            padding: 0;    <title>ECG Classification Guide - RhythmIQ</title>
+
+            box-sizing: border-box;
+
+        }    <link rel="icon" type="image/svg+xml" th:href="@{/images/favicon.svg}">    <meta charset="UTF-8">
+
+
+
+        body {    <style>
+
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+            background: white;        * {    <meta name="viewport" content="width=device-width, initial-scale=1.0"><head><html xmlns:th="http://www.thymeleaf.org" lang="en"><html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+            color: #49466B;
+
+            min-height: 100vh;            margin: 0;
+
+            padding-top: 50px;
+
+        }            padding: 0;    <title>ECG Guide - RhythmIQ</title>
+
+
+
+        /* Medical Disclaimer Banner */            box-sizing: border-box;
+
+        .medical-disclaimer {
+
+            position: fixed;        }    <link rel="icon" type="image/svg+xml" th:href="@{/images/favicon.svg}">    <meta charset="UTF-8">
+
+            top: 0;
+
+            left: 0;
+
+            right: 0;
+
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);        body {    <style>
+
+            padding: 15px 5%;
+
+            text-align: center;            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+            font-size: 0.9em;
+
+            color: #92400E;            background: white;        * {    <meta name="viewport" content="width=device-width, initial-scale=1.0"><head><head>
+
+            z-index: 9999;
+
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);            color: #49466B;
+
+        }
+
+            min-height: 100vh;            margin: 0;
+
+        /* Navigation */
+
+        .navbar {            padding-top: 50px;
+
+            position: fixed;
+
+            top: 50px;        }            padding: 0;    <title>ECG Guide - RhythmIQ</title>
+
+            left: 0;
+
+            right: 0;
+
+            background: white;
+
+            padding: 15px 5%;        /* Medical Disclaimer Banner */            box-sizing: border-box;
+
+            display: flex;
+
+            justify-content: space-between;        .medical-disclaimer {
+
+            align-items: center;
+
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);            position: fixed;        }    <link rel="icon" type="image/svg+xml" th:href="@{/images/favicon.svg}">    <meta charset="UTF-8">    <meta charset="UTF-8">
+
+            z-index: 1000;
+
+            border-bottom: 3px solid #98566D;            top: 0;
+
+        }
+
+            left: 0;
+
+        .navbar-brand {
+
+            display: flex;            right: 0;
+
+            align-items: center;
+
+            gap: 15px;            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);        body {    <style>
+
+        }
+
+            padding: 15px 5%;
+
+        .navbar-brand h1 {
+
+            font-size: 1.8em;            text-align: center;            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+            color: #49466B;
+
+            font-weight: 700;            font-size: 0.9em;
+
+        }
+
+            color: #92400E;            background: white;        * {    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        .navbar-menu {
+
+            display: flex;            z-index: 9999;
+
+            gap: 30px;
+
+            align-items: center;            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);            min-height: 100vh;
+
+        }
+
+        }
+
+        .navbar-menu a {
+
+            color: #49466B;            padding-top: 50px;            margin: 0;
+
+            text-decoration: none;
+
+            font-weight: 500;        /* Navigation */
+
+            transition: all 0.3s;
+
+            padding: 8px 16px;        .navbar {            color: #49466B;
+
+            border-radius: 8px;
+
+            font-size: 1em;            position: fixed;
+
+        }
+
+            top: 50px;        }            padding: 0;    <title>ECG Guide - RhythmIQ</title>    <title>ECG Guide - RhythmIQ</title>
+
+        .navbar-menu a:hover {
+
+            background: #F3F4F6;            left: 0;
+
+            color: #98566D;
+
+        }            right: 0;
+
+
+
+        .navbar-menu a.active {            background: white;
+
+            background: #98566D;
+
+            color: white;            padding: 15px 5%;        /* Medical Disclaimer Banner */            box-sizing: border-box;
+
+        }
+
+            display: flex;
+
+        .navbar-actions {
+
+            display: flex;            justify-content: space-between;        .medical-disclaimer {
+
+            gap: 15px;
+
+            align-items: center;            align-items: center;
+
+        }
+
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);            position: fixed;        }    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">    <link rel="icon" type="image/svg+xml" th:href="@{/images/favicon.svg}">
+
+        .theme-toggle {
+
+            background: #F3F4F6;            z-index: 1000;
+
+            border: 2px solid #98878F;
+
+            width: 45px;            border-bottom: 3px solid #98566D;            top: 0;
+
+            height: 45px;
+
+            border-radius: 50%;        }
+
+            cursor: pointer;
+
+            display: flex;            left: 0;
+
+            align-items: center;
+
+            justify-content: center;        .navbar-brand {
+
+            font-size: 1.2em;
+
+            transition: all 0.3s;            display: flex;            right: 0;
+
+        }
+
+            align-items: center;
+
+        .theme-toggle:hover {
+
+            background: #E5E7EB;            gap: 15px;            background: linear-gradient(135deg, #98566D 0%, #49466B 100%);        body {    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">    <style>
+
+            transform: scale(1.1);
+
+        }        }
+
+
+
+        /* Hero Section */            color: white;
+
+        .hero {
+
+            background: linear-gradient(135deg, #49466B 0%, #98566D 50%, #98878F 100%);        .navbar-brand h1 {
+
+            color: white;
+
+            padding: 140px 5% 80px 5%;            font-size: 1.8em;            padding: 12px 5%;            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+            text-align: center;
+
+            min-height: 60vh;            color: #49466B;
+
+            display: flex;
+
+            flex-direction: column;            font-weight: 700;            font-size: 0.85em;
+
+            justify-content: center;
+
+            position: relative;        }
+
+            overflow: hidden;
+
+        }            font-weight: 500;            background: white;    <style>        * {
+
+
+
+        .hero::before {        .navbar-menu {
+
+            content: '';
+
+            position: absolute;            display: flex;            text-align: center;
+
+            top: 0;
+
+            left: 0;            gap: 30px;
+
+            right: 0;
+
+            bottom: 0;        }            z-index: 9999;            min-height: 100vh;
+
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0h2.827zM5.373 0l-.83.828L5.96 2.243 8.2 0H5.374zM48.97 0l3.657 3.657-1.414 1.414L46.143 0h2.828zM11.03 0L7.372 3.657 8.787 5.07 13.857 0H11.03zm32.284 0L49.8 6.485 48.384 7.9l-7.9-7.9h2.83zM16.686 0L10.2 6.485 11.616 7.9l7.9-7.9h-2.83zm20.97 0l9.315 9.314-1.414 1.414L34.828 0h2.83zM22.344 0L13.03 9.314l1.414 1.414L25.172 0h-2.83zM32 0l12.142 12.142-1.414 1.414L30 .828 17.272 13.556l-1.414-1.414L28 0h4zM.284 0l28 28-1.414 1.414L0 2.544V0h.284zM0 5.373l25.456 25.455-1.414 1.415L0 8.2V5.374zm0 5.656l22.627 22.627-1.414 1.414L0 13.86v-2.83zm0 5.656l19.8 19.8-1.415 1.413L0 19.514v-2.83zm0 5.657l16.97 16.97-1.414 1.415L0 25.172v-2.83zM0 28l14.142 14.142-1.414 1.414L0 30.828V28zm0 5.657L11.314 44.97 9.9 46.386l-9.9-9.9v-2.828zm0 5.657L8.485 47.8 7.07 49.212 0 42.143v-2.83zm0 5.657l5.657 5.657-1.414 1.415L0 47.8v-2.83zm0 5.657l2.828 2.83-1.414 1.413L0 53.456v-2.83zM54.627 60L30 35.373 5.373 60H8.2L30 38.2 51.8 60h2.827zm-5.656 0L30 41.03 11.03 60h2.828L30 43.858 46.142 60h2.83zm-5.656 0L30 46.686 16.686 60h2.83L30 49.515 40.485 60h2.83zm-5.657 0L30 52.343 22.344 60h2.83L30 55.172 34.828 60h2.83zM32 60l-2-2-2 2h4zM59.716 0l-28 28 1.414 1.414L60 2.544V0h-.284zM60 5.373L34.544 30.828l1.414 1.415L60 8.2V5.374zm0 5.656L37.373 33.656l1.414 1.414L60 13.86v-2.83zm0 5.656l-19.8 19.8 1.415 1.413L60 19.514v-2.83zm0 5.657l-16.97 16.97 1.414 1.415L60 25.172v-2.83zM60 28L45.858 42.142l1.414 1.414L60 30.828V28zm0 5.657L48.686 44.97l1.415 1.415 9.9-9.9v-2.828zm0 5.657L51.515 47.8l1.414 1.413 7.07-7.07v-2.83zm0 5.657l-5.657 5.657 1.414 1.415L60 47.8v-2.83zm0 5.657l-2.828 2.83 1.414 1.413L60 53.456v-2.83z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+
+            opacity: 0.1;
+
+        }
+
+        .navbar-menu a {            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+
+        .hero-content {
+
+            position: relative;            color: #49466B;
+
+            z-index: 1;
+
+        }            text-decoration: none;            border-bottom: 2px solid #98566D;            padding-top: 50px; /* Space for fixed disclaimer */        * {            margin: 0;
+
+
+
+        .hero h1 {            font-weight: 500;
+
+            font-size: 3.5em;
+
+            font-weight: 700;            transition: color 0.3s;        }
+
+            margin-bottom: 20px;
+
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);            font-size: 1em;
+
+        }
+
+        }            color: #49466B;
+
+        .hero p {
+
+            font-size: 1.3em;
+
+            opacity: 0.95;
+
+            max-width: 800px;        .navbar-menu a:hover,        .medical-disclaimer strong {
+
+            margin: 0 auto;
+
+        }        .navbar-menu a.active {
+
+
+
+        /* Main Content */            color: #98566D;            font-weight: 700;        }            margin: 0;            padding: 0;
+
+        .main-content {
+
+            padding: 80px 5% 60px 5%;        }
+
+            background: white;
+
+        }            text-transform: uppercase;
+
+
+
+        .intro-section {        .navbar-actions {
+
+            max-width: 1000px;
+
+            margin: 0 auto 60px auto;            display: flex;        }
+
+            text-align: center;
+
+        }            gap: 15px;
+
+
+
+        .intro-section h2 {            align-items: center;
+
+            font-size: 2.5em;
+
+            color: #49466B;        }
+
+            margin-bottom: 20px;
+
+        }        /* Navigation Bar */        /* Medical Disclaimer Banner */            padding: 0;            box-sizing: border-box;
+
+
+
+        .intro-section p {        .theme-toggle {
+
+            font-size: 1.1em;
+
+            color: #666;            background: none;        .navbar {
+
+            line-height: 1.8;
+
+        }            border: 2px solid #98566D;
+
+
+
+        /* ECG Types Grid */            padding: 8px 15px;            background: white;        .medical-disclaimer {
+
+        .ecg-types-grid {
+
+            display: grid;            border-radius: 8px;
+
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+
+            gap: 40px;            cursor: pointer;            box-shadow: 0 2px 8px rgba(152, 135, 143, 0.2);
+
+            max-width: 1400px;
+
+            margin: 0 auto;            font-size: 1.2em;
+
+        }
+
+            transition: all 0.3s;            border-bottom: 3px solid #98878F;            position: fixed;            box-sizing: border-box;        }
+
+        .ecg-type-card {
+
+            background: white;        }
+
+            border: 2px solid #98878F;
+
+            border-radius: 15px;            padding: 15px 5%;
+
+            padding: 30px;
+
+            transition: all 0.3s;        .theme-toggle:hover {
+
+            box-shadow: 0 4px 15px rgba(152, 135, 143, 0.1);
+
+        }            background: #98566D;            display: flex;            top: 0;
+
+
+
+        .ecg-type-card:hover {            transform: scale(1.1);
+
+            transform: translateY(-10px);
+
+            box-shadow: 0 10px 30px rgba(152, 86, 109, 0.3);        }            justify-content: space-between;
+
+            border-color: #98566D;
+
+        }
+
+
+
+        .ecg-card-header {        /* Hero Section */            align-items: center;            left: 0;        }        
+
+            display: flex;
+
+            align-items: center;        .hero {
+
+            justify-content: space-between;
+
+            margin-bottom: 20px;            background: linear-gradient(135deg, #49466B 0%, #98566D 50%, #98878F 100%);            position: sticky;
+
+        }
+
+            color: white;
+
+        .ecg-card-title {
+
+            font-size: 1.8em;            padding: 140px 5% 80px 5%;            top: 50px;            right: 0;
+
+            font-weight: 700;
+
+            color: #49466B;            text-align: center;
+
+        }
+
+            min-height: 60vh;            z-index: 1000;
+
+        .ecg-badge {
+
+            background: linear-gradient(135deg, #98566D, #49466B);            display: flex;
+
+            color: white;
+
+            padding: 8px 15px;            flex-direction: column;        }            background: linear-gradient(135deg, #98566D 0%, #49466B 100%);        body {
+
+            border-radius: 20px;
+
+            font-size: 0.9em;            justify-content: center;
+
+            font-weight: 600;
+
+        }            position: relative;
+
+
+
+        .ecg-card-description {            overflow: hidden;
+
+            color: #98878F;
+
+            line-height: 1.6;        }        .navbar-brand {            color: white;
+
+            margin-bottom: 15px;
+
+        }
+
+
+
+        .ecg-symptoms {        .hero::before {            font-size: 1.8em;
+
+            background: #f8f7f9;
+
+            padding: 15px;            content: '';
+
+            border-radius: 10px;
+
+            margin-top: 15px;            position: absolute;            font-weight: 700;            padding: 12px 5%;        body {            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+        }
+
+            top: 0;
+
+        .ecg-symptoms h4 {
+
+            color: #49466B;            left: 0;            background: linear-gradient(135deg, #98566D 0%, #49466B 100%);
+
+            margin-bottom: 10px;
+
+            font-size: 1.1em;            right: 0;
+
+        }
+
+            bottom: 0;            -webkit-background-clip: text;            font-size: 0.85em;
+
+        .ecg-symptoms ul {
+
+            list-style: none;            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0h2.827zM5.373 0l-.83.828L5.96 2.243 8.2 0H5.374zM48.97 0l3.657 3.657-1.414 1.414L46.143 0h2.828zM11.03 0L7.372 3.657 8.787 5.07 13.857 0H11.03zm32.284 0L49.8 6.485 48.384 7.9l-7.9-7.9h2.83zM16.686 0L10.2 6.485 11.616 7.9l7.9-7.9h-2.83zm20.97 0l9.315 9.314-1.414 1.414L34.828 0h2.83zM22.344 0L13.03 9.314l1.414 1.414L25.172 0h-2.83zM32 0l12.142 12.142-1.414 1.414L30 .828 17.272 13.556l-1.414-1.414L28 0h4zM.284 0l28 28-1.414 1.414L0 2.544V0h.284zM0 5.373l25.456 25.455-1.414 1.415L0 8.2V5.374zm0 5.656l22.627 22.627-1.414 1.414L0 13.86v-2.83zm0 5.656l19.8 19.8-1.415 1.413L0 19.514v-2.83zm0 5.657l16.97 16.97-1.414 1.415L0 25.172v-2.83zM0 28l14.142 14.142-1.414 1.414L0 30.828V28zm0 5.657L11.314 44.97 9.9 46.386l-9.9-9.9v-2.828zm0 5.657L8.485 47.8 7.07 49.212 0 42.143v-2.83zm0 5.657l5.657 5.657-1.414 1.415L0 47.8v-2.83zm0 5.657l2.828 2.83-1.414 1.413L0 53.456v-2.83zM54.627 60L30 35.373 5.373 60H8.2L30 38.2 51.8 60h2.827zm-5.656 0L30 41.03 11.03 60h2.828L30 43.858 46.142 60h2.83zm-5.656 0L30 46.686 16.686 60h2.83L30 49.515 40.485 60h2.83zm-5.657 0L30 52.343 22.344 60h2.83L30 55.172 34.828 60h2.83zM32 60l-2-2-2 2h4zM59.716 0l-28 28 1.414 1.414L60 2.544V0h-.284zM60 5.373L34.544 30.828l1.414 1.415L60 8.2V5.374zm0 5.656L37.373 33.656l1.414 1.414L60 13.86v-2.83zm0 5.656l-19.8 19.8 1.415 1.413L60 19.514v-2.83zm0 5.657l-16.97 16.97 1.414 1.415L60 25.172v-2.83zM60 28L45.858 42.142l1.414 1.414L60 30.828V28zm0 5.657L48.686 44.97l1.415 1.415 9.9-9.9v-2.828zm0 5.657L51.515 47.8l1.414 1.413 7.07-7.07v-2.83zm0 5.657l-5.657 5.657 1.414 1.415L60 47.8v-2.83zm0 5.657l-2.828 2.83 1.414 1.413L60 53.456v-2.83z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+
+            padding-left: 0;
+
+        }            opacity: 0.1;            -webkit-text-fill-color: transparent;
+
+
+
+        .ecg-symptoms li {        }
+
+            padding: 5px 0;
+
+            color: #98878F;            background-clip: text;            font-weight: 500;            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;            background: white;
+
+        }
+
+        .hero-content {
+
+        .ecg-symptoms li::before {
+
+            content: "• ";            position: relative;        }
+
+            color: #98566D;
+
+            font-weight: bold;            z-index: 1;
+
+            margin-right: 8px;
+
+        }        }            text-align: center;
+
+
+
+        /* Footer */
+
+        footer {
+
+            background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);        .hero h1 {        .navbar-menu {
+
+            color: white;
+
+            padding: 60px 5% 30px 5%;            font-size: 3.5em;
+
+        }
+
+            font-weight: 700;            display: flex;            z-index: 9999;            background: white;            min-height: 100vh;
+
+        .footer-content {
+
+            max-width: 1400px;            margin-bottom: 20px;
+
+            margin: 0 auto;
+
+            display: grid;            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);            gap: 30px;
+
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+            gap: 40px;        }
+
+            margin-bottom: 40px;
+
+        }            align-items: center;            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+
+
+
+        .footer-section h3 {        .hero p {
+
+            font-size: 1.3em;
+
+            margin-bottom: 20px;            font-size: 1.3em;        }
+
+            font-weight: 600;
+
+        }            opacity: 0.95;
+
+
+
+        .footer-section p {            max-width: 800px;            border-bottom: 2px solid #98566D;            min-height: 100vh;            padding-bottom: 40px;
+
+            line-height: 1.8;
+
+            opacity: 0.9;            margin: 0 auto;
+
+        }
+
+        }        .navbar-menu a {
+
+        .footer-links {
+
+            list-style: none;
+
+        }
+
+        /* Main Content */            text-decoration: none;        }
+
+        .footer-links li {
+
+            margin-bottom: 12px;        .main-content {
+
+        }
+
+            padding: 80px 5% 60px 5%;            color: #49466B;
+
+        .footer-links a {
+
+            color: white;        }
+
+            text-decoration: none;
+
+            opacity: 0.9;            font-weight: 500;            display: flex;            padding-top: 50px; /* Space for fixed disclaimer */
+
+            transition: all 0.3s;
+
+        }        .intro-section {
+
+
+
+        .footer-links a:hover {            max-width: 1000px;            padding: 8px 20px;
+
+            opacity: 1;
+
+            padding-left: 5px;            margin: 0 auto 60px auto;
+
+        }
+
+            text-align: center;            border-radius: 25px;        .medical-disclaimer strong {
+
+        .social-icons {
+
+            display: flex;        }
+
+            gap: 15px;
+
+            margin-top: 15px;            transition: all 0.3s;
+
+        }
+
+        .intro-section h2 {
+
+        .social-icon {
+
+            width: 45px;            font-size: 2.5em;        }            font-weight: 700;            flex-direction: column;            color: #1F2937;
+
+            height: 45px;
+
+            background: rgba(255, 255, 255, 0.1);            color: #49466B;
+
+            border-radius: 50%;
+
+            display: flex;            margin-bottom: 20px;
+
+            align-items: center;
+
+            justify-content: center;        }
+
+            color: white;
+
+            text-decoration: none;        .navbar-menu a:hover {            text-transform: uppercase;
+
+            font-size: 1.2em;
+
+            transition: all 0.3s;        .intro-section p {
+
+        }
+
+            font-size: 1.1em;            background: rgba(152, 86, 109, 0.1);
+
+        .social-icon:hover {
+
+            background: rgba(255, 255, 255, 0.2);            color: #666;
+
+            transform: translateY(-3px);
+
+        }            line-height: 1.8;            color: #98566D;        }            color: #1F2937;        }
+
+
+
+        /* Dark Mode */        }
+
+        body.dark-mode {
+
+            background: #192231;        }
+
+            color: #98878F;
+
+        }        /* ECG Types Grid */
+
+
+
+        body.dark-mode .navbar {        .ecg-types-grid {
+
+            background: #192231;
+
+            border-bottom-color: #98566D;            display: grid;
+
+        }
+
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));        .navbar-menu a.active {
+
+        body.dark-mode .navbar-brand h1 {
+
+            color: #98878F;            gap: 40px;
+
+        }
+
+            max-width: 1400px;            background: #98566D;        /* Navigation Bar */            padding-top: 50px; /* Space for fixed disclaimer */
+
+        body.dark-mode .navbar-menu a {
+
+            color: #98878F;            margin: 0 auto;
+
+        }
+
+        }            color: white;
+
+        body.dark-mode .navbar-menu a:hover {
+
+            background: #49466B;
+
+            color: #98566D;
+
+        }        .ecg-type-card {        }        .navbar {
+
+
+
+        body.dark-mode .navbar-menu a.active {            background: white;
+
+            background: #98566D;
+
+        }            border: 2px solid #E5E7EB;
+
+
+
+        body.dark-mode .main-content {            border-radius: 16px;
+
+            background: #192231;
+
+        }            padding: 35px;        .navbar-actions {            background: white;        }        /* Medical Disclaimer Banner */
+
+
+
+        body.dark-mode .intro-section h2 {            transition: all 0.3s;
+
+            color: #98878F;
+
+        }            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);            display: flex;
+
+
+
+        body.dark-mode .intro-section p {        }
+
+            color: #98878F;
+
+        }            align-items: center;            box-shadow: 0 2px 8px rgba(152, 135, 143, 0.2);
+
+
+
+        body.dark-mode .ecg-type-card {        .ecg-type-card:hover {
+
+            background: #1a1f35;
+
+            border-color: #98566D;            transform: translateY(-8px);            gap: 15px;
+
+        }
+
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+
+        body.dark-mode .ecg-card-title {
+
+            color: #98878F;            border-color: #98566D;        }            border-bottom: 3px solid #98878F;        .medical-disclaimer {
+
+        }
+
+        }
+
+        body.dark-mode .ecg-card-description {
+
+            color: #98878F;
+
+        }
+
+        .ecg-type-header {
+
+        body.dark-mode .ecg-symptoms {
+
+            background: #0f1419;            display: flex;        .theme-toggle {            padding: 15px 5%;
+
+        }
+
+            align-items: center;
+
+        body.dark-mode .ecg-symptoms h4 {
+
+            color: #98878F;            gap: 20px;            background: #f8f7f9;
+
+        }
+
+            margin-bottom: 20px;
+
+        body.dark-mode .ecg-symptoms li {
+
+            color: #98878F;        }            border: 2px solid #98878F;            display: flex;        /* Medical Disclaimer Banner */            position: fixed;
+
+        }
+
+
+
+        /* Responsive */
+
+        @media (max-width: 768px) {        .ecg-type-icon {            width: 45px;
+
+            .hero h1 {
+
+                font-size: 2.2em;            width: 70px;
+
+            }
+
+            height: 70px;            height: 45px;            justify-content: space-between;
+
+            .hero p {
+
+                font-size: 1.1em;            background: linear-gradient(135deg, #98878F 0%, #98566D 100%);
+
+            }
+
+            border-radius: 50%;            border-radius: 50%;
+
+            .navbar-menu {
+
+                display: none;            display: flex;
+
+            }
+
+            align-items: center;            cursor: pointer;            align-items: center;        .medical-disclaimer {            top: 0;
+
+            .ecg-types-grid {
+
+                grid-template-columns: 1fr;            justify-content: center;
+
+            }
+
+        }            font-size: 2em;            display: flex;
+
+    </style>
+
+</head>            color: white;
+
+<body>
+
+    <!-- Medical Disclaimer Banner -->            font-weight: 700;            align-items: center;            position: sticky;
+
+    <div class="medical-disclaimer">
+
+        <strong>⚠️ Medical Disclaimer:</strong> This AI tool is for educational and research purposes only. Not for clinical diagnosis. Always consult qualified healthcare professionals for medical decisions.            flex-shrink: 0;
+
+    </div>
+
+        }            justify-content: center;
+
+    <!-- Navigation -->
+
+    <nav class="navbar">
+
+        <div class="navbar-brand">
+
+            <h1>🫀 RhythmIQ</h1>        .ecg-type-title {            font-size: 1.2em;            top: 50px;            position: fixed;            left: 0;
+
+        </div>
+
+        <div class="navbar-menu">            flex: 1;
+
+            <a href="/">Home</a>
+
+            <a href="/upload">Analyze ECG</a>        }            transition: all 0.3s;
+
+            <a href="/ecg-guide" class="active">ECG Guide</a>
+
+            <a href="/about">About</a>
+
+        </div>
+
+        <div class="navbar-actions">        .ecg-type-title h3 {        }            z-index: 1000;
+
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+
+                <span class="theme-icon">🌙</span>            font-size: 1.8em;
+
+            </button>
+
+        </div>            color: #49466B;
+
+    </nav>
+
+            margin-bottom: 5px;
+
+    <!-- Hero Section -->
+
+    <section class="hero">        }        .theme-toggle:hover {        }            top: 0;            right: 0;
+
+        <div class="hero-content">
+
+            <h1>📊 ECG Classification Guide</h1>
+
+            <p>Understanding the 6 types of cardiac rhythms our AI can detect</p>
+
+        </div>        .ecg-type-title .subtitle {            background: #98566D;
+
+    </section>
+
+            color: #98566D;
+
+    <!-- Main Content -->
+
+    <div class="main-content">            font-size: 1em;            border-color: #98566D;
+
+        <div class="intro-section">
+
+            <h2>AI-Powered ECG Analysis</h2>            font-weight: 600;
+
+            <p>
+
+                Our advanced machine learning model can accurately classify electrocardiogram (ECG) readings into 6 distinct categories.         }            transform: rotate(20deg) scale(1.1);
+
+                Each classification represents a different cardiac rhythm pattern that has unique characteristics and clinical significance.
+
+            </p>
+
+        </div>
+
+        .ecg-type-card p {        }        .navbar-brand {            left: 0;            background: linear-gradient(135deg, #98566D 0%, #49466B 100%);
+
+        <!-- ECG Types Grid -->
+
+        <div class="ecg-types-grid">            color: #666;
+
+            <!-- F - Fusion Beats -->
+
+            <div class="ecg-type-card">            line-height: 1.8;
+
+                <div class="ecg-card-header">
+
+                    <div class="ecg-card-title">F</div>            font-size: 1em;
+
+                    <div class="ecg-badge">Fusion</div>
+
+                </div>            margin-bottom: 15px;        /* Full Hero Section */            font-size: 1.8em;
+
+                <h3 style="color: #49466B; font-size: 1.4em; margin-bottom: 10px;">Fusion Beat</h3>
+
+                <p class="ecg-card-description">        }
+
+                    A fusion beat occurs when two pacemaker sites activate the ventricles simultaneously, creating a hybrid complex that combines characteristics of both beats.
+
+                </p>        .hero {
+
+                <div class="ecg-symptoms">
+
+                    <h4>Key Characteristics:</h4>        .ecg-characteristics {
+
+                    <ul>
+
+                        <li>Hybrid QRS complex morphology</li>            background: #F9FAFB;            background: linear-gradient(135deg, #49466B 0%, #98566D 50%, #98878F 100%);            font-weight: 700;            right: 0;            color: white;
+
+                        <li>Combination of normal and abnormal beats</li>
+
+                        <li>Variable P-wave relationship</li>            padding: 20px;
+
+                        <li>Intermediate QRS duration</li>
+
+                    </ul>            border-radius: 12px;            min-height: 60vh;
+
+                </div>
+
+            </div>            margin-top: 20px;
+
+
+
+            <!-- M - Myocardial Infarction -->        }            display: flex;            background: linear-gradient(135deg, #98566D 0%, #49466B 100%);
+
+            <div class="ecg-type-card">
+
+                <div class="ecg-card-header">
+
+                    <div class="ecg-card-title">M</div>
+
+                    <div class="ecg-badge">MI</div>        .ecg-characteristics h4 {            align-items: center;
+
+                </div>
+
+                <h3 style="color: #49466B; font-size: 1.4em; margin-bottom: 10px;">Myocardial Infarction</h3>            color: #49466B;
+
+                <p class="ecg-card-description">
+
+                    ECG patterns indicating heart attack or damaged heart tissue. Critical for emergency diagnosis and treatment.            margin-bottom: 12px;            justify-content: center;            -webkit-background-clip: text;            background: linear-gradient(135deg, #98566D 0%, #49466B 100%);            padding: 12px 5%;
+
+                </p>
+
+                <div class="ecg-symptoms">            font-size: 1.1em;
+
+                    <h4>Key Characteristics:</h4>
+
+                    <ul>        }            text-align: center;
+
+                        <li>ST segment elevation or depression</li>
+
+                        <li>Pathological Q waves</li>
+
+                        <li>T wave inversion</li>
+
+                        <li>Bundle branch blocks</li>        .ecg-characteristics ul {            color: white;            -webkit-text-fill-color: transparent;
+
+                    </ul>
+
+                </div>            list-style: none;
+
+            </div>
+
+            padding-left: 0;            padding: 80px 5%;
+
+            <!-- N - Normal Beats -->
+
+            <div class="ecg-type-card">        }
+
+                <div class="ecg-card-header">
+
+                    <div class="ecg-card-title">N</div>            position: relative;            background-clip: text;            color: white;            font-size: 0.85em;
+
+                    <div class="ecg-badge">Normal</div>
+
+                </div>        .ecg-characteristics li {
+
+                <h3 style="color: #49466B; font-size: 1.4em; margin-bottom: 10px;">Normal Sinus Rhythm</h3>
+
+                <p class="ecg-card-description">            padding: 8px 0;            overflow: hidden;
+
+                    Healthy cardiac rhythm with regular intervals and normal waveform characteristics. The baseline for comparison.
+
+                </p>            color: #666;
+
+                <div class="ecg-symptoms">
+
+                    <h4>Key Characteristics:</h4>            position: relative;        }        }
+
+                    <ul>
+
+                        <li>Regular P-P and R-R intervals</li>            padding-left: 25px;
+
+                        <li>Normal P wave morphology</li>
+
+                        <li>QRS duration 80-120 ms</li>        }
+
+                        <li>Heart rate 60-100 bpm</li>
+
+                    </ul>
+
+                </div>
+
+            </div>        .ecg-characteristics li::before {        .hero::before {            padding: 12px 5%;            font-weight: 500;
+
+
+
+            <!-- Q - Q-Wave Abnormalities -->            content: '✓';
+
+            <div class="ecg-type-card">
+
+                <div class="ecg-card-header">            position: absolute;            content: '';
+
+                    <div class="ecg-card-title">Q</div>
+
+                    <div class="ecg-badge">Q-wave</div>            left: 0;
+
+                </div>
+
+                <h3 style="color: #49466B; font-size: 1.4em; margin-bottom: 10px;">Q-wave Abnormality</h3>            color: #98566D;            position: absolute;        .navbar-menu {
+
+                <p class="ecg-card-description">
+
+                    Abnormal Q waves indicating possible myocardial damage or old infarction requiring clinical correlation.            font-weight: 700;
+
+                </p>
+
+                <div class="ecg-symptoms">        }            top: 0;
+
+                    <h4>Key Characteristics:</h4>
+
+                    <ul>
+
+                        <li>Pathological Q wave depth</li>
+
+                        <li>Q wave duration >40 ms</li>        /* Footer */            left: 0;            display: flex;            font-size: 0.85em;            text-align: center;
+
+                        <li>Lead-specific patterns</li>
+
+                        <li>Possible old MI indicator</li>        footer {
+
+                    </ul>
+
+                </div>            background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);            right: 0;
+
+            </div>
+
+            color: white;
+
+            <!-- S - Supraventricular -->
+
+            <div class="ecg-type-card">            padding: 60px 5% 30px 5%;            bottom: 0;            gap: 30px;
+
+                <div class="ecg-card-header">
+
+                    <div class="ecg-card-title">S</div>        }
+
+                    <div class="ecg-badge">SVE</div>
+
+                </div>            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,50 Q300,20 600,50 T1200,50 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+
+                <h3 style="color: #49466B; font-size: 1.4em; margin-bottom: 10px;">Supraventricular Ectopy</h3>
+
+                <p class="ecg-card-description">        .footer-content {
+
+                    Premature beats originating above the ventricles, often benign but can indicate underlying conditions.
+
+                </p>            max-width: 1400px;            background-repeat: repeat-x;            align-items: center;            font-weight: 500;            z-index: 9999;
+
+                <div class="ecg-symptoms">
+
+                    <h4>Key Characteristics:</h4>            margin: 0 auto;
+
+                    <ul>
+
+                        <li>Premature P wave</li>            display: grid;            background-position: bottom;
+
+                        <li>Normal QRS complex</li>
+
+                        <li>Compensatory pause</li>            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+                        <li>Variable P-R interval</li>
+
+                    </ul>            gap: 40px;            opacity: 0.3;        }
+
+                </div>
+
+            </div>            margin-bottom: 40px;
+
+
+
+            <!-- V - Ventricular -->        }        }
+
+            <div class="ecg-type-card">
+
+                <div class="ecg-card-header">
+
+                    <div class="ecg-card-title">V</div>
+
+                    <div class="ecg-badge">VE</div>        .footer-section h3 {            text-align: center;            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+
+                </div>
+
+                <h3 style="color: #49466B; font-size: 1.4em; margin-bottom: 10px;">Ventricular Ectopy</h3>            font-size: 1.3em;
+
+                <p class="ecg-card-description">
+
+                    Premature beats originating in the ventricles. Can be benign or indicate serious cardiac conditions.            margin-bottom: 20px;        .hero-content {
+
+                </p>
+
+                <div class="ecg-symptoms">            font-weight: 600;
+
+                    <h4>Key Characteristics:</h4>
+
+                    <ul>        }            position: relative;        .navbar-menu a {
+
+                        <li>Wide QRS complex (>120 ms)</li>
+
+                        <li>No preceding P wave</li>
+
+                        <li>Bizarre QRS morphology</li>
+
+                        <li>Compensatory pause</li>        .footer-section p {            z-index: 1;
+
+                    </ul>
+
+                </div>            line-height: 1.8;
+
+            </div>
+
+        </div>            opacity: 0.9;            max-width: 900px;            text-decoration: none;            z-index: 9999;            border-bottom: 2px solid #98566D;
+
+    </div>
+
+        }
+
+    <!-- Footer -->
+
+    <footer>        }
+
+        <div class="footer-content">
+
+            <div class="footer-section">        .footer-links {
+
+                <h3>About RhythmIQ</h3>
+
+                <p>            list-style: none;            color: #49466B;
+
+                    Advanced AI-powered ECG analysis platform using machine learning 
+
+                    to detect cardiac abnormalities with 83.3% accuracy.        }
+
+                </p>
+
+                <br>        .hero h1 {
+
+                <div class="social-icons">
+
+                    <a href="#" class="social-icon" title="Facebook">📘</a>        .footer-links li {
+
+                    <a href="#" class="social-icon" title="Instagram">📷</a>
+
+                    <a href="#" class="social-icon" title="Twitter">🐦</a>            margin-bottom: 12px;            font-size: 3.5em;            font-weight: 500;            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);        }
+
+                    <a href="#" class="social-icon" title="LinkedIn">💼</a>
+
+                </div>        }
+
+            </div>
+
+            <div class="footer-section">            font-weight: 700;
+
+                <h3>Quick Links</h3>
+
+                <ul class="footer-links">        .footer-links a {
+
+                    <li><a href="/">Home</a></li>
+
+                    <li><a href="/upload">Analyze ECG</a></li>            color: white;            margin-bottom: 20px;            padding: 8px 20px;
+
+                    <li><a href="/ecg-guide">ECG Guide</a></li>
+
+                    <li><a href="/about">About Us</a></li>            text-decoration: none;
+
+                </ul>
+
+            </div>            opacity: 0.9;            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+
+            <div class="footer-section">
+
+                <h3>Resources</h3>            transition: all 0.3s;
+
+                <ul class="footer-links">
+
+                    <li><a href="#">Documentation</a></li>        }        }            border-radius: 25px;            border-bottom: 2px solid #98566D;
+
+                    <li><a href="#">API Access</a></li>
+
+                    <li><a href="#">Research Papers</a></li>
+
+                    <li><a href="#">Support</a></li>
+
+                </ul>        .footer-links a:hover {
+
+            </div>
+
+            <div class="footer-section">            opacity: 1;
+
+                <h3>Stay Updated</h3>
+
+                <p>            padding-left: 5px;        .hero p {            transition: all 0.3s;
+
+                    Get the latest updates on ECG analysis and AI in healthcare.
+
+                </p>        }
+
+                <br>
+
+                <form style="display: flex; flex-direction: column; gap: 10px;">            font-size: 1.3em;
+
+                    <input type="email" placeholder="Enter your email" style="padding: 12px 15px; border: 2px solid rgba(255,255,255,0.3); border-radius: 8px; background: rgba(255,255,255,0.1); color: white; font-size: 0.95em;">
+
+                    <button type="submit" style="padding: 12px 30px; background: white; color: #0284C7; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-size: 0.95em;">Subscribe Now</button>        .social-icons {
+
+                </form>
+
+            </div>            display: flex;            opacity: 0.95;        }        }        .medical-disclaimer strong {
+
+        </div>
+
+                    gap: 15px;
+
+        <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.2); margin: 40px 0 20px 0;">
+
+                    margin-top: 15px;            line-height: 1.6;
+
+        <div style="text-align: center; font-size: 0.9em; opacity: 0.9;">
+
+            <p>        }
+
+                <strong>⚕️ Medical Notice:</strong> For educational purposes only • Not for clinical diagnosis<br>
+
+                Always consult qualified healthcare professionals            margin-bottom: 30px;
+
+            </p>
+
+        </div>        .social-icon {
+
+    </footer>
+
+            width: 45px;        }
+
+    <script>
+
+        function toggleTheme() {            height: 45px;
+
+            document.body.classList.toggle('dark-mode');
+
+            const icon = document.querySelector('.theme-icon');            background: rgba(255, 255, 255, 0.1);        .navbar-menu a:hover {            font-weight: 700;
+
+            icon.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');            border-radius: 50%;
+
+        }
+
+            display: flex;        .hero-badge {
+
+        // Load saved theme
+
+        if (localStorage.getItem('theme') === 'dark') {            align-items: center;
+
+            document.body.classList.add('dark-mode');
+
+            document.querySelector('.theme-icon').textContent = '☀️';            justify-content: center;            display: inline-block;            background: rgba(152, 86, 109, 0.1);
+
+        }
+
+    </script>            color: white;
+
+</body>
+
+</html>            text-decoration: none;            background: rgba(255, 255, 255, 0.2);
+
+
+            font-size: 1.2em;
+
+            transition: all 0.3s;            padding: 10px 25px;            color: #98566D;        .medical-disclaimer strong {            text-transform: uppercase;
+
+        }
+
+            border-radius: 50px;
+
+        .social-icon:hover {
+
+            background: rgba(255, 255, 255, 0.2);            font-size: 0.9em;        }
+
+            transform: translateY(-3px);
+
+        }            font-weight: 600;
+
+
+
+        /* Dark Mode */            backdrop-filter: blur(10px);            font-weight: 700;        }
+
+        body.dark-mode {
+
+            background: #192231;            border: 1px solid rgba(255, 255, 255, 0.3);
+
+            color: #98878F;
+
+        }        }        .navbar-menu a.active {
+
+
+
+        body.dark-mode .navbar {
+
+            background: #192231;
+
+            border-bottom-color: #98566D;        /* Content Container */            background: #98566D;            text-transform: uppercase;        
+
+        }
+
+        .container {
+
+        body.dark-mode .navbar-brand h1 {
+
+            color: #98878F;            max-width: 1200px;            color: white;
+
+        }
+
+            margin: 60px auto;
+
+        body.dark-mode .navbar-menu a {
+
+            color: #98878F;            padding: 0 5%;        }        }        /* Navigation Bar */
+
+        }
+
+        }
+
+        body.dark-mode .navbar-menu a:hover,
+
+        body.dark-mode .navbar-menu a.active {
+
+            color: #98566D;
+
+        }        /* Section Headers */
+
+
+
+        body.dark-mode .main-content {        .section-header {        .navbar-actions {        .navbar {
+
+            background: #192231;
+
+        }            text-align: center;
+
+
+
+        body.dark-mode .intro-section h2 {            margin-bottom: 50px;            display: flex;
+
+            color: #98878F;
+
+        }        }
+
+
+
+        body.dark-mode .intro-section p {            align-items: center;        /* Navigation Bar */            background: white;
+
+            color: #98878F;
+
+        }        .section-header h2 {
+
+
+
+        body.dark-mode .ecg-type-card {            font-size: 2.5em;            gap: 15px;
+
+            background: #0f0e15;
+
+            border-color: #98566D;            color: #49466B;
+
+        }
+
+            margin-bottom: 15px;        }        .navbar {            box-shadow: 0 2px 8px rgba(152, 135, 143, 0.2);
+
+        body.dark-mode .ecg-type-title h3 {
+
+            color: #98878F;        }
+
+        }
+
+
+
+        body.dark-mode .ecg-type-card p {
+
+            color: #98878F;        .section-header p {
+
+        }
+
+            font-size: 1.1em;        .theme-toggle {            background: white;            border-bottom: 3px solid #98878F;
+
+        body.dark-mode .ecg-characteristics {
+
+            background: #192231;            color: #98878F;
+
+        }
+
+            max-width: 700px;            background: #f8f7f9;
+
+        body.dark-mode .ecg-characteristics h4 {
+
+            color: #98878F;            margin: 0 auto;
+
+        }
+
+        }            border: 2px solid #98878F;            box-shadow: 0 2px 8px rgba(152, 135, 143, 0.2);            padding: 1rem 2rem;
+
+        body.dark-mode .ecg-characteristics li {
+
+            color: #98878F;
+
+        }
+
+        /* ECG Type Cards */            width: 45px;
+
+        /* Responsive */
+
+        @media (max-width: 768px) {        .ecg-types-grid {
+
+            .hero h1 {
+
+                font-size: 2.2em;            display: grid;            height: 45px;            border-bottom: 3px solid #98878F;            display: flex;
+
+            }
+
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+            .hero p {
+
+                font-size: 1.1em;            gap: 30px;            border-radius: 50%;
+
+            }
+
+            margin-bottom: 60px;
+
+            .navbar-menu {
+
+                display: none;        }            cursor: pointer;            padding: 15px 5%;            justify-content: space-between;
+
+            }
+
+
+
+            .ecg-types-grid {
+
+                grid-template-columns: 1fr;        .ecg-card {            display: flex;
+
+            }
+
+        }            background: white;
+
+    </style>
+
+</head>            border: 2px solid #98878F;            align-items: center;            display: flex;            align-items: center;
+
+<body>
+
+    <!-- Medical Disclaimer Banner -->            border-radius: 15px;
+
+    <div class="medical-disclaimer">
+
+        <strong>⚠️ Medical Disclaimer:</strong> This AI tool is for educational and research purposes only. Not for clinical diagnosis. Always consult qualified healthcare professionals for medical decisions.            padding: 30px;            justify-content: center;
+
+    </div>
+
+            transition: all 0.3s;
+
+    <!-- Navigation -->
+
+    <nav class="navbar">            box-shadow: 0 4px 15px rgba(152, 135, 143, 0.1);            font-size: 1.2em;            justify-content: space-between;        }
+
+        <div class="navbar-brand">
+
+            <h1>🫀 RhythmIQ</h1>        }
+
+        </div>
+
+        <div class="navbar-menu">            transition: all 0.3s;
+
+            <a href="/">Home</a>
+
+            <a href="/upload">Analyze ECG</a>        .ecg-card:hover {
+
+            <a href="/ecg-guide" class="active">ECG Guide</a>
+
+            <a href="/about">About</a>            transform: translateY(-10px);        }            align-items: center;        
+
+        </div>
+
+        <div class="navbar-actions">            box-shadow: 0 10px 30px rgba(152, 86, 109, 0.3);
+
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+
+                <span class="theme-icon">🌙</span>            border-color: #98566D;
+
+            </button>
+
+        </div>        }
+
+    </nav>
+
+        .theme-toggle:hover {            position: sticky;        .navbar-brand {
+
+    <!-- Hero Section -->
+
+    <section class="hero">        .ecg-card-header {
+
+        <div class="hero-content">
+
+            <h1>📊 ECG Classification Guide</h1>            display: flex;            background: #98566D;
+
+            <p>Understanding the 6 types of cardiac rhythms our AI can detect</p>
+
+        </div>            align-items: center;
+
+    </section>
+
+            justify-content: space-between;            border-color: #98566D;            top: 50px;            display: flex;
+
+    <!-- Main Content -->
+
+    <div class="main-content">            margin-bottom: 20px;
+
+        <div class="intro-section">
+
+            <h2>AI-Powered ECG Analysis</h2>        }            transform: rotate(20deg) scale(1.1);
+
+            <p>
+
+                Our advanced machine learning model can accurately classify electrocardiogram (ECG) readings into 6 distinct categories. 
+
+                Each classification represents a different cardiac rhythm pattern that has unique characteristics and clinical significance.
+
+            </p>        .ecg-card-title {        }            z-index: 1000;            align-items: center;
+
+        </div>
+
+            font-size: 1.8em;
+
+        <!-- ECG Types Grid -->
+
+        <div class="ecg-types-grid">            font-weight: 700;
+
+            <!-- F - Fusion Beats -->
+
+            <div class="ecg-type-card">            color: #49466B;
+
+                <div class="ecg-type-header">
+
+                    <div class="ecg-type-icon">F</div>        }        /* Full Hero Section */        }            gap: 10px;
+
+                    <div class="ecg-type-title">
+
+                        <h3>Fusion Beats</h3>
+
+                        <span class="subtitle">Type F</span>
+
+                    </div>        .ecg-badge {        .hero {
+
+                </div>
+
+                <p>            background: linear-gradient(135deg, #98566D, #49466B);
+
+                    Fusion beats occur when two pacemaker sites (typically the sinus node and an ectopic focus) 
+
+                    simultaneously activate the ventricles, creating a hybrid QRS complex.            color: white;            background: linear-gradient(135deg, #49466B 0%, #98566D 50%, #98878F 100%);            text-decoration: none;
+
+                </p>
+
+                <div class="ecg-characteristics">            padding: 8px 15px;
+
+                    <h4>Key Characteristics:</h4>
+
+                    <ul>            border-radius: 20px;            min-height: 60vh;
+
+                        <li>Intermediate QRS morphology</li>
+
+                        <li>Combination of normal and abnormal conduction</li>            font-size: 0.9em;
+
+                        <li>Variable appearance depending on timing</li>
+
+                        <li>Often seen in ventricular arrhythmias</li>            font-weight: 600;            display: flex;        .navbar-brand {            color: #49466B;
+
+                    </ul>
+
+                </div>        }
+
+            </div>
+
+            align-items: center;
+
+            <!-- M - Myocardial Infarction -->
+
+            <div class="ecg-type-card">        .ecg-card-description {
+
+                <div class="ecg-type-header">
+
+                    <div class="ecg-type-icon">M</div>            color: #98878F;            justify-content: center;            display: flex;            font-size: 1.5rem;
+
+                    <div class="ecg-type-title">
+
+                        <h3>Myocardial Infarction</h3>            line-height: 1.6;
+
+                        <span class="subtitle">Type M</span>
+
+                    </div>            margin-bottom: 15px;            text-align: center;
+
+                </div>
+
+                <p>        }
+
+                    ECG patterns indicating myocardial infarction (heart attack), showing characteristic changes 
+
+                    in ST segments, T waves, and Q waves that suggest cardiac tissue damage.            color: white;            align-items: center;            font-weight: bold;
+
+                </p>
+
+                <div class="ecg-characteristics">        .ecg-symptoms {
+
+                    <h4>Key Characteristics:</h4>
+
+                    <ul>            background: #f8f7f9;            padding: 80px 5%;
+
+                        <li>ST segment elevation or depression</li>
+
+                        <li>Pathological Q waves</li>            padding: 15px;
+
+                        <li>T wave inversions</li>
+
+                        <li>Requires immediate medical attention</li>            border-radius: 10px;            position: relative;            gap: 12px;        }
+
+                    </ul>
+
+                </div>            margin-top: 15px;
+
+            </div>
+
+        }            overflow: hidden;
+
+            <!-- N - Normal Beats -->
+
+            <div class="ecg-type-card">
+
+                <div class="ecg-type-header">
+
+                    <div class="ecg-type-icon">N</div>        .ecg-symptoms h4 {        }        }        
+
+                    <div class="ecg-type-title">
+
+                        <h3>Normal Beats</h3>            color: #49466B;
+
+                        <span class="subtitle">Type N</span>
+
+                    </div>            margin-bottom: 10px;
+
+                </div>
+
+                <p>            font-size: 1.1em;
+
+                    Normal sinus rhythm with regular P waves, QRS complexes, and T waves. 
+
+                    Represents healthy cardiac electrical activity originating from the sinoatrial node.        }        .hero::before {        .navbar-brand img {
+
+                </p>
+
+                <div class="ecg-characteristics">
+
+                    <h4>Key Characteristics:</h4>
+
+                    <ul>        .ecg-symptoms ul {            content: '';
+
+                        <li>Regular rhythm at 60-100 bpm</li>
+
+                        <li>Normal P wave before each QRS</li>            list-style: none;
+
+                        <li>QRS duration &lt; 0.12 seconds</li>
+
+                        <li>Normal PR and QT intervals</li>            padding-left: 0;            position: absolute;        .navbar-brand img {            width: 40px;
+
+                    </ul>
+
+                </div>        }
+
+            </div>
+
+            top: 0;
+
+            <!-- Q - Q-Wave Abnormalities -->
+
+            <div class="ecg-type-card">        .ecg-symptoms li {
+
+                <div class="ecg-type-header">
+
+                    <div class="ecg-type-icon">Q</div>            padding: 5px 0;            left: 0;            width: 45px;            height: 40px;
+
+                    <div class="ecg-type-title">
+
+                        <h3>Q-Wave Abnormalities</h3>            color: #98878F;
+
+                        <span class="subtitle">Type Q</span>
+
+                    </div>        }            right: 0;
+
+                </div>
+
+                <p>
+
+                    Abnormal Q waves that may indicate prior myocardial infarction or other cardiac pathology. 
+
+                    Characterized by deeper or wider Q waves than normal.        .ecg-symptoms li::before {            bottom: 0;            height: 45px;        }
+
+                </p>
+
+                <div class="ecg-characteristics">            content: "• ";
+
+                    <h4>Key Characteristics:</h4>
+
+                    <ul>            color: #98566D;            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,50 Q300,20 600,50 T1200,50 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+
+                        <li>Pathological Q wave depth and duration</li>
+
+                        <li>May indicate old myocardial infarction</li>            font-weight: bold;
+
+                        <li>Location-specific patterns</li>
+
+                        <li>Requires clinical correlation</li>            margin-right: 8px;            background-repeat: repeat-x;        }        
+
+                    </ul>
+
+                </div>        }
+
+            </div>
+
+            background-position: bottom;
+
+            <!-- S - Supraventricular -->
+
+            <div class="ecg-type-card">        /* Guide Sections */
+
+                <div class="ecg-type-header">
+
+                    <div class="ecg-type-icon">S</div>        .guide-section {            opacity: 0.3;        .navbar-menu {
+
+                    <div class="ecg-type-title">
+
+                        <h3>Supraventricular</h3>            background: #f8f7f9;
+
+                        <span class="subtitle">Type S</span>
+
+                    </div>            padding: 40px;        }
+
+                </div>
+
+                <p>            border-radius: 15px;
+
+                    Supraventricular ectopic beats originating above the ventricles, typically from the atria 
+
+                    or AV junction. These appear as premature beats with narrow QRS complexes.            margin-bottom: 30px;        .navbar-brand h1 {            display: flex;
+
+                </p>
+
+                <div class="ecg-characteristics">            border-left: 5px solid #98566D;
+
+                    <h4>Key Characteristics:</h4>
+
+                    <ul>        }        .hero-content {
+
+                        <li>Premature beats with narrow QRS</li>
+
+                        <li>Abnormal or absent P waves</li>
+
+                        <li>Usually benign but may be symptomatic</li>
+
+                        <li>Can occur in healthy individuals</li>        .guide-section h3 {            position: relative;            color: #49466B;            gap: 20px;
+
+                    </ul>
+
+                </div>            color: #49466B;
+
+            </div>
+
+            font-size: 1.8em;            z-index: 1;
+
+            <!-- V - Ventricular -->
+
+            <div class="ecg-type-card">            margin-bottom: 20px;
+
+                <div class="ecg-type-header">
+
+                    <div class="ecg-type-icon">V</div>        }            max-width: 900px;            font-size: 1.6em;            align-items: center;
+
+                    <div class="ecg-type-title">
+
+                        <h3>Ventricular</h3>
+
+                        <span class="subtitle">Type V</span>
+
+                    </div>        .guide-section p {        }
+
+                </div>
+
+                <p>            color: #98878F;
+
+                    Ventricular ectopic beats (PVCs) originating from the ventricles, characterized by 
+
+                    wide QRS complexes without preceding P waves. More concerning than supraventricular beats.            line-height: 1.8;            font-weight: 700;        }
+
+                </p>
+
+                <div class="ecg-characteristics">            margin-bottom: 15px;
+
+                    <h4>Key Characteristics:</h4>
+
+                    <ul>        }        .hero h1 {
+
+                        <li>Wide QRS complex (&gt; 0.12 seconds)</li>
+
+                        <li>No preceding P wave</li>
+
+                        <li>Compensatory pause following the beat</li>
+
+                        <li>May indicate underlying heart disease</li>        .guide-section ul {            font-size: 3.5em;            letter-spacing: -0.5px;        
+
+                    </ul>
+
+                </div>            list-style: none;
+
+            </div>
+
+        </div>            padding-left: 0;            font-weight: 700;
+
+    </div>
+
+        }
+
+    <!-- Footer -->
+
+    <footer>            margin-bottom: 20px;        }        .navbar-menu a {
+
+        <div class="footer-content">
+
+            <div class="footer-section">        .guide-section li {
+
+                <h3>About RhythmIQ</h3>
+
+                <p>            padding: 10px 0;            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+
+                    Advanced AI-powered ECG analysis platform using machine learning 
+
+                    to detect cardiac abnormalities with 83.3% accuracy.            color: #98878F;
+
+                </p>
+
+                <br>            line-height: 1.6;        }            text-decoration: none;
+
+                <div class="social-icons">
+
+                    <a href="#" class="social-icon" title="Facebook">📘</a>        }
+
+                    <a href="#" class="social-icon" title="Instagram">📷</a>
+
+                    <a href="#" class="social-icon" title="Twitter">🐦</a>
+
+                    <a href="#" class="social-icon" title="LinkedIn">💼</a>
+
+                </div>        .guide-section li::before {
+
+            </div>
+
+            <div class="footer-section">            content: "✓ ";        .hero p {        .navbar-menu {            color: #98878F;
+
+                <h3>Quick Links</h3>
+
+                <ul class="footer-links">            color: #98566D;
+
+                    <li><a href="/">Home</a></li>
+
+                    <li><a href="/upload">Analyze ECG</a></li>            font-weight: bold;            font-size: 1.3em;
+
+                    <li><a href="/ecg-guide">ECG Guide</a></li>
+
+                    <li><a href="/about">About Us</a></li>            margin-right: 10px;
+
+                </ul>
+
+            </div>        }            opacity: 0.95;            display: flex;            font-weight: 500;
+
+            <div class="footer-section">
+
+                <h3>Resources</h3>
+
+                <ul class="footer-links">
+
+                    <li><a href="#">Documentation</a></li>        /* Info Box */            line-height: 1.6;
+
+                    <li><a href="#">API Access</a></li>
+
+                    <li><a href="#">Research Papers</a></li>        .info-box {
+
+                    <li><a href="#">Support</a></li>
+
+                </ul>            background: linear-gradient(135deg, rgba(152, 86, 109, 0.1), rgba(73, 70, 107, 0.1));            margin-bottom: 30px;            gap: 25px;            padding: 8px 16px;
+
+            </div>
+
+            <div class="footer-section">            padding: 30px;
+
+                <h3>Stay Updated</h3>
+
+                <p>            border-radius: 15px;        }
+
+                    Get the latest updates on ECG analysis and AI in healthcare.
+
+                </p>            border: 2px solid #98566D;
+
+                <br>
+
+                <form style="display: flex; flex-direction: column; gap: 10px;">            margin: 30px 0;            align-items: center;            border-radius: 8px;
+
+                    <input type="email" placeholder="Enter your email" style="padding: 12px 15px; border: 2px solid rgba(255,255,255,0.3); border-radius: 8px; background: rgba(255,255,255,0.1); color: white; font-size: 0.95em;">
+
+                    <button type="submit" style="padding: 12px 30px; background: white; color: #0284C7; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-size: 0.95em;">Subscribe Now</button>        }
+
+                </form>
+
+            </div>        .hero-badge {
+
+        </div>
+
+                .info-box h4 {
+
+        <hr style="border: none; border-top: 1px solid rgba(255,255,255,0.2); margin: 40px 0 20px 0;">
+
+                    color: #49466B;            display: inline-block;        }            transition: all 0.3s;
+
+        <div style="text-align: center; font-size: 0.9em; opacity: 0.9;">
+
+            <p>            font-size: 1.5em;
+
+                <strong>⚕️ Medical Notice:</strong> For educational purposes only • Not for clinical diagnosis<br>
+
+                Always consult qualified healthcare professionals            margin-bottom: 15px;            background: rgba(255, 255, 255, 0.2);
+
+            </p>
+
+        </div>        }
+
+    </footer>
+
+            padding: 10px 25px;        }
+
+    <script>
+
+        function toggleTheme() {        .info-box p {
+
+            document.body.classList.toggle('dark-mode');
+
+            const icon = document.querySelector('.theme-icon');            color: #98878F;            border-radius: 50px;
+
+            icon.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');            line-height: 1.8;
+
+        }
+
+        }            font-size: 0.9em;        .navbar-menu a {        
+
+        // Load saved theme
+
+        if (localStorage.getItem('theme') === 'dark') {
+
+            document.body.classList.add('dark-mode');
+
+            document.querySelector('.theme-icon').textContent = '☀️';        /* Dark Mode Styles */            font-weight: 600;
+
+        }
+
+    </script>        body.dark-mode {
+
+</body>
+
+</html>            background: #192231;            backdrop-filter: blur(10px);            text-decoration: none;        .navbar-menu a:hover {
+
+
+            color: #98878F;
+
+        }            border: 1px solid rgba(255, 255, 255, 0.3);
+
+
+
+        body.dark-mode .navbar {        }            color: #98878F;            background: #f8f7f9;
+
+            background: #192231;
+
+            border-bottom-color: #98566D;
+
+        }
+
+        /* Content Container */            font-weight: 500;            color: #98566D;
+
+        body.dark-mode .navbar-brand {
+
+            filter: brightness(1.2);        .container {
+
+        }
+
+            max-width: 1200px;            font-size: 1em;        }
+
+        body.dark-mode .navbar-menu a {
+
+            color: #98878F;            margin: 60px auto;
+
+        }
+
+            padding: 0 5%;            padding: 8px 16px;        
+
+        body.dark-mode .navbar-menu a:hover {
+
+            background: rgba(152, 86, 109, 0.2);        }
+
+            color: #98566D;
+
+        }            border-radius: 8px;        .navbar-menu a.active {
+
+
+
+        body.dark-mode .theme-toggle {        /* Section Headers */
+
+            background: #49466B;
+
+            border-color: #98566D;        .section-header {            transition: all 0.3s;            background: #98566D;
+
+            color: white;
+
+        }            text-align: center;
+
+
+
+        body.dark-mode .ecg-card {            margin-bottom: 50px;        }            color: white;
+
+            background: #1a1f35;
+
+            border-color: #98566D;        }
+
+        }
+
+        }
+
+        body.dark-mode .ecg-card-title {
+
+            color: #98878F;        .section-header h2 {
+
+        }
+
+            font-size: 2.5em;        .navbar-menu a:hover {
+
+        body.dark-mode .ecg-symptoms {
+
+            background: #0f1419;            color: #49466B;
+
+        }
+
+            margin-bottom: 15px;            background: #f8f7f9;        .navbar-actions {
+
+        body.dark-mode .guide-section {
+
+            background: #1a1f35;        }
+
+        }
+
+            color: #98566D;            display: flex;
+
+        body.dark-mode .section-header h2 {
+
+            color: #98878F;        .section-header p {
+
+        }
+
+            font-size: 1.1em;        }            align-items: center;
+
+        body.dark-mode .info-box {
+
+            background: rgba(152, 86, 109, 0.1);            color: #98878F;
+
+        }
+
+            max-width: 700px;            gap: 15px;
+
+        body.dark-mode .info-box h4 {
+
+            color: #98878F;            margin: 0 auto;
+
+        }
+
+        }        .navbar-menu a.active {        }
+
+        /* Responsive Design */
+
+        @media (max-width: 768px) {
+
+            .navbar-menu {
+
+                display: none;        /* ECG Type Cards */            background: #98566D;
+
+            }
+
+        .ecg-types-grid {
+
+            .hero h1 {
+
+                font-size: 2em;            display: grid;            color: white;        .theme-toggle {
+
+            }
+
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+            .hero p {
+
+                font-size: 1em;            gap: 30px;        }            background: #F3F4F6;
+
+            }
+
+            margin-bottom: 60px;
+
+            .section-header h2 {
+
+                font-size: 1.8em;        }            border: none;
+
+            }
+
+
+
+            .ecg-types-grid {
+
+                grid-template-columns: 1fr;        .ecg-card {        .navbar-actions {            width: 40px;
+
+            }
+
+        }            background: white;
+
+    </style>
+
+</head>            border: 2px solid #98878F;            display: flex;            height: 40px;
+
+<body>
+
+    <!-- Medical Disclaimer -->            border-radius: 15px;
+
+    <div class="medical-disclaimer">
+
+        <strong>⚠️ Medical Disclaimer:</strong> This AI tool is for educational and research purposes only. It is not intended to diagnose, treat, or replace professional medical advice. Always consult a qualified healthcare provider for medical decisions.            padding: 30px;            align-items: center;            border-radius: 50%;
+
+    </div>
+
+            transition: all 0.3s;
+
+    <!-- Navigation Bar -->
+
+    <nav class="navbar">            box-shadow: 0 4px 15px rgba(152, 135, 143, 0.1);            gap: 15px;            cursor: pointer;
+
+        <div class="navbar-brand">RhythmIQ</div>
+
+        <div class="navbar-menu">        }
+
+            <a th:href="@{/}">Home</a>
+
+            <a th:href="@{/upload}">Upload ECG</a>        }            display: flex;
+
+            <a th:href="@{/ecg-guide}" class="active">ECG Guide</a>
+
+            <a th:href="@{/about}">About</a>        .ecg-card:hover {
+
+        </div>
+
+        <div class="navbar-actions">            transform: translateY(-10px);            align-items: center;
+
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">🌓</button>
+
+        </div>            box-shadow: 0 10px 30px rgba(152, 86, 109, 0.3);
+
+    </nav>
+
+            border-color: #98566D;        .theme-toggle {            justify-content: center;
+
+    <!-- Full Hero Section -->
+
+    <section class="hero">        }
+
+        <div class="hero-content">
+
+            <h1>📊 ECG Classification Guide</h1>            background: #f8f7f9;            font-size: 1.2em;
+
+            <p>Comprehensive guide to understanding ECG arrhythmia classifications and how our AI-powered system analyzes cardiac rhythms</p>
+
+            <span class="hero-badge">🎯 83.3% Accuracy • 6 Classifications</span>        .ecg-card-header {
+
+        </div>
+
+    </section>            display: flex;            border: 2px solid #98878F;            transition: all 0.3s;
+
+
+
+    <!-- Main Content -->            align-items: center;
+
+    <div class="container">
+
+        <!-- Section Header -->            justify-content: space-between;            width: 45px;        }
+
+        <div class="section-header">
+
+            <h2>Understanding ECG Classifications</h2>            margin-bottom: 20px;
+
+            <p>Our AI model classifies ECG signals into 6 distinct categories based on cardiac rhythm patterns</p>
+
+        </div>        }            height: 45px;
+
+
+
+        <!-- ECG Type Cards -->
+
+        <div class="ecg-types-grid">
+
+            <!-- F - Fusion Beat -->        .ecg-card-title {            border-radius: 50%;        .theme-toggle:hover {
+
+            <div class="ecg-card">
+
+                <div class="ecg-card-header">            font-size: 1.8em;
+
+                    <span class="ecg-card-title">F</span>
+
+                    <span class="ecg-badge">Fusion</span>            font-weight: 700;            cursor: pointer;            background: #E5E7EB;
+
+                </div>
+
+                <h3 style="color: #49466B; margin-bottom: 15px;">Fusion Beat</h3>            color: #49466B;
+
+                <p class="ecg-card-description">
+
+                    A fusion beat occurs when two pacemaker sites activate the ventricles simultaneously, creating a hybrid complex that combines characteristics of both beats.        }            display: flex;            transform: scale(1.1);
+
+                </p>
+
+                <div class="ecg-symptoms">
+
+                    <h4>Key Characteristics:</h4>
+
+                    <ul>        .ecg-badge {            align-items: center;        }
+
+                        <li>Hybrid QRS complex morphology</li>
+
+                        <li>Combination of normal and abnormal beats</li>            background: linear-gradient(135deg, #98566D, #49466B);
+
+                        <li>Variable P-wave relationship</li>
+
+                        <li>Intermediate QRS duration</li>            color: white;            justify-content: center;
+
+                    </ul>
+
+                </div>            padding: 8px 15px;
+
+            </div>
+
+            border-radius: 20px;            font-size: 1.2em;        .user-profile {
+
+            <!-- M - Myocardial Infarction -->
+
+            <div class="ecg-card">            font-size: 0.9em;
+
+                <div class="ecg-card-header">
+
+                    <span class="ecg-card-title">M</span>            font-weight: 600;            transition: all 0.3s;            cursor: pointer;
+
+                    <span class="ecg-badge">MI</span>
+
+                </div>        }
+
+                <h3 style="color: #49466B; margin-bottom: 15px;">Myocardial Infarction</h3>
+
+                <p class="ecg-card-description">        }            transition: transform 0.3s;
+
+                    ECG patterns indicating heart attack or damaged heart tissue. Critical for emergency diagnosis and treatment.
+
+                </p>        .ecg-card-description {
+
+                <div class="ecg-symptoms">
+
+                    <h4>Key Characteristics:</h4>            color: #98878F;        }
+
+                    <ul>
+
+                        <li>ST segment elevation or depression</li>            line-height: 1.6;
+
+                        <li>Pathological Q waves</li>
+
+                        <li>T wave inversion</li>            margin-bottom: 15px;        .theme-toggle:hover {
+
+                        <li>Bundle branch blocks</li>
+
+                    </ul>        }
+
+                </div>
+
+            </div>            background: #98566D;        .user-profile:hover {
+
+
+
+            <!-- N - Normal Beat -->        .ecg-symptoms {
+
+            <div class="ecg-card">
+
+                <div class="ecg-card-header">            background: #f8f7f9;            border-color: #98566D;            transform: scale(1.05);
+
+                    <span class="ecg-card-title">N</span>
+
+                    <span class="ecg-badge">Normal</span>            padding: 15px;
+
+                </div>
+
+                <h3 style="color: #49466B; margin-bottom: 15px;">Normal Sinus Rhythm</h3>            border-radius: 10px;            transform: rotate(20deg) scale(1.1);        }
+
+                <p class="ecg-card-description">
+
+                    Healthy cardiac rhythm with regular intervals and normal waveform characteristics. The baseline for comparison.            margin-top: 15px;
+
+                </p>
+
+                <div class="ecg-symptoms">        }        }
+
+                    <h4>Key Characteristics:</h4>
+
+                    <ul>
+
+                        <li>Regular P-P and R-R intervals</li>
+
+                        <li>Normal P wave morphology</li>        .ecg-symptoms h4 {        .user-avatar {
+
+                        <li>QRS duration 80-120 ms</li>
+
+                        <li>Heart rate 60-100 bpm</li>            color: #49466B;
+
+                    </ul>
+
+                </div>            margin-bottom: 10px;        /* Hero Section */            width: 40px;
+
+            </div>
+
+            font-size: 1.1em;
+
+            <!-- Q - Q-wave Abnormality -->
+
+            <div class="ecg-card">        }        .hero {            height: 40px;
+
+                <div class="ecg-card-header">
+
+                    <span class="ecg-card-title">Q</span>
+
+                    <span class="ecg-badge">Q-wave</span>
+
+                </div>        .ecg-symptoms ul {            background: linear-gradient(135deg, #49466B 0%, #98566D 50%, #98878F 100%);            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+
+                <h3 style="color: #49466B; margin-bottom: 15px;">Q-wave Abnormality</h3>
+
+                <p class="ecg-card-description">            list-style: none;
+
+                    Abnormal Q waves indicating possible myocardial damage or old infarction requiring clinical correlation.
+
+                </p>            padding-left: 0;            padding: 60px 5%;            color: white;
+
+                <div class="ecg-symptoms">
+
+                    <h4>Key Characteristics:</h4>        }
+
+                    <ul>
+
+                        <li>Pathological Q wave depth</li>            text-align: center;            border-radius: 50%;
+
+                        <li>Q wave duration >40 ms</li>
+
+                        <li>Lead-specific patterns</li>        .ecg-symptoms li {
+
+                        <li>Possible old MI indicator</li>
+
+                    </ul>            padding: 5px 0;            color: white;            display: flex;
+
+                </div>
+
+            </div>            color: #98878F;
+
+
+
+            <!-- S - Supraventricular -->        }        }            align-items: center;
+
+            <div class="ecg-card">
+
+                <div class="ecg-card-header">
+
+                    <span class="ecg-card-title">S</span>
+
+                    <span class="ecg-badge">SVE</span>        .ecg-symptoms li::before {            justify-content: center;
+
+                </div>
+
+                <h3 style="color: #49466B; margin-bottom: 15px;">Supraventricular Ectopy</h3>            content: "• ";
+
+                <p class="ecg-card-description">
+
+                    Premature beats originating above the ventricles, often benign but can indicate underlying conditions.            color: #98566D;        .hero h1 {            font-weight: 600;
+
+                </p>
+
+                <div class="ecg-symptoms">            font-weight: bold;
+
+                    <h4>Key Characteristics:</h4>
+
+                    <ul>            margin-right: 8px;            font-size: 3em;            font-size: 1.1em;
+
+                        <li>Premature P wave</li>
+
+                        <li>Normal QRS complex</li>        }
+
+                        <li>Compensatory pause</li>
+
+                        <li>Variable P-R interval</li>            font-weight: 700;        }
+
+                    </ul>
+
+                </div>        /* Guide Sections */
+
+            </div>
+
+        .guide-section {            margin-bottom: 15px;
+
+            <!-- V - Ventricular -->
+
+            <div class="ecg-card">            background: #f8f7f9;
+
+                <div class="ecg-card-header">
+
+                    <span class="ecg-card-title">V</span>            padding: 40px;        }        /* Dark Mode Styles */
+
+                    <span class="ecg-badge">VE</span>
+
+                </div>            border-radius: 15px;
+
+                <h3 style="color: #49466B; margin-bottom: 15px;">Ventricular Ectopy</h3>
+
+                <p class="ecg-card-description">            margin-bottom: 30px;        body.dark-mode {
+
+                    Premature beats originating in the ventricles. Can be benign or indicate serious cardiac conditions.
+
+                </p>            border-left: 5px solid #98566D;
+
+                <div class="ecg-symptoms">
+
+                    <h4>Key Characteristics:</h4>        }        .hero p {            background: #192231;
+
+                    <ul>
+
+                        <li>Wide QRS complex (>120 ms)</li>
+
+                        <li>No preceding P wave</li>
+
+                        <li>Bizarre QRS morphology</li>        .guide-section h3 {            font-size: 1.2em;            color: #98878F;
+
+                        <li>Compensatory pause</li>
+
+                    </ul>            color: #49466B;
+
+                </div>
+
+            </div>            font-size: 1.8em;            opacity: 0.95;        }
+
+        </div>
+
+            margin-bottom: 20px;
+
+        <!-- Guide Sections -->
+
+        <div class="guide-section">        }        }
+
+            <h3>🔍 What is ECG Analysis?</h3>
+
+            <p>
+
+                An Electrocardiogram (ECG) records the electrical activity of the heart over time. It's a crucial diagnostic tool that helps identify various cardiac conditions, from simple arrhythmias to life-threatening emergencies like myocardial infarctions.
+
+            </p>        .guide-section p {        body.dark-mode .navbar {
+
+            <p>
+
+                Our AI-powered system uses advanced machine learning algorithms to analyze ECG waveforms and classify them into six distinct categories, providing rapid and accurate preliminary assessments.            color: #98878F;
+
+            </p>
+
+        </div>            line-height: 1.8;        /* Content */            background: #192231;
+
+
+
+        <div class="guide-section">            margin-bottom: 15px;
+
+            <h3>🤖 How Our AI Model Works</h3>
+
+            <ul>        }        .content {            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+                <li><strong>Data Processing:</strong> ECG images are preprocessed to extract relevant features and normalize signals</li>
+
+                <li><strong>Feature Extraction:</strong> Advanced algorithms identify key waveform characteristics (P, QRS, T waves)</li>
+
+                <li><strong>Classification:</strong> Random Forest ensemble model classifies the rhythm into one of 6 categories</li>
+
+                <li><strong>Confidence Scoring:</strong> Provides probability scores for each classification</li>        .guide-section ul {            max-width: 1200px;            border-bottom-color: #98566D;
+
+                <li><strong>Result Visualization:</strong> Clear presentation of results with clinical context</li>
+
+            </ul>            list-style: none;
+
+        </div>
+
+            padding-left: 0;            margin: 60px auto;        }
+
+        <div class="guide-section">
+
+            <h3>📊 Model Performance</h3>        }
+
+            <p>
+
+                Our AI model has been trained and validated on the MIT-BIH Arrhythmia Database, achieving:            padding: 0 5%;
+
+            </p>
+
+            <ul>        .guide-section li {
+
+                <li><strong>Overall Accuracy:</strong> 83.3% across all classifications</li>
+
+                <li><strong>Training Dataset:</strong> 80% of available ECG samples</li>            padding: 10px 0;            flex: 1;        body.dark-mode .navbar-brand h1 {
+
+                <li><strong>Testing Dataset:</strong> 20% held-out validation set</li>
+
+                <li><strong>Model Type:</strong> Random Forest Classifier with optimized hyperparameters</li>            color: #98878F;
+
+                <li><strong>Feature Engineering:</strong> Custom preprocessing pipeline for ECG signals</li>
+
+            </ul>            line-height: 1.6;        }            color: #98878F;
+
+        </div>
+
+        }
+
+        <div class="guide-section">
+
+            <h3>✅ Best Practices</h3>        }
+
+            <ul>
+
+                <li>Upload clear, high-quality ECG images for best results</li>        .guide-section li::before {
+
+                <li>Ensure the ECG trace is clearly visible without artifacts</li>
+
+                <li>Use standard 12-lead ECG format when possible</li>            content: "✓ ";        .guide-section {
+
+                <li>AI results should always be verified by qualified healthcare professionals</li>
+
+                <li>This tool is for educational and research purposes only</li>            color: #98566D;
+
+            </ul>
+
+        </div>            font-weight: bold;            background: white;        body.dark-mode .navbar-menu a {
+
+
+
+        <!-- Info Box -->            margin-right: 10px;
+
+        <div class="info-box">
+
+            <h4>⚕️ Important Medical Notice</h4>        }            border: 2px solid #98878F;            color: #98878F;
+
+            <p>
+
+                This AI tool is designed as an educational resource and research tool. It should <strong>never</strong> be used as the sole basis for clinical decisions. Always consult with qualified healthcare professionals for diagnosis and treatment of cardiac conditions. ECG interpretation requires clinical context, patient history, and expert medical judgment.
+
+            </p>
+
+        </div>        /* Info Box */            border-radius: 16px;        }
+
+    </div>
+
+        .info-box {
+
+    <!-- Footer -->
+
+    <footer style="background: #192231; color: #98878F; padding: 60px 5% 30px 5%; margin-top: 60px;">            background: linear-gradient(135deg, rgba(152, 86, 109, 0.1), rgba(73, 70, 107, 0.1));            padding: 40px;
+
+        <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
+
+            <!-- About Section -->            padding: 30px;
+
+            <div>
+
+                <h3 style="color: #98566D; margin-bottom: 20px; font-size: 1.3em;">RhythmIQ</h3>            border-radius: 15px;            margin-bottom: 30px;        body.dark-mode .navbar-menu a:hover {
+
+                <p style="line-height: 1.8; margin-bottom: 15px;">
+
+                    AI-powered ECG analysis for research and education.<br><br>            border: 2px solid #98566D;
+
+                    Advancing cardiac healthcare through machine learning.
+
+                </p>            margin: 30px 0;            box-shadow: 0 4px 12px rgba(152, 135, 143, 0.2);            background: #49466B;
+
+                <br>
+
+                <p style="font-size: 0.9em; opacity: 0.8;">© 2025 RhythmIQ. All rights reserved.</p>        }
+
+            </div>
+
+        }            color: #98566D;
+
+            <!-- Quick Links -->
+
+            <div>        .info-box h4 {
+
+                <h3 style="color: #98566D; margin-bottom: 20px; font-size: 1.3em;">Quick Links</h3>
+
+                <ul style="list-style: none; padding: 0; line-height: 2.2;">            color: #49466B;        }
+
+                    <li><a href="/dashboard" style="color: #98878F; text-decoration: none; transition: color 0.3s;">Home</a></li>
+
+                    <li><a href="/upload" style="color: #98878F; text-decoration: none; transition: color 0.3s;">Analyze ECG</a></li>            font-size: 1.5em;
+
+                    <li><a href="/ecg-guide" style="color: #98878F; text-decoration: none; transition: color 0.3s;">ECG Guide</a></li>
+
+                    <li><a href="/about" style="color: #98878F; text-decoration: none; transition: color 0.3s;">About Us</a></li>            margin-bottom: 15px;        .guide-section h2 {
+
+                </ul>
+
+            </div>        }
+
+
+
+            <!-- Connect With Us -->            color: #49466B;        body.dark-mode .navbar-menu a.active {
+
+            <div>
+
+                <h3 style="color: #98566D; margin-bottom: 20px; font-size: 1.3em;">Connect With Us</h3>        .info-box p {
+
+                <div style="display: flex; gap: 15px; margin-bottom: 25px;">
+
+                    <a href="https://facebook.com" target="_blank" style="width: 45px; height: 45px; background: #49466B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.3em; transition: all 0.3s;">📘</a>            color: #98878F;            font-size: 2em;            background: #98566D;
+
+                    <a href="https://instagram.com" target="_blank" style="width: 45px; height: 45px; background: #49466B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.3em; transition: all 0.3s;">📷</a>
+
+                    <a href="https://twitter.com" target="_blank" style="width: 45px; height: 45px; background: #49466B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.3em; transition: all 0.3s;">🐦</a>            line-height: 1.8;
+
+                    <a href="https://linkedin.com" target="_blank" style="width: 45px; height: 45px; background: #49466B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.3em; transition: all 0.3s;">💼</a>
+
+                </div>        }            margin-bottom: 20px;        }
+
+                <br>
+
+                <p style="font-size: 0.95em; line-height: 1.6;">Stay updated with latest features</p>
+
+            </div>
+
+        /* Footer */            border-left: 5px solid #98566D;
+
+            <!-- Subscribe Section -->
+
+            <div>        footer {
+
+                <h3 style="color: #98566D; margin-bottom: 20px; font-size: 1.3em;">Subscribe</h3>
+
+                <p style="margin-bottom: 15px; line-height: 1.8;">            background: #192231;            padding-left: 15px;        body.dark-mode .theme-toggle {
+
+                    Get the latest updates on ECG analysis<br>
+
+                    and AI in healthcare.            color: white;
+
+                </p>
+
+                <br>            padding: 40px 5%;        }            background: #49466B;
+
+                <form style="display: flex; flex-direction: column; gap: 10px;">
+
+                    <input type="email" placeholder="Enter your email" style="padding: 12px; border: 2px solid #49466B; border-radius: 8px; background: #192231; color: #98878F; font-size: 1em;">            margin-top: 60px;
+
+                    <button type="submit" style="padding: 12px 24px; background: linear-gradient(135deg, #98566D 0%, #49466B 100%); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s;">Subscribe Now</button>
+
+                </form>        }        }
+
+            </div>
+
+        </div>
+
+        
+
+        <hr style="border: none; border-top: 1px solid #49466B; margin: 40px 0 20px 0;">        .footer-content {        .guide-section h3 {
+
+        
+
+        <div style="text-align: center; font-size: 0.9em; color: #98878F;">            max-width: 1200px;
+
+            <p>
+
+                <strong style="color: #98566D;">⚕️ Medical Notice:</strong> For educational purposes only • Not for clinical diagnosis<br>            margin: 0 auto;            color: #49466B;        body.dark-mode .theme-toggle:hover {
+
+                Always consult qualified healthcare professionals
+
+            </p>            display: grid;
+
+        </div>
+
+    </footer>            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));            font-size: 1.5em;            background: #98878F;
+
+
+
+    <script>            gap: 40px;
+
+        function toggleTheme() {
+
+            document.body.classList.toggle('dark-mode');        }            margin-top: 25px;        }
+
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+
+        }
+
+
+
+        // Load saved theme        .footer-section h3 {            margin-bottom: 15px;
+
+        if (localStorage.getItem('theme') === 'dark') {
+
+            document.body.classList.add('dark-mode');            margin-bottom: 20px;
+
+        }
+
+    </script>            color: white;        }        body.dark-mode .hero {
+
+</body>
+
+</html>        }
+
+
+            background: linear-gradient(135deg, #49466B 0%, #192231 100%);
+
+        .footer-section p, .footer-section a {
+
+            color: #98878F;        .guide-section p {            color: #98878F;
+
+            text-decoration: none;
+
+            line-height: 2;            color: #98878F;        }
+
+        }
+
+            line-height: 1.8;
+
+        .footer-section a:hover {
+
+            color: #98566D;            font-size: 1.05em;        body.dark-mode .section,
+
+        }
+
+            margin-bottom: 15px;        body.dark-mode .ecg-card {
+
+        .social-icons {
+
+            display: flex;        }            background: #49466B;
+
+            gap: 15px;
+
+            margin-top: 15px;            border: 1px solid #98878F;
+
+        }
+
+        .guide-section ul {            color: #98878F;
+
+        .social-icons a {
+
+            width: 40px;            list-style: none;        }
+
+            height: 40px;
+
+            background: #98566D;            padding: 0;        
+
+            border-radius: 50%;
+
+            display: flex;            margin: 20px 0;        .user-avatar {
+
+            align-items: center;
+
+            justify-content: center;        }            width: 40px;
+
+            color: white;
+
+            font-size: 1.2em;            height: 40px;
+
+            transition: all 0.3s;
+
+        }        .guide-section ul li {            border-radius: 50%;
+
+
+
+        .social-icons a:hover {            color: #98878F;            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+            background: #49466B;
+
+            transform: scale(1.1);            padding: 12px 0;            color: white;
+
+        }
+
+            padding-left: 30px;            display: flex;
+
+        .subscribe-btn {
+
+            background: linear-gradient(135deg, #98566D, #49466B);            position: relative;            align-items: center;
+
+            color: white;
+
+            padding: 12px 30px;            line-height: 1.6;            justify-content: center;
+
+            border: none;
+
+            border-radius: 25px;        }            font-weight: bold;
+
+            font-weight: 600;
+
+            cursor: pointer;        }
+
+            transition: all 0.3s;
+
+            margin-top: 15px;        .guide-section ul li:before {        
+
+        }
+
+            content: "▸";        .container {
+
+        .subscribe-btn:hover {
+
+            transform: translateY(-2px);            position: absolute;            max-width: 1200px;
+
+            box-shadow: 0 5px 15px rgba(152, 86, 109, 0.4);
+
+        }            left: 0;            margin: 2rem auto;
+
+
+
+        .footer-bottom {            color: #98566D;            padding: 0 2rem;
+
+            text-align: center;
+
+            margin-top: 40px;            font-weight: bold;        }
+
+            padding-top: 30px;
+
+            border-top: 1px solid #98878F;            font-size: 1.2em;        
+
+            color: #98878F;
+
+        }        }        /* Hero Section */
+
+
+
+        /* Dark Mode Styles */        .hero {
+
+        body.dark-mode {
+
+            background: #192231;        .ecg-types-grid {            background: white;
+
+            color: #98878F;
+
+        }            display: grid;            border-radius: 15px;
+
+
+
+        body.dark-mode .navbar {            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));            padding: 3rem;
+
+            background: #192231;
+
+            border-bottom-color: #98566D;            gap: 25px;            margin-bottom: 2rem;
+
+        }
+
+            margin-top: 30px;            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+        body.dark-mode .navbar-brand {
+
+            filter: brightness(1.2);        }            text-align: center;
+
+        }
+
+        }
+
+        body.dark-mode .navbar-menu a {
+
+            color: #98878F;        .ecg-type-card {        
+
+        }
+
+            background: white;        .hero h1 {
+
+        body.dark-mode .navbar-menu a:hover {
+
+            background: rgba(152, 86, 109, 0.2);            border: 2px solid #98878F;            color: #49466B;
+
+            color: #98566D;
+
+        }            border-radius: 12px;            font-size: 2.5rem;
+
+
+
+        body.dark-mode .theme-toggle {            padding: 25px;            margin-bottom: 1rem;
+
+            background: #49466B;
+
+            border-color: #98566D;            transition: all 0.3s;        }
+
+            color: white;
+
+        }        }        
+
+
+
+        body.dark-mode .ecg-card {        .hero p {
+
+            background: #1a1f35;
+
+            border-color: #98566D;        .ecg-type-card:hover {            color: #98878F;
+
+        }
+
+            transform: translateY(-5px);            font-size: 1.2rem;
+
+        body.dark-mode .ecg-card-title {
+
+            color: #98878F;            box-shadow: 0 10px 30px rgba(152, 86, 109, 0.3);            line-height: 1.6;
+
+        }
+
+            border-color: #98566D;        }
+
+        body.dark-mode .ecg-symptoms {
+
+            background: #0f1419;        }        
+
+        }
+
+        /* ECG Basics Section */
+
+        body.dark-mode .guide-section {
+
+            background: #1a1f35;        .ecg-type-card h4 {        .section {
+
+        }
+
+            color: #49466B;            background: white;
+
+        body.dark-mode .section-header h2 {
+
+            color: #98878F;            font-size: 1.3em;            border-radius: 15px;
+
+        }
+
+            margin-bottom: 10px;            padding: 2.5rem;
+
+        body.dark-mode .info-box {
+
+            background: rgba(152, 86, 109, 0.1);        }            margin-bottom: 2rem;
+
+        }
+
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+        body.dark-mode .info-box h4 {
+
+            color: #98878F;        .ecg-type-card .badge {        }
+
+        }
+
+            display: inline-block;        
+
+        /* Responsive Design */
+
+        @media (max-width: 768px) {            padding: 5px 12px;        .section h2 {
+
+            .navbar-menu {
+
+                display: none;            background: linear-gradient(135deg, #98566D 0%, #49466B 100%);            color: #49466B;
+
+            }
+
+            color: white;            font-size: 2rem;
+
+            .hero h1 {
+
+                font-size: 2em;            border-radius: 20px;            margin-bottom: 1.5rem;
+
+            }
+
+            font-size: 0.85em;            border-left: 5px solid #98566D;
+
+            .hero p {
+
+                font-size: 1em;            font-weight: 600;            padding-left: 1rem;
+
+            }
+
+            margin-bottom: 15px;        }
+
+            .section-header h2 {
+
+                font-size: 1.8em;        }        
+
+            }
+
+        .section h3 {
+
+            .ecg-types-grid {
+
+                grid-template-columns: 1fr;        .ecg-type-card p {            color: #49466B;
+
+            }
+
+        }            color: #98878F;            font-size: 1.5rem;
+
+    </style>
+
+</head>            line-height: 1.6;            margin-top: 1.5rem;
+
+<body>
+
+    <!-- Medical Disclaimer -->        }            margin-bottom: 1rem;
+
+    <div class="medical-disclaimer">
+
+        <strong>⚠️ Medical Disclaimer:</strong> This AI tool is for educational and research purposes only. It is not intended to diagnose, treat, or replace professional medical advice. Always consult a qualified healthcare provider for medical decisions.        }
+
+    </div>
+
+        /* Dark Mode */        
+
+    <!-- Navigation Bar -->
+
+    <nav class="navbar">        body.dark-mode {        .section p {
+
+        <div class="navbar-brand">RhythmIQ</div>
+
+        <div class="navbar-menu">            background: #192231;            color: #4B5563;
+
+            <a th:href="@{/}">Home</a>
+
+            <a th:href="@{/upload}">Upload ECG</a>            color: #98878F;            line-height: 1.8;
+
+            <a th:href="@{/ecg-guide}" class="active">ECG Guide</a>
+
+            <a th:href="@{/about}">About</a>        }            margin-bottom: 1rem;
+
+        </div>
+
+        <div class="navbar-actions">            font-size: 1.05rem;
+
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">🌓</button>
+
+        </div>        body.dark-mode .navbar {        }
+
+    </nav>
+
+            background: #192231;        
+
+    <!-- Full Hero Section -->
+
+    <section class="hero">            border-bottom-color: #98566D;        .section ul {
+
+        <div class="hero-content">
+
+            <h1>📊 ECG Classification Guide</h1>        }            margin-left: 2rem;
+
+            <p>Comprehensive guide to understanding ECG arrhythmia classifications and how our AI-powered system analyzes cardiac rhythms</p>
+
+            <span class="hero-badge">🎯 83.3% Accuracy • 6 Classifications</span>            margin-bottom: 1rem;
+
+        </div>
+
+    </section>        body.dark-mode .navbar-brand h1 {        }
+
+
+
+    <!-- Main Content -->            color: #98878F;        
+
+    <div class="container">
+
+        <!-- Section Header -->        }        .section li {
+
+        <div class="section-header">
+
+            <h2>Understanding ECG Classifications</h2>            color: #4B5563;
+
+            <p>Our AI model classifies ECG signals into 6 distinct categories based on cardiac rhythm patterns</p>
+
+        </div>        body.dark-mode .navbar-menu a {            line-height: 1.8;
+
+
+
+        <!-- ECG Type Cards -->            color: #98878F;            margin-bottom: 0.5rem;
+
+        <div class="ecg-types-grid">
+
+            <!-- F - Fusion Beat -->        }        }
+
+            <div class="ecg-card">
+
+                <div class="ecg-card-header">        
+
+                    <span class="ecg-card-title">F</span>
+
+                    <span class="ecg-badge">Fusion</span>        body.dark-mode .navbar-menu a:hover {        /* ECG Types Grid */
+
+                </div>
+
+                <h3 style="color: #49466B; margin-bottom: 15px;">Fusion Beat</h3>            background: #49466B;        .ecg-types-grid {
+
+                <p class="ecg-card-description">
+
+                    A fusion beat occurs when two pacemaker sites activate the ventricles simultaneously, creating a hybrid complex that combines characteristics of both beats.            color: #98566D;            display: grid;
+
+                </p>
+
+                <div class="ecg-symptoms">        }            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+
+                    <h4>Key Characteristics:</h4>
+
+                    <ul>            gap: 2rem;
+
+                        <li>Hybrid QRS complex morphology</li>
+
+                        <li>Combination of normal and abnormal beats</li>        body.dark-mode .guide-section,            margin-top: 2rem;
+
+                        <li>Variable P-wave relationship</li>
+
+                        <li>Intermediate QRS duration</li>        body.dark-mode .ecg-type-card {        }
+
+                    </ul>
+
+                </div>            background: #49466B;        
+
+            </div>
+
+            border-color: #98878F;        .ecg-card {
+
+            <!-- M - Myocardial Infarction -->
+
+            <div class="ecg-card">        }            background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+
+                <div class="ecg-card-header">
+
+                    <span class="ecg-card-title">M</span>            border-radius: 12px;
+
+                    <span class="ecg-badge">MI</span>
+
+                </div>        body.dark-mode .guide-section h2,            padding: 2rem;
+
+                <h3 style="color: #49466B; margin-bottom: 15px;">Myocardial Infarction</h3>
+
+                <p class="ecg-card-description">        body.dark-mode .guide-section h3,            border: 2px solid transparent;
+
+                    ECG patterns indicating heart attack or damaged heart tissue. Critical for emergency diagnosis and treatment.
+
+                </p>        body.dark-mode .ecg-type-card h4 {            transition: all 0.3s;
+
+                <div class="ecg-symptoms">
+
+                    <h4>Key Characteristics:</h4>            color: #98566D;            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+
+                    <ul>
+
+                        <li>ST segment elevation or depression</li>        }        }
+
+                        <li>Pathological Q waves</li>
+
+                        <li>T wave inversion</li>        
+
+                        <li>Bundle branch blocks</li>
+
+                    </ul>        body.dark-mode .guide-section p,        .ecg-card:hover {
+
+                </div>
+
+            </div>        body.dark-mode .guide-section ul li,            transform: translateY(-5px);
+
+
+
+            <!-- N - Normal Beat -->        body.dark-mode .ecg-type-card p {            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+
+            <div class="ecg-card">
+
+                <div class="ecg-card-header">            color: #98878F;            border-color: #4F46E5;
+
+                    <span class="ecg-card-title">N</span>
+
+                    <span class="ecg-badge">Normal</span>        }        }
+
+                </div>
+
+                <h3 style="color: #49466B; margin-bottom: 15px;">Normal Sinus Rhythm</h3>        
+
+                <p class="ecg-card-description">
+
+                    Healthy cardiac rhythm with regular intervals and normal waveform characteristics. The baseline for comparison.        /* Responsive */        .ecg-card-header {
+
+                </p>
+
+                <div class="ecg-symptoms">        @media (max-width: 768px) {            display: flex;
+
+                    <h4>Key Characteristics:</h4>
+
+                    <ul>            .hero h1 {            align-items: center;
+
+                        <li>Regular P-P and R-R intervals</li>
+
+                        <li>Normal P wave morphology</li>                font-size: 2em;            gap: 1rem;
+
+                        <li>QRS duration 80-120 ms</li>
+
+                        <li>Heart rate 60-100 bpm</li>            }            margin-bottom: 1rem;
+
+                    </ul>
+
+                </div>        }
+
+            </div>
+
+            .navbar-menu {        
+
+            <!-- Q - Q-wave Abnormality -->
+
+            <div class="ecg-card">                display: none;        .ecg-badge {
+
+                <div class="ecg-card-header">
+
+                    <span class="ecg-card-title">Q</span>            }            width: 60px;
+
+                    <span class="ecg-badge">Q-wave</span>
+
+                </div>            height: 60px;
+
+                <h3 style="color: #49466B; margin-bottom: 15px;">Q-wave Abnormality</h3>
+
+                <p class="ecg-card-description">            .guide-section {            border-radius: 12px;
+
+                    Abnormal Q waves indicating possible myocardial damage or old infarction requiring clinical correlation.
+
+                </p>                padding: 25px;            display: flex;
+
+                <div class="ecg-symptoms">
+
+                    <h4>Key Characteristics:</h4>            }            align-items: center;
+
+                    <ul>
+
+                        <li>Pathological Q wave depth</li>        }            justify-content: center;
+
+                        <li>Q wave duration >40 ms</li>
+
+                        <li>Lead-specific patterns</li>    </style>            font-size: 1.8rem;
+
+                        <li>Possible old MI indicator</li>
+
+                    </ul></head>            font-weight: bold;
+
+                </div>
+
+            </div><body>            color: white;
+
+
+
+            <!-- S - Supraventricular -->    <!-- Medical Disclaimer Banner -->        }
+
+            <div class="ecg-card">
+
+                <div class="ecg-card-header">    <div class="medical-disclaimer">        
+
+                    <span class="ecg-card-title">S</span>
+
+                    <span class="ecg-badge">SVE</span>        <strong>⚠️ Medical Disclaimer:</strong> This AI tool is for educational and research purposes only. Not for clinical diagnosis. Always consult qualified healthcare professionals for medical decisions.        .badge-F { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+
+                </div>
+
+                <h3 style="color: #49466B; margin-bottom: 15px;">Supraventricular Ectopy</h3>    </div>        .badge-M { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+
+                <p class="ecg-card-description">
+
+                    Premature beats originating above the ventricles, often benign but can indicate underlying conditions.        .badge-N { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+
+                </p>
+
+                <div class="ecg-symptoms">    <!-- Navigation Bar -->        .badge-Q { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+
+                    <h4>Key Characteristics:</h4>
+
+                    <ul>    <nav class="navbar">        .badge-S { background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); }
+
+                        <li>Premature P wave</li>
+
+                        <li>Normal QRS complex</li>        <div class="navbar-brand">        .badge-V { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; }
+
+                        <li>Compensatory pause</li>
+
+                        <li>Variable P-R interval</li>            <img src="/images/logo.svg" alt="RhythmIQ Logo">        
+
+                    </ul>
+
+                </div>            <h1>RhythmIQ</h1>        .ecg-card h3 {
+
+            </div>
+
+        </div>            color: #1F2937;
+
+            <!-- V - Ventricular -->
+
+            <div class="ecg-card">        <div class="navbar-menu">            font-size: 1.4rem;
+
+                <div class="ecg-card-header">
+
+                    <span class="ecg-card-title">V</span>            <a href="/dashboard">Home</a>            margin: 0;
+
+                    <span class="ecg-badge">VE</span>
+
+                </div>            <a href="/upload">Analyze ECG</a>        }
+
+                <h3 style="color: #49466B; margin-bottom: 15px;">Ventricular Ectopy</h3>
+
+                <p class="ecg-card-description">            <a href="/ecg-guide" class="active">ECG Guide</a>        
+
+                    Premature beats originating in the ventricles. Can be benign or indicate serious cardiac conditions.
+
+                </p>            <a href="/about">About</a>        .ecg-card-subtitle {
+
+                <div class="ecg-symptoms">
+
+                    <h4>Key Characteristics:</h4>        </div>            color: #6B7280;
+
+                    <ul>
+
+                        <li>Wide QRS complex (>120 ms)</li>        <div class="navbar-actions">            font-size: 0.95rem;
+
+                        <li>No preceding P wave</li>
+
+                        <li>Bizarre QRS morphology</li>            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">            font-style: italic;
+
+                        <li>Compensatory pause</li>
+
+                    </ul>                <span class="theme-icon">🌙</span>            margin-bottom: 1rem;
+
+                </div>
+
+            </div>            </button>        }
+
+        </div>
+
+        </div>        
+
+        <!-- Guide Sections -->
+
+        <div class="guide-section">    </nav>        .ecg-card p {
+
+            <h3>🔍 What is ECG Analysis?</h3>
+
+            <p>            color: #4B5563;
+
+                An Electrocardiogram (ECG) records the electrical activity of the heart over time. It's a crucial diagnostic tool that helps identify various cardiac conditions, from simple arrhythmias to life-threatening emergencies like myocardial infarctions.
+
+            </p>    <!-- Hero Section -->            line-height: 1.7;
+
+            <p>
+
+                Our AI-powered system uses advanced machine learning algorithms to analyze ECG waveforms and classify them into six distinct categories, providing rapid and accurate preliminary assessments.    <section class="hero">            margin-bottom: 0.8rem;
+
+            </p>
+
+        </div>        <h1>📊 ECG Classification Guide</h1>        }
+
+
+
+        <div class="guide-section">        <p>Understanding cardiac arrhythmias and ECG pattern recognition</p>        
+
+            <h3>🤖 How Our AI Model Works</h3>
+
+            <ul>    </section>        .ecg-card strong {
+
+                <li><strong>Data Processing:</strong> ECG images are preprocessed to extract relevant features and normalize signals</li>
+
+                <li><strong>Feature Extraction:</strong> Advanced algorithms identify key waveform characteristics (P, QRS, T waves)</li>            color: #1F2937;
+
+                <li><strong>Classification:</strong> Random Forest ensemble model classifies the rhythm into one of 6 categories</li>
+
+                <li><strong>Confidence Scoring:</strong> Provides probability scores for each classification</li>    <!-- Content Section -->        }
+
+                <li><strong>Result Visualization:</strong> Clear presentation of results with clinical context</li>
+
+            </ul>    <div class="content">        
+
+        </div>
+
+        <!-- Introduction -->        .severity-indicator {
+
+        <div class="guide-section">
+
+            <h3>📊 Model Performance</h3>        <div class="guide-section">            display: inline-block;
+
+            <p>
+
+                Our AI model has been trained and validated on the MIT-BIH Arrhythmia Database, achieving:            <h2>What is ECG Analysis?</h2>            padding: 0.3rem 0.8rem;
+
+            </p>
+
+            <ul>            <p>            border-radius: 20px;
+
+                <li><strong>Overall Accuracy:</strong> 83.3% across all classifications</li>
+
+                <li><strong>Training Dataset:</strong> 80% of available ECG samples</li>                Electrocardiography (ECG) is a vital diagnostic tool that records the electrical activity of the heart.             font-size: 0.85rem;
+
+                <li><strong>Testing Dataset:</strong> 20% held-out validation set</li>
+
+                <li><strong>Model Type:</strong> Random Forest Classifier with optimized hyperparameters</li>                Our AI-powered system analyzes ECG patterns to classify various cardiac arrhythmias, helping medical             font-weight: 600;
+
+                <li><strong>Feature Engineering:</strong> Custom preprocessing pipeline for ECG signals</li>
+
+            </ul>                professionals and researchers understand heart rhythm disorders.            margin-top: 0.5rem;
+
+        </div>
+
+            </p>        }
+
+        <div class="guide-section">
+
+            <h3>✅ Best Practices</h3>            <p>        
+
+            <ul>
+
+                <li>Upload clear, high-quality ECG images for best results</li>                The RhythmIQ platform uses advanced machine learning algorithms trained on extensive ECG datasets to         .severity-low { background: #D1FAE5; color: #065F46; }
+
+                <li>Ensure the ECG trace is clearly visible without artifacts</li>
+
+                <li>Use standard 12-lead ECG format when possible</li>                identify and classify different types of cardiac rhythms with high accuracy.        .severity-medium { background: #FEF3C7; color: #92400E; }
+
+                <li>AI results should always be verified by qualified healthcare professionals</li>
+
+                <li>This tool is for educational and research purposes only</li>            </p>        .severity-high { background: #FEE2E2; color: #991B1B; }
+
+            </ul>
+
+        </div>        </div>        .severity-critical { background: #FECACA; color: #7F1D1D; }
+
+
+
+        <!-- Info Box -->        
+
+        <div class="info-box">
+
+            <h4>⚕️ Important Medical Notice</h4>        <!-- ECG Types -->        /* Quick Facts */
+
+            <p>
+
+                This AI tool is designed as an educational resource and research tool. It should <strong>never</strong> be used as the sole basis for clinical decisions. Always consult with qualified healthcare professionals for diagnosis and treatment of cardiac conditions. ECG interpretation requires clinical context, patient history, and expert medical judgment.        <div class="guide-section">        .quick-facts {
+
+            </p>
+
+        </div>            <h2>ECG Classifications</h2>            display: grid;
+
+    </div>
+
+            <p>Our system can detect and classify the following ECG patterns:</p>            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+    <!-- Footer -->
+
+    <footer>                        gap: 1.5rem;
+
+        <div class="footer-content">
+
+            <div class="footer-section">            <div class="ecg-types-grid">            margin-top: 2rem;
+
+                <h3>RhythmIQ</h3>
+
+                <p>AI-powered ECG analysis for educational and research purposes.</p>                <div class="ecg-type-card">        }
+
+                <div class="social-icons">
+
+                    <a href="https://facebook.com" target="_blank" title="Facebook">📘</a>                    <span class="badge">Type F</span>        
+
+                    <a href="https://instagram.com" target="_blank" title="Instagram">📷</a>
+
+                    <a href="https://twitter.com" target="_blank" title="Twitter">🐦</a>                    <h4>Fusion Beat</h4>        .fact-card {
+
+                    <a href="https://linkedin.com" target="_blank" title="LinkedIn">💼</a>
+
+                </div>                    <p>            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+            </div>
+
+            <div class="footer-section">                        A Fusion beat occurs when a supraventricular and ventricular impulse coincide to produce a             color: white;
+
+                <h3>Quick Links</h3>
+
+                <a href="/" style="display: block;">Home</a>                        hybrid complex. It represents the simultaneous activation of the ventricles from two different             padding: 1.5rem;
+
+                <a href="/upload" style="display: block;">Upload ECG</a>
+
+                <a href="/ecg-guide" style="display: block;">ECG Guide</a>                        pacemakers.            border-radius: 12px;
+
+                <a href="/about" style="display: block;">About</a>
+
+            </div>                    </p>            text-align: center;
+
+            <div class="footer-section">
+
+                <h3>Stay Updated</h3>                </div>        }
+
+                <p>Subscribe to get updates about new features and improvements.</p>
+
+                <button class="subscribe-btn">Subscribe Now</button>        
+
+            </div>
+
+        </div>                <div class="ecg-type-card">        .fact-card h4 {
+
+        <div class="footer-bottom">
+
+            <p>&copy; 2025 RhythmIQ. All rights reserved. For educational purposes only.</p>                    <span class="badge">Type M</span>            font-size: 2rem;
+
+        </div>
+
+    </footer>                    <h4>Myocardial Infarction</h4>            margin-bottom: 0.5rem;
+
+
+
+    <script>                    <p>        }
+
+        function toggleTheme() {
+
+            document.body.classList.toggle('dark-mode');                        Myocardial Infarction (MI) or heart attack occurs when blood flow to the heart muscle is blocked.         
+
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+
+        }                        ECG patterns show characteristic ST-segment elevation or depression, indicating cardiac damage.        .fact-card p {
+
+
+
+        // Load saved theme                    </p>            color: rgba(255,255,255,0.9);
+
+        if (localStorage.getItem('theme') === 'dark') {
+
+            document.body.classList.add('dark-mode');                </div>            font-size: 0.95rem;
+
+        }
+
+    </script>        }
+
+</body>
+
+</html>                <div class="ecg-type-card">        
+
+
+                    <span class="badge">Type N</span>        /* CTA Button */
+
+                    <h4>Normal Sinus Rhythm</h4>        .cta-section {
+
+                    <p>            text-align: center;
+
+                        Normal sinus rhythm indicates a healthy heart with regular electrical activity originating from             padding: 2rem;
+
+                        the sinoatrial (SA) node. The heart beats at a regular rate of 60-100 beats per minute.            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+                    </p>            border-radius: 15px;
+
+                </div>            color: white;
+
+            margin-top: 2rem;
+
+                <div class="ecg-type-card">        }
+
+                    <span class="badge">Type Q</span>        
+
+                    <h4>Q-Wave Abnormality</h4>        .cta-section h2 {
+
+                    <p>            color: white;
+
+                        Abnormal Q waves can indicate previous myocardial infarction or other cardiac pathologies.             margin-bottom: 1rem;
+
+                        They are typically wider and deeper than normal Q waves and suggest areas of myocardial scarring.            border: none;
+
+                    </p>            padding: 0;
+
+                </div>        }
+
+        
+
+                <div class="ecg-type-card">        .cta-button {
+
+                    <span class="badge">Type S</span>            display: inline-block;
+
+                    <h4>Supraventricular Ectopic</h4>            padding: 1rem 2.5rem;
+
+                    <p>            background: white;
+
+                        Supraventricular ectopic beats are premature heartbeats originating above the ventricles.             color: #4F46E5;
+
+                        They can cause palpitations and are generally benign but may indicate underlying cardiac conditions.            text-decoration: none;
+
+                    </p>            border-radius: 8px;
+
+                </div>            font-weight: 600;
+
+            font-size: 1.1rem;
+
+                <div class="ecg-type-card">            margin-top: 1rem;
+
+                    <span class="badge">Type V</span>            transition: transform 0.3s, box-shadow 0.3s;
+
+                    <h4>Ventricular Ectopic</h4>        }
+
+                    <p>        
+
+                        Ventricular ectopic beats (PVCs) are extra heartbeats originating in the ventricles.         .cta-button:hover {
+
+                        While often harmless, frequent PVCs may indicate heart disease and require medical evaluation.            transform: translateY(-3px);
+
+                    </p>            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+
+                </div>        }
+
+            </div>        
+
+        </div>        /* Responsive */
+
+        @media (max-width: 768px) {
+
+        <!-- How It Works -->            .navbar {
+
+        <div class="guide-section">                flex-direction: column;
+
+            <h2>How Our AI Analysis Works</h2>                gap: 1rem;
+
+            <h3>1. Image Upload</h3>            }
+
+            <p>            
+
+                Upload a clear ECG image in PNG, JPG, or JPEG format. Our system accepts standard 12-lead ECG recordings             .navbar-menu {
+
+                or single-lead rhythm strips.                flex-wrap: wrap;
+
+            </p>                justify-content: center;
+
+                gap: 1rem;
+
+            <h3>2. Preprocessing</h3>            }
+
+            <p>            
+
+                The uploaded image undergoes preprocessing to enhance quality and extract relevant features. This includes             .hero h1 {
+
+                noise reduction, baseline correction, and signal normalization.                font-size: 2rem;
+
+            </p>            }
+
+            
+
+            <h3>3. AI Classification</h3>            .section {
+
+            <p>                padding: 1.5rem;
+
+                Our RandomForest classifier analyzes the ECG patterns and features to identify the type of cardiac rhythm.             }
+
+                The model has been trained on thousands of ECG samples for accurate classification.            
+
+            </p>            .ecg-types-grid {
+
+                grid-template-columns: 1fr;
+
+            <h3>4. Results & Confidence Score</h3>            }
+
+            <p>        }
+
+                The system provides the predicted ECG classification along with a confidence score, indicating the model's     </style>
+
+                certainty in its prediction. Higher confidence scores suggest more reliable classifications.</head>
+
+            </p><body>
+
+        </div>    <!-- Medical Disclaimer Banner -->
+
+    <div class="medical-disclaimer">
+
+        <!-- Model Performance -->        <strong>⚠️ Medical Disclaimer:</strong> This AI tool is for educational and research purposes only. Not for clinical diagnosis. Always consult qualified healthcare professionals for medical decisions.
+
+        <div class="guide-section">    </div>
+
+            <h2>Model Performance</h2>
+
+            <p>Our AI model has been rigorously tested and validated:</p>    <!-- Navigation Bar -->
+
+            <ul>    <nav class="navbar">
+
+                <li><strong>Overall Accuracy:</strong> 83.3% across all ECG classifications</li>        <div class="navbar-brand">
+
+                <li><strong>Training Dataset:</strong> Extensive collection of labeled ECG images</li>            <img th:src="@{/images/logo.svg}" alt="RhythmIQ Logo">
+
+                <li><strong>Algorithm:</strong> RandomForest ensemble learning method</li>            <h1>RhythmIQ</h1>
+
+                <li><strong>Validation:</strong> Cross-validated on independent test sets</li>        </div>
+
+                <li><strong>Real-time Analysis:</strong> Results delivered in under 2 seconds</li>        <div class="navbar-menu">
+
+            </ul>            <a th:href="@{/dashboard}">Home</a>
+
+        </div>            <a th:href="@{/upload}">Analyze ECG</a>
+
+            <a th:href="@{/ecg-guide}" class="active">ECG Guide</a>
+
+        <!-- Best Practices -->            <a th:href="@{/about}">About</a>
+
+        <div class="guide-section">        </div>
+
+            <h2>Best Practices for Accurate Analysis</h2>        <div class="navbar-actions">
+
+            <ul>            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+
+                <li><strong>Image Quality:</strong> Ensure ECG images are clear, well-lit, and in focus</li>                <span class="theme-icon">🌙</span>
+
+                <li><strong>Standard Format:</strong> Use standard 12-lead ECG format when possible</li>            </button>
+
+                <li><strong>Minimal Artifacts:</strong> Avoid images with excessive noise or motion artifacts</li>        </div>
+
+                <li><strong>Proper Calibration:</strong> Ensure ECG recordings include calibration markers</li>    </nav>
+
+                <li><strong>Complete Waveforms:</strong> Include complete cardiac cycles for better analysis</li>    
+
+                <li><strong>Educational Use:</strong> Remember this tool is for learning and research purposes</li>    <div class="container">
+
+            </ul>        <!-- Hero Section -->
+
+        </div>        <div class="hero">
+
+            <h1>📊 Understanding Electrocardiograms (ECG)</h1>
+
+        <!-- Important Notice -->            <p>A comprehensive guide to ECG patterns and their clinical significance</p>
+
+        <div class="guide-section">        </div>
+
+            <h2>⚠️ Important Notice</h2>        
+
+            <p style="color: #98566D; font-weight: 600;">        <!-- What is ECG Section -->
+
+                This AI-powered ECG analysis tool is designed exclusively for educational and research purposes.         <div class="section">
+
+                It should NOT be used for:            <h2>🫀 What is an ECG?</h2>
+
+            </p>            <p>
+
+            <ul>                An <strong>Electrocardiogram (ECG or EKG)</strong> is a medical test that records the electrical activity 
+
+                <li>Clinical diagnosis of patients</li>                of the heart over a period of time. It's a non-invasive diagnostic tool that helps healthcare providers 
+
+                <li>Treatment decision-making</li>                detect various heart conditions, arrhythmias, and cardiac abnormalities.
+
+                <li>Emergency medical assessments</li>            </p>
+
+                <li>Replacement of professional medical advice</li>            
+
+            </ul>            <h3>How Does It Work?</h3>
+
+            <p style="margin-top: 20px;">            <p>
+
+                Always consult qualified healthcare professionals for medical diagnosis, treatment, and advice.                 The heart generates electrical impulses that trigger each heartbeat. These electrical signals spread through 
+
+                ECG interpretation requires clinical context and expertise that AI tools cannot fully replace.                the heart muscle, causing it to contract and pump blood. An ECG machine detects and amplifies these tiny 
+
+            </p>                electrical changes on the skin, which are caused by the heart muscle's depolarization and repolarization 
+
+        </div>                during each cardiac cycle.
+
+    </div>            </p>
+
+            
+
+    <!-- Footer -->            <h3>Why is ECG Important?</h3>
+
+    <footer style="background: #192231; color: #98878F; padding: 60px 5% 30px 5%; margin-top: 60px;">            <ul>
+
+        <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">                <li><strong>Detects heart rhythm abnormalities</strong> (arrhythmias)</li>
+
+            <!-- About Section -->                <li><strong>Identifies heart attacks</strong> (myocardial infarction)</li>
+
+            <div>                <li><strong>Monitors heart health</strong> in patients with existing conditions</li>
+
+                <h3 style="color: #98566D; margin-bottom: 20px; font-size: 1.3em;">RhythmIQ</h3>                <li><strong>Screens for heart disease</strong> before surgery</li>
+
+                <p style="line-height: 1.6; margin-bottom: 15px;">AI-powered ECG analysis for research and education. Advancing cardiac healthcare through machine learning.</p>                <li><strong>Evaluates symptoms</strong> like chest pain, palpitations, or shortness of breath</li>
+
+                <p style="font-size: 0.9em; opacity: 0.8;">© 2025 RhythmIQ. All rights reserved.</p>                <li><strong>Assesses the effectiveness</strong> of cardiac treatments and medications</li>
+
+            </div>            </ul>
+
+            
+
+            <!-- Quick Links -->            <!-- Quick Facts -->
+
+            <div>            <div class="quick-facts">
+
+                <h3 style="color: #98566D; margin-bottom: 20px; font-size: 1.3em;">Quick Links</h3>                <div class="fact-card">
+
+                <ul style="list-style: none; padding: 0;">                    <h4>🎯 98%</h4>
+
+                    <li style="margin-bottom: 10px;"><a href="/dashboard" style="color: #98878F; text-decoration: none; transition: color 0.3s;">Home</a></li>                    <p>Accuracy in detecting major cardiac events</p>
+
+                    <li style="margin-bottom: 10px;"><a href="/upload" style="color: #98878F; text-decoration: none; transition: color 0.3s;">Analyze ECG</a></li>                </div>
+
+                    <li style="margin-bottom: 10px;"><a href="/ecg-guide" style="color: #98878F; text-decoration: none; transition: color 0.3s;">ECG Guide</a></li>                <div class="fact-card">
+
+                    <li style="margin-bottom: 10px;"><a href="/about" style="color: #98878F; text-decoration: none; transition: color 0.3s;">About Us</a></li>                    <h4>⚡ 10s</h4>
+
+                </ul>                    <p>Average time to record a standard 12-lead ECG</p>
+
+            </div>                </div>
+
+                <div class="fact-card">
+
+            <!-- Connect With Us -->                    <h4>💰 Low Cost</h4>
+
+            <div>                    <p>One of the most cost-effective cardiac tests</p>
+
+                <h3 style="color: #98566D; margin-bottom: 20px; font-size: 1.3em;">Connect With Us</h3>                </div>
+
+                <div style="display: flex; gap: 15px; margin-bottom: 25px;">                <div class="fact-card">
+
+                    <a href="https://facebook.com" target="_blank" style="width: 45px; height: 45px; background: #49466B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.3em; transition: all 0.3s;">📘</a>                    <h4>🔬 Since 1903</h4>
+
+                    <a href="https://instagram.com" target="_blank" style="width: 45px; height: 45px; background: #49466B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.3em; transition: all 0.3s;">📷</a>                    <p>Over 120 years of proven diagnostic value</p>
+
+                    <a href="https://twitter.com" target="_blank" style="width: 45px; height: 45px; background: #49466B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.3em; transition: all 0.3s;">🐦</a>                </div>
+
+                    <a href="https://linkedin.com" target="_blank" style="width: 45px; height: 45px; background: #49466B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.3em; transition: all 0.3s;">💼</a>            </div>
+
+                </div>        </div>
+
+                <p style="font-size: 0.95em; margin-bottom: 10px;">Stay updated with latest features</p>        
+
+            </div>        <!-- ECG Types Section -->
+
+        <div class="section">
+
+            <!-- Subscribe Section -->            <h2>🏥 ECG Classification Types</h2>
+
+            <div>            <p>
+
+                <h3 style="color: #98566D; margin-bottom: 20px; font-size: 1.3em;">Subscribe</h3>                Our AI-powered system analyzes ECG patterns and classifies them into six major categories. 
+
+                <p style="margin-bottom: 15px; line-height: 1.6;">Get the latest updates on ECG analysis and AI in healthcare.</p>                Each category represents a distinct cardiac rhythm pattern with specific clinical implications.
+
+                <form style="display: flex; flex-direction: column; gap: 10px;">            </p>
+
+                    <input type="email" placeholder="Enter your email" style="padding: 12px; border: 2px solid #49466B; border-radius: 8px; background: #192231; color: #98878F; font-size: 1em;">            
+
+                    <button type="submit" style="padding: 12px 24px; background: linear-gradient(135deg, #98566D 0%, #49466B 100%); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s;">Subscribe Now</button>            <div class="ecg-types-grid">
+
+                </form>                <!-- Type F: Fusion -->
+
+            </div>                <div class="ecg-card">
+
+        </div>                    <div class="ecg-card-header">
+
+    </footer>                        <div class="ecg-badge badge-F">F</div>
+
+                        <div>
+
+    <script>                            <h3>Fusion Beats</h3>
+
+        // Theme toggle functionality                            <div class="ecg-card-subtitle">Hybrid Ventricular Complexes</div>
+
+        function toggleTheme() {                        </div>
+
+            document.body.classList.toggle('dark-mode');                    </div>
+
+            const icon = document.querySelector('.theme-icon');                    <p>
+
+            if (document.body.classList.contains('dark-mode')) {                        <strong>Definition:</strong> Fusion beats occur when two pacemaker sites in the heart 
+
+                icon.textContent = '☀️';                        activate the ventricles simultaneously, creating a hybrid QRS complex that combines 
+
+                localStorage.setItem('theme', 'dark');                        characteristics of both impulses.
+
+            } else {                    </p>
+
+                icon.textContent = '🌙';                    <p>
+
+                localStorage.setItem('theme', 'light');                        <strong>Characteristics:</strong> Intermediate QRS morphology, variable appearance, 
+
+            }                        occurs during ventricular arrhythmias or AV dissociation.
+
+        }                    </p>
+
+                    <p>
+
+        // Check for saved theme preference                        <strong>Clinical Significance:</strong> Often seen in ventricular tachycardia, can help 
+
+        window.addEventListener('DOMContentLoaded', (event) => {                        confirm diagnosis of certain arrhythmias, generally benign if isolated.
+
+            const savedTheme = localStorage.getItem('theme');                    </p>
+
+            if (savedTheme === 'dark') {                    <span class="severity-indicator severity-medium">Medium Risk</span>
+
+                document.body.classList.add('dark-mode');                </div>
+
+                document.querySelector('.theme-icon').textContent = '☀️';                
+
+            }                <!-- Type M: Myocardial Infarction -->
+
+        });                <div class="ecg-card">
+
+    </script>                    <div class="ecg-card-header">
+
+</body>                        <div class="ecg-badge badge-M">M</div>
+
+</html>                        <div>
+
+                            <h3>Myocardial Infarction</h3>
+                            <div class="ecg-card-subtitle">Heart Attack Pattern</div>
+                        </div>
+                    </div>
+                    <p>
+                        <strong>Definition:</strong> ECG changes indicating acute or previous myocardial infarction 
+                        (heart attack), where blood flow to part of the heart muscle is blocked, causing tissue damage.
+                    </p>
+                    <p>
+                        <strong>Characteristics:</strong> ST-segment elevation or depression, pathological Q waves, 
+                        T-wave inversions, evolving changes over time.
+                    </p>
+                    <p>
+                        <strong>Clinical Significance:</strong> <strong style="color: #DC2626;">MEDICAL EMERGENCY!</strong> 
+                        Requires immediate intervention (PCI, thrombolysis). Time-critical condition - "Time is muscle."
+                    </p>
+                    <span class="severity-indicator severity-critical">Critical - Emergency</span>
+                </div>
+                
+                <!-- Type N: Normal -->
+                <div class="ecg-card">
+                    <div class="ecg-card-header">
+                        <div class="ecg-badge badge-N">N</div>
+                        <div>
+                            <h3>Normal Sinus Rhythm</h3>
+                            <div class="ecg-card-subtitle">Healthy Heart Pattern</div>
+                        </div>
+                    </div>
+                    <p>
+                        <strong>Definition:</strong> A regular heart rhythm originating from the sinoatrial (SA) node, 
+                        the heart's natural pacemaker. This is the normal, healthy ECG pattern.
+                    </p>
+                    <p>
+                        <strong>Characteristics:</strong> Heart rate 60-100 bpm, regular P waves before each QRS, 
+                        normal PR interval (0.12-0.20s), narrow QRS complex (<0.12s).
+                    </p>
+                    <p>
+                        <strong>Clinical Significance:</strong> Indicates healthy cardiac electrical conduction. 
+                        No intervention needed. Continue routine monitoring and healthy lifestyle.
+                    </p>
+                    <span class="severity-indicator severity-low">Normal - No Risk</span>
+                </div>
+                
+                <!-- Type Q: Unknown/Unclassifiable -->
+                <div class="ecg-card">
+                    <div class="ecg-card-header">
+                        <div class="ecg-badge badge-Q">Q</div>
+                        <div>
+                            <h3>Unknown Pattern</h3>
+                            <div class="ecg-card-subtitle">Unclassifiable Beat</div>
+                        </div>
+                    </div>
+                    <p>
+                        <strong>Definition:</strong> ECG patterns that don't fit into standard categories or are 
+                        too ambiguous for automated classification. May represent artifacts, rare arrhythmias, 
+                        or complex patterns.
+                    </p>
+                    <p>
+                        <strong>Characteristics:</strong> Variable morphology, may include noise or artifacts, 
+                        unusual QRS complexes, or combinations of multiple patterns.
+                    </p>
+                    <p>
+                        <strong>Clinical Significance:</strong> Requires expert cardiologist review for proper 
+                        interpretation. May be benign or significant depending on context.
+                    </p>
+                    <span class="severity-indicator severity-medium">Needs Review</span>
+                </div>
+                
+                <!-- Type S: Supraventricular -->
+                <div class="ecg-card">
+                    <div class="ecg-card-header">
+                        <div class="ecg-badge badge-S">S</div>
+                        <div>
+                            <h3>Supraventricular Ectopic</h3>
+                            <div class="ecg-card-subtitle">Early Atrial Beats</div>
+                        </div>
+                    </div>
+                    <p>
+                        <strong>Definition:</strong> Premature heartbeats originating above the ventricles 
+                        (in the atria or AV node). Also called supraventricular premature beats (SVPBs) or 
+                        premature atrial contractions (PACs).
+                    </p>
+                    <p>
+                        <strong>Characteristics:</strong> Early P wave with different morphology, narrow QRS complex 
+                        (usually), compensatory pause may be absent or incomplete.
+                    </p>
+                    <p>
+                        <strong>Clinical Significance:</strong> Usually benign, common in healthy individuals. 
+                        Can be triggered by caffeine, stress, or fatigue. Monitor if frequent or symptomatic.
+                    </p>
+                    <span class="severity-indicator severity-low">Low Risk</span>
+                </div>
+                
+                <!-- Type V: Ventricular -->
+                <div class="ecg-card">
+                    <div class="ecg-card-header">
+                        <div class="ecg-badge badge-V">V</div>
+                        <div>
+                            <h3>Ventricular Ectopic</h3>
+                            <div class="ecg-card-subtitle">Early Ventricular Beats</div>
+                        </div>
+                    </div>
+                    <p>
+                        <strong>Definition:</strong> Premature heartbeats originating from the ventricles, bypassing 
+                        the normal conduction system. Also known as premature ventricular contractions (PVCs) or 
+                        ventricular premature beats (VPBs).
+                    </p>
+                    <p>
+                        <strong>Characteristics:</strong> Wide QRS complex (>0.12s), no preceding P wave, 
+                        bizarre QRS morphology, full compensatory pause follows.
+                    </p>
+                    <p>
+                        <strong>Clinical Significance:</strong> Can be benign or indicate underlying heart disease. 
+                        Frequent PVCs (>10% of beats) may require treatment. Risk increases with structural heart disease.
+                    </p>
+                    <span class="severity-indicator severity-medium">Medium Risk</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- How Our AI Works -->
+        <div class="section">
+            <h2>🤖 How Our AI Classification Works</h2>
+            <p>
+                RhythmIQ uses advanced machine learning algorithms trained on thousands of labeled ECG images 
+                to automatically classify cardiac rhythms with <strong>83.3% accuracy</strong>.
+            </p>
+            
+            <h3>Our Technology:</h3>
+            <ul>
+                <li><strong>Random Forest Classifier:</strong> Ensemble learning method for robust predictions</li>
+                <li><strong>Image Preprocessing:</strong> Automated noise reduction and normalization</li>
+                <li><strong>Feature Extraction:</strong> Advanced pattern recognition from ECG waveforms</li>
+                <li><strong>Confidence Scoring:</strong> Each prediction includes a confidence percentage</li>
+                <li><strong>Severity Assessment:</strong> Automatic risk stratification based on classification</li>
+            </ul>
+            
+            <h3>Clinical Validation:</h3>
+            <p>
+                Our model has been tested against expert cardiologist annotations and achieves high accuracy 
+                across all six ECG categories. However, AI predictions should always be reviewed by qualified 
+                healthcare professionals for clinical decision-making.
+            </p>
+        </div>
+        
+        <!-- Call to Action -->
+        <div class="cta-section">
+            <h2>Ready to Analyze Your ECG?</h2>
+            <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; margin-bottom: 1rem;">
+                Upload your ECG image and get instant AI-powered analysis with confidence scoring
+            </p>
+            <a th:href="@{/upload}" class="cta-button">Analyze ECG Now →</a>
+        </div>
+    </div>
+
+    <script>
+        // Dark mode toggle functionality
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.querySelector('.theme-icon');
+            
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Load saved theme on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.querySelector('.theme-icon');
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeIcon.textContent = '☀️';
+            }
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer style="background: #192231; color: #98878F; padding: 60px 5% 30px 5%; margin-top: 60px;">
+        <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
+            <!-- About Section -->
+            <div>
+                <h3 style="color: #98566D; margin-bottom: 20px; font-size: 1.3em;">RhythmIQ</h3>
+                <p style="line-height: 1.6; margin-bottom: 15px;">AI-powered ECG analysis for research and education. Advancing cardiac healthcare through machine learning.</p>
+                <p style="font-size: 0.9em; opacity: 0.8;">© 2025 RhythmIQ. All rights reserved.</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h3 style="color: #98566D; margin-bottom: 20px; font-size: 1.3em;">Quick Links</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 10px;"><a href="/dashboard" style="color: #98878F; text-decoration: none; transition: color 0.3s;">Home</a></li>
+                    <li style="margin-bottom: 10px;"><a href="/upload" style="color: #98878F; text-decoration: none; transition: color 0.3s;">Analyze ECG</a></li>
+                    <li style="margin-bottom: 10px;"><a href="/ecg-guide" style="color: #98878F; text-decoration: none; transition: color 0.3s;">ECG Guide</a></li>
+                    <li style="margin-bottom: 10px;"><a href="/about" style="color: #98878F; text-decoration: none; transition: color 0.3s;">About Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Connect With Us -->
+            <div>
+                <h3 style="color: #98566D; margin-bottom: 20px; font-size: 1.3em;">Connect With Us</h3>
+                <div style="display: flex; gap: 15px; margin-bottom: 25px;">
+                    <a href="https://facebook.com" target="_blank" style="width: 45px; height: 45px; background: #49466B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.3em; transition: all 0.3s;">📘</a>
+                    <a href="https://instagram.com" target="_blank" style="width: 45px; height: 45px; background: #49466B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.3em; transition: all 0.3s;">📷</a>
+                    <a href="https://twitter.com" target="_blank" style="width: 45px; height: 45px; background: #49466B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.3em; transition: all 0.3s;">🐦</a>
+                    <a href="https://linkedin.com" target="_blank" style="width: 45px; height: 45px; background: #49466B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.3em; transition: all 0.3s;">💼</a>
+                </div>
+                <p style="font-size: 0.95em; margin-bottom: 10px;">Stay updated with latest features</p>
+            </div>
+
+            <!-- Subscribe Section -->
+            <div>
+                <h3 style="color: #98566D; margin-bottom: 20px; font-size: 1.3em;">Subscribe</h3>
+                <p style="margin-bottom: 15px; line-height: 1.6;">Get the latest updates on ECG analysis and AI in healthcare.</p>
+                <form style="display: flex; flex-direction: column; gap: 10px;">
+                    <input type="email" placeholder="Enter your email" style="padding: 12px; border: 2px solid #49466B; border-radius: 8px; background: #192231; color: #98878F; font-size: 1em;">
+                    <button type="submit" style="padding: 12px 24px; background: linear-gradient(135deg, #98566D 0%, #49466B 100%); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s;">Subscribe Now</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

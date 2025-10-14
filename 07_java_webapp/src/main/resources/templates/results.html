@@ -1,38 +1,810 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8" />
-  <title>Results - RhythmIQ</title>
-  <link rel="stylesheet" href="/css/style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results - RhythmIQ</title>
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: white;
+            padding-top: 50px;
+            color: #1F2937;
+        }
+
+        /* Medical Disclaimer Banner */
+        .medical-disclaimer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #98566D 0%, #49466B 100%);
+            color: white;
+            padding: 12px 5%;
+            font-size: 0.85em;
+            font-weight: 500;
+            text-align: center;
+            z-index: 9999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            border-bottom: 2px solid #98566D;
+        }
+
+        .medical-disclaimer strong {
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 8px rgba(152, 135, 143, 0.2);
+            border-bottom: 3px solid #98878F;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .navbar-brand img {
+            width: 45px;
+            height: 45px;
+        }
+
+        .navbar-brand h1 {
+            color: #49466B;
+            font-size: 1.5em;
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .navbar-menu a {
+            text-decoration: none;
+            color: #98878F;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .navbar-menu a:hover {
+            background: #f8f7f9;
+            color: #98566D;
+        }
+
+        .navbar-menu a.active {
+            background: #98566D;
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #49466B 0%, #98566D 50%, #98878F 100%);
+            padding: 60px 5%;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Results Grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Main Result Card */
+        .main-result-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(152, 135, 143, 0.2);
+            padding: 40px;
+            border: 2px solid #98878F;
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .main-result-card h2 {
+            color: #49466B;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .result-badge {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #98566D 0%, #49466B 100%);
+            color: white;
+            border-radius: 15px;
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(152, 86, 109, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .confidence-bar {
+            background: #E5E7EB;
+            border-radius: 10px;
+            height: 30px;
+            overflow: hidden;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #98566D 0%, #49466B 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 15px;
+            color: white;
+            font-weight: 600;
+            transition: width 1.5s ease-out;
+            animation: fillBar 1.5s ease-out;
+        }
+
+        @keyframes fillBar {
+            from { width: 0; }
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .info-item {
+            background: #F9FAFB;
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 4px solid #98566D;
+        }
+
+        .info-item label {
+            display: block;
+            color: #6B7280;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .info-item value {
+            display: block;
+            color: #49466B;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        /* Image Card */
+        .image-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(152, 135, 143, 0.2);
+            padding: 40px;
+            border: 2px solid #98878F;
+            animation: slideInRight 0.6s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .image-card h2 {
+            color: #49466B;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ecg-image-container {
+            background: #F3F4F6;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .ecg-image-container img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .filename {
+            margin-top: 15px;
+            color: #6B7280;
+            font-size: 0.95em;
+            word-break: break-all;
+        }
+
+        /* Details Card */
+        .details-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(152, 135, 143, 0.2);
+            padding: 40px;
+            border: 2px solid #98878F;
+            grid-column: 1 / -1;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .details-card h2 {
+            color: #49466B;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .details-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .detail-section {
+            background: #F9FAFB;
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid #98566D;
+        }
+
+        .detail-section h3 {
+            color: #49466B;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .detail-section p {
+            color: #4B5563;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .severity-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .severity-low { background: #D1FAE5; color: #065F46; }
+        .severity-medium { background: #FED7AA; color: #92400E; }
+        .severity-high { background: #FECACA; color: #991B1B; }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 12px;
+            font-size: 1.05em;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #98566D 0%, #49466B 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(152, 86, 109, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #49466B;
+            border: 2px solid #98878F;
+        }
+
+        .btn-secondary:hover {
+            background: #f8f7f9;
+            border-color: #98566D;
+        }
+
+        /* ECG Classes Reference */
+        .ecg-classes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .class-badge {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #E5E7EB;
+            transition: all 0.3s;
+        }
+
+        .class-badge:hover {
+            border-color: #98566D;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(152, 86, 109, 0.2);
+        }
+
+        .class-badge strong {
+            display: block;
+            color: #98566D;
+            font-size: 1.5em;
+            margin-bottom: 8px;
+        }
+
+        .class-badge span {
+            color: #6B7280;
+            font-size: 0.95em;
+        }
+
+        /* Theme Toggle */
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, #98566D 0%, #49466B 100%);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(152, 86, 109, 0.3);
+            border-color: #98566D;
+        }
+
+        .theme-toggle {
+            background: #F3F4F6;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: #E5E7EB;
+            transform: scale(1.1);
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: #192231;
+            color: #98878F;
+        }
+
+        body.dark-mode .navbar {
+            background: #192231;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            border-bottom-color: #98566D;
+        }
+
+        body.dark-mode .navbar-brand h1 {
+            color: #98878F;
+        }
+
+        body.dark-mode .navbar-menu a {
+            color: #98878F;
+        }
+
+        body.dark-mode .navbar-menu a:hover {
+            background: #49466B;
+            color: #98566D;
+        }
+
+        body.dark-mode .theme-toggle {
+            background: #49466B;
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            background: #98878F;
+        }
+
+        body.dark-mode .main-result-card,
+        body.dark-mode .image-card,
+        body.dark-mode .details-card {
+            background: #49466B;
+            border-color: #98878F;
+        }
+
+        body.dark-mode .main-result-card h2,
+        body.dark-mode .image-card h2,
+        body.dark-mode .details-card h2,
+        body.dark-mode .detail-section h3 {
+            color: #98878F;
+        }
+
+        body.dark-mode .info-item,
+        body.dark-mode .detail-section {
+            background: #192231;
+            border-left-color: #98566D;
+        }
+
+        body.dark-mode .ecg-image-container {
+            background: #192231;
+        }
+
+        body.dark-mode .class-badge {
+            background: #192231;
+            border-color: #98878F;
+        }
+
+        body.dark-mode .btn-secondary {
+            background: #49466B;
+            color: #98878F;
+            border-color: #98878F;
+        }
+
+        body.dark-mode .btn-secondary:hover {
+            background: #192231;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>ECG Analysis Results</h1>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/upload">Analyze Another</a>
+    <!-- Medical Disclaimer Banner -->
+    <div class="medical-disclaimer">
+        <strong>⚠️ Medical Disclaimer:</strong> This AI tool is for educational and research purposes only. Not for clinical diagnosis. Always consult qualified healthcare professionals for medical decisions.
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <img src="/images/logo.svg" alt="RhythmIQ Logo">
+            <h1>RhythmIQ</h1>
+        </div>
+        <div class="navbar-menu">
+            <a href="/dashboard">Home</a>
+            <a href="/upload">Analyze ECG</a>
+            <a href="/about">About</a>
+        </div>
+        <div class="navbar-actions">
+            <a href="/login" class="btn-login" title="Login">
+                👤 Login
+            </a>
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+                <span class="theme-icon">🌙</span>
+            </button>
+        </div>
     </nav>
-  </header>
-  <main th:if="${result}">
-    <section>
-      <h2>Prediction Summary</h2>
-      <div class="result-card">
-        <p><strong>Filename:</strong> <span th:text="${result.filename}"></span></p>
-        <p><strong>Predicted Class:</strong> <span th:text="${result.predictedClass}"></span></p>
-        <p><strong>Confidence:</strong> <span th:text="${#numbers.formatDecimal(result.confidence,1,3)}"></span></p>
-        <p><strong>Severity:</strong> <span th:text="${result.severity}"></span> (<span th:text="${#numbers.formatDecimal(result.severityConfidence,1,3)}"></span>)</p>
-        <p><strong>Class Description:</strong> <span th:text="${result.classDescription}"></span></p>
-        <p><strong>Severity Description:</strong> <span th:text="${result.severityDescription}"></span></p>
-        <p><strong>Analysis Time:</strong> <span th:text="${result.analysisTime}"></span></p>
-      </div>
-      <div>
-        <h3>Uploaded ECG</h3>
-        <img th:src="@{'/file/' + ${result.filename}}" alt="ECG image" style="max-width:400px;border:1px solid #ccc;" />
-      </div>
-    </section>
-  </main>
-  <footer>
-    <small>&copy; 2025 RhythmIQ</small>
-  </footer>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>✨ Analysis Complete</h1>
+        <p>Your ECG has been successfully analyzed using advanced AI algorithms</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container" th:if="${result}">
+        <div class="results-grid">
+            <!-- Main Result Card -->
+            <div class="main-result-card">
+                <h2>🎯 Classification Result</h2>
+                
+                <div style="text-align: center;">
+                    <div class="result-badge" th:text="${result.predictedClass}">N</div>
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <label style="color: #6B7280; font-weight: 600; margin-bottom: 10px; display: block;">Confidence Level</label>
+                    <div class="confidence-bar">
+                        <div class="confidence-fill" th:style="'width: ' + ${result.confidence * 100} + '%'" th:text="${#numbers.formatDecimal(result.confidence * 100, 1, 1)} + '%'">95.2%</div>
+                    </div>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Classification</label>
+                        <value th:text="${result.predictedClass}">Normal Beat</value>
+                    </div>
+                    <div class="info-item">
+                        <label>Confidence</label>
+                        <value th:text="${#numbers.formatDecimal(result.confidence * 100, 1, 2)} + '%'">95.23%</value>
+                    </div>
+                    <div class="info-item">
+                        <label>Severity Level</label>
+                        <value th:text="${result.severity}">Low</value>
+                    </div>
+                    <div class="info-item">
+                        <label>Analysis Time</label>
+                        <value th:text="${result.analysisTime}">1.2s</value>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Card -->
+            <div class="image-card">
+                <h2>📊 ECG Image</h2>
+                <div class="ecg-image-container">
+                    <img th:src="@{'/file/' + ${result.filename}}" alt="Analyzed ECG" />
+                    <div class="filename">
+                        <strong>📄 File:</strong> <span th:text="${result.filename}">ecg_sample.png</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Information Card -->
+            <div class="details-card">
+                <h2>📋 Detailed Analysis</h2>
+                <div class="details-content">
+                    <div class="detail-section">
+                        <h3>Classification Details</h3>
+                        <p th:text="${result.classDescription}">
+                            Normal Beat (N): Regular cardiac rhythm with normal electrical patterns. 
+                            No significant abnormalities detected in the ECG waveform.
+                        </p>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>Severity Assessment</h3>
+                        <div>
+                            <span class="severity-badge" th:classappend="${result.severity == 'Low' ? 'severity-low' : (result.severity == 'Medium' ? 'severity-medium' : 'severity-high')}" th:text="${result.severity} + ' Risk'">Low Risk</span>
+                        </div>
+                        <p th:text="${result.severityDescription}" style="margin-top: 15px;">
+                            Low severity indicates minimal clinical concern. The detected pattern 
+                            shows characteristics consistent with normal cardiac function.
+                        </p>
+                        <p style="margin-top: 10px;">
+                            <strong>Severity Confidence:</strong> <span th:text="${#numbers.formatDecimal(result.severityConfidence * 100, 1, 2)} + '%'">89.5%</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ECG Classification Reference -->
+                <div style="margin-top: 40px;">
+                    <h3 style="color: #49466B; font-size: 1.3em; margin-bottom: 20px;">ECG Classification Reference</h3>
+                    <div class="ecg-classes">
+                        <div class="class-badge">
+                            <strong>F</strong>
+                            <span>Fusion Beat</span>
+                        </div>
+                        <div class="class-badge">
+                            <strong>M</strong>
+                            <span>Myocardial Infarction</span>
+                        </div>
+                        <div class="class-badge">
+                            <strong>N</strong>
+                            <span>Normal Beat</span>
+                        </div>
+                        <div class="class-badge">
+                            <strong>Q</strong>
+                            <span>Unknown Beat</span>
+                        </div>
+                        <div class="class-badge">
+                            <strong>S</strong>
+                            <span>Supraventricular</span>
+                        </div>
+                        <div class="class-badge">
+                            <strong>V</strong>
+                            <span>Ventricular</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <a href="/upload" class="btn btn-primary">
+                🔬 Analyze Another ECG
+            </a>
+            <a href="/dashboard" class="btn btn-secondary">
+                🏠 Back to Dashboard
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background: #192231; color: #98878F; padding: 30px 5% 20px 5%; margin-top: 40px;">
+        <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px;">
+            <!-- About Section -->
+            <div>
+                <h3 style="color: #98566D; margin-bottom: 12px; font-size: 1.1em;">RhythmIQ</h3>
+                <p style="line-height: 1.5; margin-bottom: 8px; font-size: 0.9em;">
+                    AI-powered ECG analysis for research and education.
+                </p>
+                <p style="font-size: 0.8em; opacity: 0.8; margin-top: 8px;">© 2025 RhythmIQ. All rights reserved.</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h3 style="color: #98566D; margin-bottom: 12px; font-size: 1.1em;">Quick Links</h3>
+                <ul style="list-style: none; padding: 0; line-height: 1.8;">
+                    <li><a href="/dashboard" style="color: #98878F; text-decoration: none; transition: color 0.3s; font-size: 0.9em;">Home</a></li>
+                    <li><a href="/upload" style="color: #98878F; text-decoration: none; transition: color 0.3s; font-size: 0.9em;">Analyze ECG</a></li>
+                    <li><a href="/about" style="color: #98878F; text-decoration: none; transition: color 0.3s; font-size: 0.9em;">About Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Connect With Us -->
+            <div>
+                <h3 style="color: #98566D; margin-bottom: 12px; font-size: 1.1em;">Connect With Us</h3>
+                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <a href="https://facebook.com" target="_blank" style="width: 35px; height: 35px; background: #49466B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.1em; transition: all 0.3s;">📘</a>
+                    <a href="https://instagram.com" target="_blank" style="width: 35px; height: 35px; background: #49466B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.1em; transition: all 0.3s;">📷</a>
+                    <a href="https://twitter.com" target="_blank" style="width: 35px; height: 35px; background: #49466B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.1em; transition: all 0.3s;">🐦</a>
+                    <a href="https://linkedin.com" target="_blank" style="width: 35px; height: 35px; background: #49466B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.1em; transition: all 0.3s;">💼</a>
+                </div>
+                <p style="font-size: 0.85em; line-height: 1.4;">Stay updated with latest features</p>
+            </div>
+
+            <!-- Subscribe Section -->
+            <div>
+                <h3 style="color: #98566D; margin-bottom: 12px; font-size: 1.1em;">Subscribe</h3>
+                <p style="margin-bottom: 10px; line-height: 1.5; font-size: 0.85em;">
+                    Get updates on ECG analysis and AI in healthcare.
+                </p>
+                <form style="display: flex; flex-direction: column; gap: 8px;">
+                    <input type="email" placeholder="Enter your email" style="padding: 8px; border: 2px solid #49466B; border-radius: 6px; background: #192231; color: #98878F; font-size: 0.9em;">
+                    <button type="submit" style="padding: 8px 16px; background: linear-gradient(135deg, #98566D 0%, #49466B 100%); color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-size: 0.9em;">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <hr style="border: none; border-top: 1px solid #49466B; margin: 25px 0 15px 0;">
+        
+        <div style="text-align: center; font-size: 0.85em; color: #98878F;">
+            <p style="margin: 0;">
+                <strong style="color: #98566D;">⚕️ Medical Notice:</strong> For educational purposes only • Not for clinical diagnosis • Always consult qualified healthcare professionals
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Dark mode toggle functionality
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.querySelector('.theme-icon');
+            
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                themeIcon.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Load saved theme on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.querySelector('.theme-icon');
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeIcon.textContent = '☀️';
+            }
+        });
+    </script>
 </body>
 </html>

@@ -26,12 +26,6 @@ public class UploadController {
         this.inferenceService = inferenceService;
     }
 
-    @GetMapping("/")
-    public String index(Model model) {
-        model.addAttribute("now", LocalDateTime.now());
-        return "index";
-    }
-
     @GetMapping("/upload")
     public String uploadPage(Model model) {
         return "upload";

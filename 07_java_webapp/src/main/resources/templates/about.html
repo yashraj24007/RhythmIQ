@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - RhythmIQ</title>
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #1F2937;
+            padding-top: 50px; /* Space for fixed disclaimer */
+        }
+
+        /* Medical Disclaimer Banner */
+        .medical-disclaimer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #98566D 0%, #49466B 100%);
+            color: white;
+            padding: 12px 5%;
+            font-size: 0.85em;
+            font-weight: 500;
+            text-align: center;
+            z-index: 9999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            border-bottom: 2px solid #98566D;
+        }
+
+        .medical-disclaimer strong {
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 8px rgba(152, 135, 143, 0.2);
+            border-bottom: 3px solid #98878F;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 50px;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .navbar-brand img {
+            width: 45px;
+            height: 45px;
+        }
+
+        .navbar-brand h1 {
+            color: #49466B;
+            font-size: 1.6em;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .navbar-menu a {
+            text-decoration: none;
+            color: #98878F;
+            font-weight: 500;
+            font-size: 1em;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .navbar-menu a:hover {
+            background: #f8f7f9;
+            color: #98566D;
+        }
+
+        .navbar-menu a.active {
+            background: #98566D;
+            color: white;
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, #98566D 0%, #49466B 100%);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(152, 86, 109, 0.3);
+            border-color: #98566D;
+        }
+
+        .theme-toggle {
+            background: #f8f7f9;
+            border: 2px solid #98878F;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: #98566D;
+            border-color: #98566D;
+            transform: rotate(20deg) scale(1.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #49466B 0%, #98566D 50%, #98878F 100%);
+            padding: 80px 5% 60px 5%;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+        }
+
+        /* Content Section */
+        .content {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 5%;
+        }
+
+        .section {
+            background: white;
+            border: 2px solid #98878F;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(152, 135, 143, 0.2);
+        }
+
+        .section h2 {
+            color: #49466B;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-left: 5px solid #98566D;
+            padding-left: 15px;
+        }
+
+        .section p {
+            color: #98878F;
+            line-height: 1.8;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .section ul li {
+            color: #98878F;
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .section ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #98566D;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .team-card {
+            background: white;
+            border: 2px solid #98878F;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(152, 86, 109, 0.3);
+            border-color: #98566D;
+        }
+
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #98566D 0%, #49466B 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            font-weight: 600;
+            margin: 0 auto 20px;
+        }
+
+        .team-card h3 {
+            color: #49466B;
+            font-size: 1.3em;
+            margin-bottom: 8px;
+        }
+
+        .team-card p {
+            color: #98878F;
+            font-size: 0.95em;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background: #192231;
+            color: #98878F;
+        }
+
+        body.dark-mode .navbar {
+            background: #192231;
+            border-bottom-color: #98566D;
+        }
+
+        body.dark-mode .navbar-brand h1 {
+            color: #98878F;
+        }
+
+        body.dark-mode .navbar-menu a {
+            color: #98878F;
+        }
+
+        body.dark-mode .navbar-menu a:hover {
+            background: #49466B;
+            color: #98566D;
+        }
+
+        body.dark-mode .section,
+        body.dark-mode .team-card {
+            background: #49466B;
+            border-color: #98878F;
+        }
+
+        body.dark-mode .section h2,
+        body.dark-mode .team-card h3 {
+            color: #98566D;
+        }
+
+        body.dark-mode .section p,
+        body.dark-mode .section ul li,
+        body.dark-mode .team-card p {
+            color: #98878F;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2em;
+            }
+
+            .navbar-menu {
+                display: none;
+            }
+
+            .section {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Medical Disclaimer Banner -->
+    <div class="medical-disclaimer">
+        <strong>⚠️ Medical Disclaimer:</strong> This AI tool is for educational and research purposes only. Not for clinical diagnosis. Always consult qualified healthcare professionals for medical decisions.
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <img src="/images/logo.svg" alt="RhythmIQ Logo">
+            <h1>RhythmIQ</h1>
+        </div>
+        <div class="navbar-menu">
+            <a href="/dashboard">Home</a>
+            <a href="/upload">Analyze ECG</a>
+            <a href="/about" class="active">About</a>
+        </div>
+        <div class="navbar-actions">
+            <a href="/login" class="btn-login" title="Login">
+                👤 Login
+            </a>
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+                <span class="theme-icon">🌙</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>About RhythmIQ</h1>
+        <p class="subtitle">Revolutionizing ECG Analysis with Artificial Intelligence</p>
+    </section>
+
+    <!-- Content Section -->
+    <div class="content">
+        <!-- Mission Section -->
+        <div class="section">
+            <h2>Our Mission</h2>
+            <p>
+                At RhythmIQ, we're on a mission to democratize cardiac healthcare through cutting-edge artificial intelligence. 
+                We believe that advanced ECG analysis should be accessible to medical professionals and researchers worldwide, 
+                enabling faster, more accurate cardiac diagnostics.
+            </p>
+            <p>
+                Our AI-powered platform leverages state-of-the-art machine learning algorithms to detect and classify 
+                various cardiac arrhythmias with exceptional accuracy, supporting healthcare providers in making informed decisions.
+            </p>
+        </div>
+
+        <!-- Technology Section -->
+        <div class="section">
+            <h2>Our Technology</h2>
+            <p>
+                RhythmIQ is built on a robust technology stack combining modern web frameworks with powerful machine learning:
+            </p>
+            <ul>
+                <li><strong>Spring Boot 3.4.1</strong> - Enterprise-grade Java backend framework</li>
+                <li><strong>Python 3.13.7</strong> - Advanced ML processing with Flask API</li>
+                <li><strong>RandomForest Classifier</strong> - Ensemble learning algorithm achieving 83.3% accuracy</li>
+                <li><strong>6 ECG Classifications</strong> - F (Fusion), M (Myocardial Infarction), N (Normal), Q (Q-wave), S (Supraventricular), V (Ventricular)</li>
+                <li><strong>Real-time Analysis</strong> - Upload and analyze ECG images instantly</li>
+                <li><strong>Responsive Design</strong> - Works seamlessly across all devices</li>
+            </ul>
+        </div>
+
+        <!-- Features Section -->
+        <div class="section">
+            <h2>Key Features</h2>
+            <ul>
+                <li><strong>AI-Powered Classification</strong> - Advanced machine learning for accurate ECG interpretation</li>
+                <li><strong>Multi-Class Detection</strong> - Identifies 6 different cardiac conditions</li>
+                <li><strong>Instant Results</strong> - Get ECG analysis results in seconds</li>
+                <li><strong>Educational Resources</strong> - Comprehensive ECG guide for learning and reference</li>
+                <li><strong>Dark Mode</strong> - Eye-friendly interface for extended use</li>
+                <li><strong>Medical Disclaimer</strong> - Clear guidance on appropriate use for research and education</li>
+                <li><strong>Cloud-Ready</strong> - Deployable on modern cloud platforms (Render, Railway, Docker)</li>
+            </ul>
+        </div>
+
+        <!-- Team Section -->
+        <div class="section">
+            <h2>Our Team</h2>
+            <p style="text-align: center; color: #98566D; font-weight: 600; margin-bottom: 30px;">
+                Dedicated OOP Project Team
+            </p>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">YR</div>
+                    <h3>Yash Raj</h3>
+                    <p>Full-Stack Developer</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">TO</div>
+                    <h3>Tanish Oberoi</h3>
+                    <p>Backend Developer</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">SK</div>
+                    <h3>Shreesh Kambampally</h3>
+                    <p>ML Engineer</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">SG</div>
+                    <h3>Sriya Gayatri</h3>
+                    <p>Frontend Developer</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Disclaimer Section -->
+        <div class="section">
+            <h2>Important Notice</h2>
+            <p style="color: #98566D; font-weight: 600;">
+                ⚠️ RhythmIQ is designed for educational and research purposes only. This tool is NOT intended for clinical 
+                diagnosis, treatment decisions, or medical advice. Always consult qualified healthcare professionals 
+                for any medical concerns or decisions.
+            </p>
+            <p>
+                Our AI model provides analysis based on pattern recognition and statistical learning, which should be 
+                used as a supplementary tool in conjunction with professional medical expertise and established diagnostic protocols.
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background: #192231; color: #98878F; padding: 30px 5% 20px 5%; margin-top: 40px;">
+        <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px;">
+            <!-- About Section -->
+            <div>
+                <h3 style="color: #98566D; margin-bottom: 12px; font-size: 1.1em;">RhythmIQ</h3>
+                <p style="line-height: 1.5; margin-bottom: 8px; font-size: 0.9em;">
+                    AI-powered ECG analysis for research and education.
+                </p>
+                <p style="font-size: 0.8em; opacity: 0.8; margin-top: 8px;">© 2025 RhythmIQ. All rights reserved.</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h3 style="color: #98566D; margin-bottom: 12px; font-size: 1.1em;">Quick Links</h3>
+                <ul style="list-style: none; padding: 0; line-height: 1.8;">
+                    <li><a href="/dashboard" style="color: #98878F; text-decoration: none; transition: color 0.3s; font-size: 0.9em;">Home</a></li>
+                    <li><a href="/upload" style="color: #98878F; text-decoration: none; transition: color 0.3s; font-size: 0.9em;">Analyze ECG</a></li>
+                    <li><a href="/about" style="color: #98878F; text-decoration: none; transition: color 0.3s; font-size: 0.9em;">About Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Connect With Us -->
+            <div>
+                <h3 style="color: #98566D; margin-bottom: 12px; font-size: 1.1em;">Connect With Us</h3>
+                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <a href="https://facebook.com" target="_blank" style="width: 35px; height: 35px; background: #49466B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.1em; transition: all 0.3s;">📘</a>
+                    <a href="https://instagram.com" target="_blank" style="width: 35px; height: 35px; background: #49466B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.1em; transition: all 0.3s;">📷</a>
+                    <a href="https://twitter.com" target="_blank" style="width: 35px; height: 35px; background: #49466B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.1em; transition: all 0.3s;">🐦</a>
+                    <a href="https://linkedin.com" target="_blank" style="width: 35px; height: 35px; background: #49466B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.1em; transition: all 0.3s;">💼</a>
+                </div>
+                <p style="font-size: 0.85em; line-height: 1.4;">Stay updated with latest features</p>
+            </div>
+
+            <!-- Subscribe Section -->
+            <div>
+                <h3 style="color: #98566D; margin-bottom: 12px; font-size: 1.1em;">Subscribe</h3>
+                <p style="margin-bottom: 10px; line-height: 1.5; font-size: 0.85em;">
+                    Get updates on ECG analysis and AI in healthcare.
+                </p>
+                <form style="display: flex; flex-direction: column; gap: 8px;">
+                    <input type="email" placeholder="Enter your email" style="padding: 8px; border: 2px solid #49466B; border-radius: 6px; background: #192231; color: #98878F; font-size: 0.9em;">
+                    <button type="submit" style="padding: 8px 16px; background: linear-gradient(135deg, #98566D 0%, #49466B 100%); color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-size: 0.9em;">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        
+        <hr style="border: none; border-top: 1px solid #49466B; margin: 25px 0 15px 0;">
+        
+        <div style="text-align: center; font-size: 0.85em; color: #98878F;">
+            <p style="margin: 0;">
+                <strong style="color: #98566D;">⚕️ Medical Notice:</strong> For educational purposes only • Not for clinical diagnosis • Always consult qualified healthcare professionals
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.querySelector('.theme-icon');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Check for saved theme preference
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.theme-icon').textContent = '☀️';
+            }
+        });
+    </script>
+</body>
+</html>
