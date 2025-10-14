@@ -13,8 +13,11 @@ from flask import Flask, request, jsonify
 from PIL import Image
 import io
 
-# Add paths for custom modules
-sys.path.append('../02_preprocessing')
+# Add paths for custom modules (works both locally and on Render)
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(current_dir)
+sys.path.append(os.path.join(project_root, '02_preprocessing'))
+sys.path.append(os.path.join(project_root, '03_model_training'))
 
 try:
     from ecg_preprocessor import ECGPreprocessor
@@ -37,8 +40,12 @@ def load_model():
     global model, class_names, preprocessor, severity_predictor
     
     try:
+        # Get the project root directory (works both locally and on Render)
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        project_root = os.path.dirname(current_dir)
+        
         # Load model
-        model_path = '../05_trained_models/rythmguard_model.joblib'
+        model_path = os.path.join(project_root, '05_trained_models', 'rythmguard_model.joblib')
         if not os.path.exists(model_path):
             raise FileNotFoundError(f"Model not found: {model_path}")
         
@@ -53,7 +60,8 @@ def load_model():
             class_names = ['F', 'M', 'N', 'Q', 'S', 'V']
         
         # Initialize preprocessor and severity predictor
-        preprocessor = ECGPreprocessor('../01_data', target_size=(224, 224))
+        data_path = os.path.join(project_root, '01_data')
+        preprocessor = ECGPreprocessor(data_path, target_size=(224, 224))
         severity_predictor = SeverityPredictor()
         
         print(f"✅ Model loaded successfully!")
@@ -92,10 +100,20 @@ def analyze_ecg():
         
         # Process image
         image_bytes = file.read()
-        image = Image.open(io.BytesIO(image_bytes)).convert('RGB')
         
-        # Preprocess image
-        processed_img = preprocessor.preprocess_image(np.array(image))
+        # Save temporary file for preprocessing
+        import tempfile
+        with tempfile.NamedTemporaryFile(delete=False, suffix='.png') as tmp_file:
+            tmp_file.write(image_bytes)
+            tmp_path = tmp_file.name
+        
+        # Preprocess image using the correct method
+        processed_img = preprocessor.load_and_preprocess_image(tmp_path, apply_augmentation=False)
+        
+        # Clean up temp file
+        import os
+        os.unlink(tmp_path)
+        
         if processed_img is None:
             return jsonify({'success': False, 'error': 'Failed to process image'}), 400
         
@@ -135,5 +153,7 @@ if __name__ == '__main__':
         print("❌ Failed to start API - model loading failed")
         sys.exit(1)
     
-    print("🚀 Starting Flask server on port 8083...")
-    app.run(host='0.0.0.0', port=8083, debug=False)
+    # Get port from environment variable (for cloud deployment) or use default
+    port = int(os.environ.get('PORT', 8083))
+    print(f"🚀 Starting Flask server on port {port}...")
+    app.run(host='0.0.0.0', port=port, debug=False)

@@ -1,13 +1,29 @@
 services:
+  # Python ML API Service
+  - type: web
+    name: rhythmiq-ml-api
+    runtime: python
+    buildCommand: pip install -r requirements-api.txt
+    startCommand: python 11_python_api/rhythmiq_api.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.7
+      - key: PORT
+        value: 8083
+    
+  # Java Spring Boot Webapp
   - type: web
     name: rhythmiq-webapp
-    env: docker
-    plan: free
-    dockerfilePath: ./Dockerfile
-    dockerContext: .
-    healthCheckPath: /
+    runtime: java
+    buildCommand: cd 07_java_webapp && chmod +x mvnw && ./mvnw clean package -DskipTests
+    startCommand: java -jar 07_java_webapp/target/rhythmiq-webapp-1.0.0.jar
     envVars:
-      - key: SPRING_PROFILES_ACTIVE
-        value: "production"
-      - key: JAVA_TOOL_OPTIONS
-        value: "-Xmx512m -XX:MaxMetaspaceSize=128m -XX:+UseG1GC"
+      - key: JAVA_VERSION
+        value: 21
+      - key: PORT
+        value: 8082
+      - key: PYTHON_API_URL
+        fromService:
+          name: rhythmiq-ml-api
+          type: web
+          property: host
