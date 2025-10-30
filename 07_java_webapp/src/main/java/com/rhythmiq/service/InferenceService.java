@@ -26,7 +26,7 @@ import java.util.UUID;
 @Service
 public class InferenceService {
 
-    private final Path uploadDir = Paths.get("java-webapp-uploads");
+    private final Path uploadDir = Paths.get("/var/tmp/java-webapp-uploads");
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
     private final String pythonApiUrl = "http://localhost:8083/analyze";

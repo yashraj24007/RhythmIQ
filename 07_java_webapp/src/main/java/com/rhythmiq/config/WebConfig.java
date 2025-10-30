@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        Path uploadDir = Paths.get("java-webapp-uploads");
+    Path uploadDir = Paths.get("/var/tmp/java-webapp-uploads");
         String uploadPath = uploadDir.toFile().getAbsolutePath();
         registry.addResourceHandler("/file/**")
                 .addResourceLocations("file:" + uploadPath + "/");
