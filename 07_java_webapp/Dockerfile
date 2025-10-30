@@ -32,6 +32,9 @@ EXPOSE $PORT
 RUN addgroup --system --gid 1001 rhythmiq && \
     adduser --system --uid 1001 rhythmiq
 
+# Create writable uploads directory
+RUN mkdir -p /var/tmp/java-webapp-uploads && chown -R rhythmiq:rhythmiq /var/tmp/java-webapp-uploads
+
 # Change ownership of the app directory
 RUN chown -R rhythmiq:rhythmiq /app
 
