@@ -1,14 +1,17 @@
 services:
   # Python ML API Service
   - type: web
-    name: rhythmiq-ml-api
+    name: rhythmiq-python-api
     runtime: python
     buildCommand: pip install -r requirements-api.txt
     startCommand: python 11_python_api/rhythmiq_api.py
-    
-  # Java Spring Boot Webapp
+    autoDeploy: true
+    healthCheckPath: /health
+
   - type: web
-    name: rhythmiq-webapp
+    name: rhythmiq-java-webapp
     runtime: docker
     dockerfilePath: ./07_java_webapp/Dockerfile
     dockerContext: ./07_java_webapp
+    autoDeploy: true
+    healthCheckPath: /

@@ -1,469 +1,215 @@
-# RhythmIQ ECG Analysis System
+# 🫀 RhythmIQ - AI-Powered ECG Analysis Platform
 
-## Overview
-RhythmIQ is an AI-powered ECG monitoring system designed to analyze heart signals in real time. It processes electrocardiogram (ECG) data, detects irregularities, and classifies them into 5–6 common arrhythmia types while predicting severity levels (Mild, Moderate, Severe) to help healthcare providers prioritize urgent cases.
+[![Status](https://img.shields.io/badge/Status-Active-success)](https://github.com/yashraj24007/RhythmIQ)
+[![Java](https://img.shields.io/badge/Java-21-orange)](https://www.oracle.com/java/)
+[![Python](https://img.shields.io/badge/Python-3.13-blue)](https://www.python.org/)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.4.1-green)](https://spring.io/projects/spring-boot)
+[![License](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
 
-## Dataset Structure
-The system works w\ith ECG images organized by classification:
+> **Professional ECG analysis powered by machine learning** - Instantly classify cardiac rhythms with 83.3% accuracy using advanced AI algorithms.
 
-```
-ECG_Image_data/
-├── test/
-│   ├── F/    # Fusion beats
-│   ├── M/    # Myocardial Infarction
-│   ├── N/    # Normal beats
-│   ├── Q/    # Unknown/Paced beats
-│   ├── S/    # Supraventricular beats
-│   └── V/    # Ventricular beats (PVC)
-├── train/
-│   └── [same structure as test]
-└── processed/
-    └── [generated preprocessed data]
-```
+## 🌟 Overview
 
-## Classification Types
+RhythmIQ is a sophisticated medical-grade ECG analysis platform that combines modern web technologies with powerful machine learning to provide instant cardiac rhythm classification. Our system analyzes electrocardiogram images and identifies 6 different rhythm types with high accuracy.
 
-| Folder | Class | Meaning |
-|--------|-------|---------|
-| N | Normal | Normal beat (sinus rhythm, bundle branch block, etc.) |
-| S | Supraventricular | Atrial premature beats, supraventricular ectopics |
-| V | Ventricular | PVC (Premature Ventricular Contractions) |
-| F | Fusion | Fusion of ventricular + normal beat |
-| Q | Unknown | Paced beats, unclassifiable beats |
-| M | Myocardial Infarction | MI - Sometimes added in extended versions |
+### ✨ Key Features
 
-## Features
+- 🤖 **AI-Powered Analysis** - RandomForest classifier with 83.3% accuracy
+- 📊 **6 Rhythm Types** - F (Fusion), M (Myocardial), N (Normal), Q (Q-wave), S (Supraventricular), V (Ventricular)
+- 🎨 **Modern UI** - Professional interface with Stormy/Cloud/Sunset/Evening color palette
+- 🌓 **Dark Mode** - Comfortable viewing in any lighting condition
+- 📱 **Responsive Design** - Works seamlessly on desktop and mobile devices
+- 🔒 **Medical Disclaimer** - Clear warnings for professional use only
+- 📚 **Educational Content** - Comprehensive ECG guide for learning
 
-### 🔍 ECG Classification
-- **Multi-class Classification**: Identifies 6 different cardiac conditions
-- **High Accuracy**: Uses advanced machine learning techniques
-- **Real-time Processing**: Optimized for real-time ECG analysis
+## 🚀 Quick Start
 
-### ⚕️ Severity Prediction
-- **Three Severity Levels**: Mild, Moderate, Severe
-- **Clinical Priority**: Automatic priority assignment
-- **Risk Assessment**: Helps healthcare providers prioritize cases
+### Prerequisites
 
-### 📊 Comprehensive Analysis
-- **Dataset Analysis**: Complete statistical overview
-- **Visualization**: Detailed charts and graphs
-- **Performance Metrics**: Accuracy, precision, recall, F1-score
+- **Java 21** or higher
+- **Python 3.13** or higher
+- **Maven 3.9+** (included via wrapper)
 
-## Installation
+### Installation
 
-1. **Clone or download the files**
-2. **Install required packages**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. **Set up your dataset** in the correct folder structure
+```powershell
+# Clone the repository
+git clone https://github.com/yashraj24007/RhythmIQ.git
+cd RhythmIQ
 
-## Usage
-
-### 🌐 Java Web Application (NEW!)
-**RhythmIQ now includes a complete Java web interface for ECG analysis!**
-
-#### Quick Start - Web Interface
-1. **Navigate to java-webapp directory**:
-   ```bash
-   cd java-webapp
-   ```
-
-2. **Run the web application**:
-   ```bash
-   ./mvnw spring-boot:run
-   ```
-   
-3. **Access the application**:
-   - Open your browser and go to: http://localhost:8082
-   - Upload ECG images through the web interface
-   - Get instant analysis results with confidence scores
-
-#### Alternative Deployment
-Use the deployment script from the project root:
-```bash
-# Windows
-./09_deployment/run-webapp.bat
-
-# Linux/Mac  
-./09_deployment/run-webapp.sh
+# Start the application (automatically starts both services)
+.\start-services.ps1
 ```
 
-### 🐍 Python Training Pipeline
+The application will be available at:
+- **Web Application**: http://localhost:8082
+- **Python ML API**: http://localhost:8083/health
 
-#### Quick Start - Model Training
-Run the complete training pipeline:
-```python
-python simple_train.py
+### Stopping Services
+
+```powershell
+.\stop-services.ps1
 ```
 
-For comprehensive testing:
-```python
-python full_test_evaluation.py
-```
-
-### Individual Components
-
-#### 1. ECG Preprocessing
-```python
-from ecg_preprocessor import ECGPreprocessor
-
-# Initialize preprocessor
-preprocessor = ECGPreprocessor(data_path, target_size=(224, 224))
-
-# Analyze dataset
-analysis = preprocessor.analyze_dataset('test')
-
-# Create preprocessed dataset
-X, y, class_names, paths = preprocessor.create_dataset('test')
-```
-
-#### 2. Severity Prediction
-```python
-from severity_predictor import SeverityPredictor
-
-# Initialize severity predictor
-severity_predictor = SeverityPredictor()
-
-# Predict severity for an image
-severity_label, confidence, severity_name = severity_predictor.predict_severity(image, ecg_class)
-```
-
-#### 3. Training and Testing
-```python
-# Train the model with your preferred size
-python simple_train.py
-
-# Run comprehensive evaluation
-python full_test_evaluation.py
-
-# Or use components directly
-from ecg_preprocessor import ECGPreprocessor
-from severity_predictor import SeverityPredictor
-
-# Initialize components
-preprocessor = ECGPreprocessor(data_path)
-severity_predictor = SeverityPredictor()
-```
-
-## Output Structure
-
-After running the training and testing, the following files are generated:
+## 📁 Project Structure
 
 ```
-ECG_Image_data/
-├── processed/
-│   ├── test_images.npy
-│   ├── test_labels.npy
-│   ├── test_class_names.npy
-│   └── test_metadata.csv
-├── models/
-│   ├── ecg_model_[size].joblib    # Trained Random Forest models
-│   └── training_results_[size].txt # Training logs
-├── reports/
-│   ├── comprehensive_test_results.txt
-│   ├── confusion_matrix.png
-│   ├── class_distribution.png
-│   └── test_predictions.csv
-└── visualizations/
-    ├── sample_predictions.png
-    └── performance_metrics.png
+RhythmIQ/
+├── 📊 01_data/                      # ECG image datasets (train/test)
+├── 🔬 02_preprocessing/             # ECG preprocessing modules
+├── 🧠 03_model_training/            # ML model training scripts
+├── 📈 04_model_evaluation/          # Model testing & evaluation
+├── 💾 05_trained_models/            # Trained RandomForest model (83.3% accuracy)
+├── 📸 06_results_visualizations/    # Confusion matrices & sample predictions
+├── ☕ 07_java_webapp/               # Spring Boot web application (Port 8082)
+│   ├── src/main/
+│   │   ├── java/com/rhythmiq/      # Controllers, Services, Models
+│   │   └── resources/
+│   │       ├── templates/           # Thymeleaf HTML pages
+│   │       └── static/             # CSS, JS, images
+│   └── target/                     # Built JAR file
+├── 📚 08_documentation_and_text/   # All project documentation
+├── 🧪 09_tests/                    # Python & PowerShell test scripts
+├── 🚀 10_deployment/               # Deployment configs & scripts
+├── 🐍 11_python_api/               # Flask ML API (Port 8083)
+├── start-services.ps1              # Quick start script
+├── stop-services.ps1               # Stop all services
+├── render.yaml                     # Cloud deployment config
+└── requirements-api.txt            # Python dependencies
 ```
 
-## System Components
+## 🎨 Technology Stack
 
-### 🌐 Java Web Application (`java-webapp/`)
+### Frontend
+- **Framework**: Spring Boot 3.4.1 + Thymeleaf
+- **Styling**: Custom CSS with Stormy/Cloud/Sunset/Evening palette
+- **Features**: Responsive design, dark mode, drag-and-drop upload
 
-**Technology Stack:**
-- **Framework**: Spring Boot 3.4.1
-- **Java Version**: JDK 21/24 compatible
-- **Build Tool**: Maven 3.9.6 with wrapper
-- **Template Engine**: Thymeleaf
-- **Web Server**: Embedded Tomcat (Port 8082)
+### Backend Services
+- **Web Server**: Spring Boot (Java 21) - Port 8082
+- **ML API**: Flask (Python 3.13) - Port 8083
+- **ML Model**: RandomForest Classifier - 83.3% accuracy
 
-**Architecture Components:**
+### Machine Learning
+- **Algorithm**: Random Forest
+- **Features**: Image preprocessing, data augmentation
+- **Classes**: 6 ECG rhythm types (F, M, N, Q, S, V)
+- **Accuracy**: 83.3% on test dataset
 
-#### 1. Application Entry Point
-- **`RhythmIQApplication.java`**: Spring Boot main class with auto-configuration
+## 📊 Model Performance
 
-#### 2. Web Controller Layer
-- **`UploadController.java`**: Handles web requests and file uploads
-  - `@GetMapping("/")`: Homepage with upload interface
-  - `@PostMapping("/analyze")`: Web form submission for ECG analysis
-  - `@PostMapping("/api/analyze")`: REST API endpoint for programmatic access
-  - File upload validation and processing
+| Metric | Value |
+|--------|-------|
+| Overall Accuracy | 83.3% |
+| Training Images | 1,000+ |
+| Test Images | 250+ |
+| Model Type | RandomForest |
+| Classes | 6 (F, M, N, Q, S, V) |
 
-#### 3. Service Layer
-- **`InferenceService.java`**: Business logic for ECG analysis
-  - Mock inference implementation (ready for ML model integration)
-  - File handling and storage management
-  - Result processing and confidence calculation
-  - Future integration point for Python ML models
+## 🌐 Pages
 
-#### 4. Domain Models
-- **`ECGAnalysisResult.java`**: Data model for analysis results
-  - ECG classification (N, S, V, F, Q, M)
-  - Confidence scores and percentages
-  - Severity levels (Normal, Mild, Moderate, Severe)
-  - Descriptive text for medical interpretation
+- **Home** - Professional landing page with hero section
+- **Dashboard** - Quick stats and action cards
+- **Analyze ECG** - Upload and analyze ECG images
+- **ECG Guide** - Educational content about 6 rhythm types
+- **About** - Company information and mission
 
-#### 5. Web Configuration
-- **`WebConfig.java`**: Static resource configuration
-  - File upload path mapping
-  - Static content serving (CSS, JS, images)
-  - CORS configuration for API access
+## 🔧 Development
 
-#### 6. Frontend Templates (Thymeleaf)
-- **`index.html`**: Welcome page with system overview
-- **`upload.html`**: File upload interface with drag-and-drop
-- **`results.html`**: Analysis results display with visualizations
-- **Custom CSS**: Responsive design with medical theme
+### Build from Source
 
-**Features Implemented:**
-- ✅ Web-based file upload interface
-- ✅ Real-time ECG image analysis
-- ✅ REST API for integration
-- ✅ Responsive web design
-- ✅ File validation and error handling
-- ✅ Mock inference service (ready for ML integration)
-- ✅ Detailed analysis results display
-- ✅ Image preview and metadata
+```powershell
+# Build Java application
+cd 07_java_webapp
+.\mvnw.cmd clean package -DskipTests
+cd ..
 
-**Deployment:**
-- Built as executable JAR file
-- Embedded Tomcat server
-- No external dependencies required
-- Cross-platform compatibility (Windows/Linux/macOS)
-
-### 🐍 Python ML Components
-
-#### 1. ECG Preprocessor (`ecg_preprocessor.py`)
-- Image loading and preprocessing
-- Data normalization and resizing
-- Dataset analysis and visualization
-- Class distribution analysis
-
-#### 2. Severity Predictor (`severity_predictor.py`)
-- Feature extraction from ECG images
-- Severity level prediction (Mild/Moderate/Severe)
-- Clinical priority determination
-- Advanced ECG-specific feature analysis
-
-#### 3. Training Pipeline (`simple_train.py`)
-- User-friendly model training interface
-- Balanced dataset handling
-- Multiple size options (small/medium/large)
-- Performance evaluation and model saving
-
-#### 4. Comprehensive Testing (`full_test_evaluation.py`)
-- Large-scale model evaluation
-- Detailed confusion matrix analysis
-- Per-class performance metrics
-- Error analysis and reporting
-
-## Performance Metrics
-
-### 🎯 Achieved Results
-- **Overall Test Accuracy**: 99.1% (4,673/4,717 correct predictions)
-- **Processing Speed**: 0.098 seconds per image
-- **Model**: Random Forest Classifier (50 estimators, max depth 10)
-
-### 📊 Per-Class Performance
-| Class | Precision | Recall | F1-Score | Test Accuracy |
-|-------|-----------|--------|----------|---------------|
-| **N** (Normal) | 99.2% | 99.7% | 99.4% | 99.7% |
-| **S** (Supraventricular) | 99.2% | 96.9% | 98.0% | 96.9% |
-| **V** (Ventricular/PVC) | 98.7% | 99.5% | 99.1% | 99.5% |
-| **F** (Fusion) | 100.0% | 100.0% | 100.0% | 100.0% |
-| **Q** (Unknown/Paced) | 100.0% | 100.0% | 100.0% | 100.0% |
-| **M** (Myocardial Infarction) | 98.9% | 99.7% | 99.3% | 99.7% |
-
-### 📈 Clinical Validation
-- **Perfect Detection**: Fusion beats (F) and Unknown beats (Q) - 100% accuracy
-- **Excellent MI Detection**: 98.9% precision for critical cardiac events
-- **Robust Arrhythmia Classification**: >96% accuracy across all rhythm disorders
-- **Minimal False Positives**: Only 44 misclassifications out of 4,717 test cases
-
-## Clinical Applications
-
-### 🏥 Healthcare Integration
-- **Real-time Monitoring**: Continuous ECG analysis
-- **Early Warning System**: Automatic detection of critical conditions
-- **Decision Support**: Evidence-based recommendations
-- **Workflow Optimization**: Priority-based patient triage
-
-### 📈 Severity Levels
-- **Mild**: Routine monitoring, regular follow-up
-- **Moderate**: Close observation, medical evaluation
-- **Severe**: Immediate attention, urgent care required
-
-## Customization
-
-### Adding New Classes
-1. Create new folder in dataset structure
-2. Update `class_mapping` in `ECGPreprocessor`
-3. Adjust severity rules in `SeverityPredictor`
-
-### Modifying Severity Rules
-Edit the `class_severity_rules` in `SeverityPredictor` class:
-```python
-self.class_severity_rules = {
-    'N': {'mild': 0.8, 'moderate': 0.15, 'severe': 0.05},
-    # ... modify probabilities as needed
-}
+# Start services
+.\start-services.ps1
 ```
 
-### Custom Augmentation
-Add new augmentation techniques in `ECGAugmentor` class.
+### Running Tests
 
-## Troubleshooting
+```powershell
+# Python tests
+pytest 09_tests/ -v
 
-### Common Issues
-1. **Missing Dependencies**: Install requirements with `pip install -r requirements.txt`
-2. **Path Issues**: Ensure correct dataset path structure
-3. **Memory Issues**: Reduce batch size or image resolution
-4. **Model Loading**: Ensure models are trained before prediction
-
-### Dataset Requirements
-- Images should be in PNG/JPG format
-- Consistent image quality
-- Proper folder organization
-- Sufficient samples per class for training
-
-## 🔗 Java-Python Integration
-
-### Current Implementation
-The Java web application currently uses a **mock inference service** that simulates ECG analysis results. This design allows the web interface to function independently while providing a clear integration point for the Python ML models.
-
-### Integration Architecture
-```
-┌─────────────────┐    HTTP/REST    ┌──────────────────┐
-│   Java Web App  │ ────────────────▶│  Python ML API   │
-│   (Port 8082)   │                 │  (Future: Flask) │
-│                 │◀────────────────│                  │
-│ - File Upload   │    JSON Results  │ - Model Loading  │
-│ - Web Interface │                 │ - Preprocessing  │
-│ - Results View  │                 │ - Classification │
-└─────────────────┘                 └──────────────────┘
+# Test all ECG classes
+.\09_tests\test_all_classes.ps1
 ```
 
-### Integration Steps (Planned)
-1. **Python FastAPI/Flask Service**: Wrap the trained ML model in a REST API
-2. **Service Communication**: Replace mock inference with HTTP calls to Python service
-3. **Data Pipeline**: Implement image transfer and result parsing
-4. **Error Handling**: Add robust error handling for service communication
-5. **Performance Optimization**: Implement caching and async processing
+## 🚀 Deployment
 
-### How to Integrate
-1. **Create Python API Service**:
-   ```python
-   # Example: ecg_api_service.py
-   from flask import Flask, request, jsonify
-   from severity_predictor import SeverityPredictor
-   from ecg_preprocessor import ECGPreprocessor
-   
-   app = Flask(__name__)
-   predictor = SeverityPredictor()
-   
-   @app.route('/analyze', methods=['POST'])
-   def analyze_ecg():
-       file = request.files['image']
-       # Process with existing ML pipeline
-       result = predictor.analyze(file)
-       return jsonify(result)
-   ```
+### Deploy to Render.com (Recommended)
 
-2. **Update Java Service**:
-   ```java
-   // In InferenceService.java - replace mockInference()
-   private ECGAnalysisResult callPythonAPI(MultipartFile file) {
-       // HTTP call to Python service
-       // Parse response to ECGAnalysisResult
-   }
-   ```
+1. Push code to GitHub
+2. Create Render account at https://render.com
+3. Create new "Blueprint" and connect GitHub repository
+4. Render will automatically detect `render.yaml` and deploy both services
 
-## Future Enhancements
+### Deploy to Railway.app
 
-### Immediate (Java Web App)
-- [x] ✅ Web-based interface (COMPLETED)
-- [ ] 🔄 Python ML model integration (IN PROGRESS)
-- [ ] User authentication and sessions
-- [ ] Batch processing for multiple files
-- [ ] Analysis history and reports
-- [ ] Export results to PDF/CSV
-
-### Medium Term
-- [ ] Deep learning model integration (CNN/ResNet)
-- [ ] Real-time data streaming support
-- [ ] Mobile-responsive design improvements
-- [ ] REST API documentation (Swagger/OpenAPI)
-- [ ] Database integration for result storage
-
-### Long Term
-- [ ] Mobile application (React Native/Flutter)
-- [ ] Integration with hospital systems (HL7 FHIR)
-- [ ] Advanced arrhythmia types
-- [ ] Temporal analysis for continuous monitoring
-- [ ] Multi-language support
-- [ ] Cloud deployment (AWS/Azure/GCP)
-
-## 🧪 Testing the Application
-
-### Web Application Testing
-
-1. **Start the application**:
-   ```bash
-   cd java-webapp
-   ./mvnw spring-boot:run
-   ```
-
-2. **Access the web interface**:
-   - Open: http://localhost:8082
-   - Upload any ECG image from `01_data/test/` folder
-   - View analysis results with confidence scores
-
-3. **API Testing** (using curl):
-   ```bash
-   curl -X POST http://localhost:8082/api/analyze \
-     -F "image=@01_data/test/N/N1.png" \
-     -H "Accept: application/json"
-   ```
-
-### Python Components Testing
-```bash
-# Run model training
-python simple_train.py
-
-# Test individual components
-python -m pytest tests/
-
-# Full evaluation
-python full_test_evaluation.py
+```powershell
+npm i -g @railway/cli
+railway login
+railway init
+railway up
 ```
 
-### Current Test Results
-- **Java Web App**: ✅ Deployed and running on port 8082
-- **File Upload**: ✅ Working with drag-and-drop interface
-- **Mock Analysis**: ✅ Returns realistic ECG classification results
-- **REST API**: ✅ JSON responses for programmatic access
-- **Python ML Model**: ✅ 99.1% accuracy on test dataset
+### Docker Deployment
 
-## Contributing
+```powershell
+docker-compose up -d
+```
+
+See [`08_documentation_and_text/DEPLOYMENT_GUIDE.md`](08_documentation_and_text/DEPLOYMENT_GUIDE.md) for detailed deployment instructions.
+
+## 📖 Documentation
+
+All documentation is available in the `08_documentation_and_text/` folder:
+
+- **DEPLOYMENT_GUIDE.md** - Complete deployment instructions
+- **PROJECT_ORGANIZATION.md** - Detailed project structure
+- **PROFESSIONAL_REDESIGN.md** - UI/UX design documentation
+- **ECG_GUIDE_FEATURE.md** - ECG educational content details
+
+## ⚠️ Medical Disclaimer
+
+**IMPORTANT**: This application is for educational and research purposes only. It is NOT intended for clinical diagnosis or medical decision-making. Always consult qualified healthcare professionals for medical advice and ECG interpretation.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 1. Fork the repository
-2. Create feature branch
-3. Make changes with proper documentation
-4. Test thoroughly
-5. Submit pull request
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## License
+## 📝 License
 
-This project is intended for educational and research purposes. For clinical use, ensure proper validation and regulatory compliance.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Contact
+## 👨‍💻 Author
 
-For questions, issues, or contributions, please create an issue in the repository or contact the development team.
+**Yashraj Patil**
+- GitHub: [@yashraj24007](https://github.com/yashraj24007)
+- Repository: [RhythmIQ](https://github.com/yashraj24007/RhythmIQ)
+
+## 🙏 Acknowledgments
+
+- ECG dataset providers
+- Spring Boot and Flask communities
+- Machine learning libraries (scikit-learn, NumPy, Pillow)
+- Medical professionals who validated the educational content
 
 ---
 
-**⚠️ Important Note**: This system is designed for research and educational purposes. For clinical applications, ensure proper validation, regulatory compliance, and integration with qualified healthcare professionals.
+<div align="center">
+
+**Made with ❤️ by Yashraj Patil**
+
+⭐ Star this repository if you find it helpful!
+
+</div>

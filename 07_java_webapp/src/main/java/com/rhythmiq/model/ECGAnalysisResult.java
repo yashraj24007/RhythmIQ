@@ -1,4 +1,4 @@
-package com.rhythmiq.model;
+ package com.rhythmiq.model;
 
 import java.time.LocalDateTime;
 
