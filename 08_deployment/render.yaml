@@ -19,7 +19,7 @@ services:
   - type: web
     name: rhythmiq-java-webapp
     runtime: docker
-    dockerfilePath: ./06_java_webapp/Dockerfile
+    dockerfilePath: ./Dockerfile
     dockerContext: ./06_java_webapp
     autoDeploy: true
     healthCheckPath: /

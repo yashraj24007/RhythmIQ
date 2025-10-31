@@ -1,5 +1,5 @@
 @echo off
-cd /d "E:\Projects\RhythmIQ\java-webapp"
+cd /d "E:\Projects\RhythmIQ\06_java_webapp"
 echo Starting RhythmIQ Java Webapp...
 echo Python API should be running on http://localhost:8083
 echo Java Webapp will start on http://localhost:8082

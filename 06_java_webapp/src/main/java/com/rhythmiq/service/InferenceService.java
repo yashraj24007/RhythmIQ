@@ -29,11 +29,14 @@ public class InferenceService {
     private final Path uploadDir = Paths.get("/var/tmp/java-webapp-uploads");
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
-    private final String pythonApiUrl = "http://localhost:8083/analyze";
+    private final String pythonApiUrl;
+    
     public InferenceService() throws IOException {
         Files.createDirectories(uploadDir);
         this.restTemplate = new RestTemplate();
         this.objectMapper = new ObjectMapper();
+        // Use environment variable for Python API URL, fallback to localhost for local development
+        this.pythonApiUrl = System.getenv().getOrDefault("PYTHON_API_URL", "http://localhost:8083") + "/analyze";
     }
 
     public ECGAnalysisResult analyze(byte[] imageBytes, String originalFilename) throws IOException {
