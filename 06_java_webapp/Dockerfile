@@ -43,4 +43,4 @@ USER rhythmiq
 
 # Run the application
 # The PORT environment variable will be provided by Render
-CMD ["java", "-Dserver.port=${PORT:-8080}", "-jar", "target/rhythmiq-webapp-1.0.0.jar"]
+CMD sh -c "java -Dserver.port=${PORT:-8080} -jar target/rhythmiq-webapp-1.0.0.jar"
