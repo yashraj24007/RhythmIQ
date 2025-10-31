@@ -3,6 +3,10 @@
 
 Write-Host "Starting RhythmIQ Services..." -ForegroundColor Cyan
 
+# Load environment variables from .env file
+& "$PSScriptRoot\load-env.ps1"
+Write-Host ""
+
 # Stop any existing services first
 Write-Host "Checking for existing processes..." -ForegroundColor Gray
 $javaProcesses = Get-Process -Name "java" -ErrorAction SilentlyContinue
@@ -22,9 +26,9 @@ if ($pythonProcesses) {
 
 # Start Python ML API
 Write-Host "`n[Python API] Starting on port 8083..." -ForegroundColor Yellow
-Start-Process -FilePath "C:/Users/Yash/AppData/Local/Programs/Python/Python313/python.exe" `
+Start-Process -FilePath "python" `
               -ArgumentList "rhythmiq_api.py" `
-              -WorkingDirectory "E:\Projects\RhythmIQ\11_python_api" `
+              -WorkingDirectory "$PSScriptRoot\..\09_python_api" `
               -WindowStyle Hidden
 
 Write-Host "  Waiting for Python API to start..." -ForegroundColor Gray
@@ -42,7 +46,8 @@ try {
 
 # Start Java Web Application
 Write-Host "`n[Java Webapp] Starting on port 8082..." -ForegroundColor Yellow
-Set-Location "E:\Projects\RhythmIQ\07_java_webapp"
+$webappPath = "$PSScriptRoot\..\06_java_webapp"
+Set-Location $webappPath
 Start-Process -FilePath "java" `
               -ArgumentList "-jar","target\rhythmiq-webapp-1.0.0.jar" `
               -WindowStyle Hidden

@@ -1,0 +1,621 @@
+<!DOCTYPE html><!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en"><html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head><head>
+
+    <meta charset="UTF-8">    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - RhythmIQ</title>    <title>Login - RhythmIQ ECG Analysis</title>
+
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">    <style>
+
+    <style>        * {
+
+        * {            margin: 0;
+
+            margin: 0;            padding: 0;
+
+            padding: 0;            box-sizing: border-box;
+
+            box-sizing: border-box;        }
+
+        }
+
+        body {
+
+        body {            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+            background: linear-gradient(135deg, #98566D 0%, #49466B 50%, #98878F 100%);            min-height: 100vh;
+
+            min-height: 100vh;            display: flex;
+
+            display: flex;            justify-content: center;
+
+            justify-content: center;            align-items: center;
+
+            align-items: center;            padding: 20px;
+
+            padding: 20px;        }
+
+        }
+
+        .login-container {
+
+        .login-container {            background: white;
+
+            background: white;            border-radius: 20px;
+
+            border-radius: 20px;            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+
+            box-shadow: 0 20px 60px rgba(73, 70, 107, 0.3);            overflow: hidden;
+
+            overflow: hidden;            max-width: 1000px;
+
+            max-width: 1000px;            width: 100%;
+
+            width: 100%;            display: flex;
+
+            display: flex;        }
+
+        }
+
+        .login-left {
+
+        .login-left {            flex: 1;
+
+            flex: 1;            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+
+            background: linear-gradient(135deg, #98566D 0%, #49466B 100%);            padding: 60px 40px;
+
+            padding: 60px 40px;            color: white;
+
+            color: white;            display: flex;
+
+            display: flex;            flex-direction: column;
+
+            flex-direction: column;            justify-content: center;
+
+            justify-content: center;            align-items: center;
+
+            align-items: center;            text-align: center;
+
+            text-align: center;        }
+
+        }
+
+        .logo-container {
+
+        .logo-container {            margin-bottom: 30px;
+
+            margin-bottom: 30px;        }
+
+        }
+
+        .logo-container img {
+
+        .logo {            width: 150px;
+
+            font-size: 3.5em;            height: 150px;
+
+        }            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+
+        }
+
+        .login-left h1 {
+
+            font-size: 2.5em;        .login-left h1 {
+
+            font-weight: 700;            font-size: 2.5em;
+
+            margin-bottom: 15px;            margin-bottom: 15px;
+
+            color: #F5F3F4;            font-weight: 700;
+
+        }        }
+
+
+
+        .login-left p {        .login-left p {
+
+            font-size: 1.1em;            font-size: 1.1em;
+
+            line-height: 1.6;            opacity: 0.95;
+
+            margin-bottom: 30px;            line-height: 1.6;
+
+            color: #F5F3F4;        }
+
+            opacity: 0.95;
+
+        }        .features {
+
+            margin-top: 30px;
+
+        .features {            text-align: left;
+
+            display: flex;        }
+
+            flex-direction: column;
+
+            gap: 15px;        .feature-item {
+
+            margin-top: 30px;            display: flex;
+
+            text-align: left;            align-items: center;
+
+            width: 100%;            margin: 15px 0;
+
+            max-width: 400px;            font-size: 0.95em;
+
+        }        }
+
+
+
+        .feature-item {        .feature-icon {
+
+            display: flex;            width: 24px;
+
+            align-items: center;            height: 24px;
+
+            gap: 12px;            background: rgba(255, 255, 255, 0.2);
+
+            font-size: 0.95em;            border-radius: 50%;
+
+            color: #F5F3F4;            display: flex;
+
+        }            align-items: center;
+
+            justify-content: center;
+
+        .feature-icon {            margin-right: 15px;
+
+            font-size: 1.5em;            font-size: 14px;
+
+            flex-shrink: 0;        }
+
+        }
+
+        .login-right {
+
+        .login-right {            flex: 1;
+
+            flex: 1;            padding: 60px 50px;
+
+            padding: 60px 50px;        }
+
+            background: #F9FAFB;
+
+        }        .login-form h2 {
+
+            color: #1F2937;
+
+        .login-form h2 {            margin-bottom: 10px;
+
+            font-size: 2em;            font-size: 2em;
+
+            color: #49466B;        }
+
+            margin-bottom: 10px;
+
+            font-weight: 700;        .login-form p {
+
+        }            color: #6B7280;
+
+            margin-bottom: 30px;
+
+        .login-form p {        }
+
+            color: #98878F;
+
+            margin-bottom: 30px;        .form-group {
+
+            font-size: 0.95em;            margin-bottom: 25px;
+
+        }        }
+
+
+
+        .alert {        .form-group label {
+
+            padding: 12px 16px;            display: block;
+
+            border-radius: 10px;            color: #374151;
+
+            margin-bottom: 20px;            font-weight: 600;
+
+            font-size: 0.9em;            margin-bottom: 8px;
+
+            font-weight: 500;            font-size: 0.95em;
+
+        }        }
+
+
+
+        .alert-danger {        .form-group input {
+
+            background: #FEE2E2;            width: 100%;
+
+            border: 1px solid #FCA5A5;            padding: 12px 15px;
+
+            color: #991B1B;            border: 2px solid #E5E7EB;
+
+        }            border-radius: 10px;
+
+            font-size: 1em;
+
+        .alert-success {            transition: all 0.3s;
+
+            background: #D1FAE5;        }
+
+            border: 1px solid #6EE7B7;
+
+            color: #065F46;        .form-group input:focus {
+
+        }            outline: none;
+
+            border-color: #4F46E5;
+
+        .alert-info {            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+
+            background: #DBEAFE;        }
+
+            border: 1px solid #93C5FD;
+
+            color: #1E40AF;        .btn-login {
+
+        }            width: 100%;
+
+            padding: 14px;
+
+        .form-group {            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+
+            margin-bottom: 25px;            color: white;
+
+        }            border: none;
+
+            border-radius: 10px;
+
+        .form-group label {            font-size: 1.05em;
+
+            display: block;            font-weight: 600;
+
+            margin-bottom: 8px;            cursor: pointer;
+
+            font-weight: 600;            transition: all 0.3s;
+
+            color: #49466B;            margin-top: 10px;
+
+            font-size: 0.95em;        }
+
+        }
+
+        .btn-login:hover {
+
+        .form-group input {            transform: translateY(-2px);
+
+            width: 100%;            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+
+            padding: 14px 16px;        }
+
+            border: 2px solid #E5E7EB;
+
+            border-radius: 10px;        .btn-login:active {
+
+            font-size: 1em;            transform: translateY(0);
+
+            transition: all 0.3s;        }
+
+            background: white;
+
+        }        .alert {
+
+            padding: 12px 15px;
+
+        .form-group input:focus {            border-radius: 10px;
+
+            outline: none;            margin-bottom: 20px;
+
+            border-color: #98566D;            font-size: 0.95em;
+
+            box-shadow: 0 0 0 3px rgba(152, 86, 109, 0.1);        }
+
+        }
+
+        .alert-error {
+
+        .btn-primary {            background: #FEE2E2;
+
+            width: 100%;            color: #DC2626;
+
+            padding: 14px;            border: 1px solid #FECACA;
+
+            background: linear-gradient(135deg, #98566D 0%, #49466B 100%);        }
+
+            color: white;
+
+            border: none;        .alert-success {
+
+            border-radius: 10px;            background: #D1FAE5;
+
+            font-size: 1em;            color: #059669;
+
+            font-weight: 600;            border: 1px solid #A7F3D0;
+
+            cursor: pointer;        }
+
+            transition: all 0.3s;
+
+            margin-top: 10px;        .register-link {
+
+        }            text-align: center;
+
+            margin-top: 25px;
+
+        .btn-primary:hover {            color: #6B7280;
+
+            transform: translateY(-2px);            font-size: 0.95em;
+
+            box-shadow: 0 8px 20px rgba(152, 86, 109, 0.3);        }
+
+        }
+
+        .register-link a {
+
+        .divider {            color: #4F46E5;
+
+            display: flex;            text-decoration: none;
+
+            align-items: center;            font-weight: 600;
+
+            text-align: center;        }
+
+            margin: 25px 0;
+
+            color: #98878F;        .register-link a:hover {
+
+            font-size: 0.9em;            text-decoration: underline;
+
+        }        }
+
+
+
+        .divider::before,        .demo-credentials {
+
+        .divider::after {            background: #F3F4F6;
+
+            content: '';            padding: 15px;
+
+            flex: 1;            border-radius: 10px;
+
+            border-bottom: 1px solid #E5E7EB;            margin-top: 20px;
+
+        }            font-size: 0.85em;
+
+            color: #4B5563;
+
+        .divider span {        }
+
+            padding: 0 15px;
+
+        }        .demo-credentials strong {
+
+            color: #1F2937;
+
+        .text-center {        }
+
+            text-align: center;
+
+        }        @media (max-width: 768px) {
+
+            .login-container {
+
+        .link {                flex-direction: column;
+
+            color: #98566D;            }
+
+            text-decoration: none;
+
+            font-weight: 600;            .login-left {
+
+            transition: color 0.3s;                padding: 40px 30px;
+
+        }            }
+
+
+
+        .link:hover {            .login-right {
+
+            color: #49466B;                padding: 40px 30px;
+
+            text-decoration: underline;            }
+
+        }
+
+            .login-left h1 {
+
+        @media (max-width: 768px) {                font-size: 2em;
+
+            .login-container {            }
+
+                flex-direction: column;        }
+
+            }    </style>
+
+</head>
+
+            .login-left {<body>
+
+                padding: 40px 30px;    <div class="login-container">
+
+            }        <div class="login-left">
+
+            <div class="logo-container">
+
+            .login-right {                <img src="/images/logo.svg" alt="RhythmIQ Logo">
+
+                padding: 40px 30px;            </div>
+
+            }            <h1>RhythmIQ</h1>
+
+            <p>Advanced ECG Analysis with Artificial Intelligence</p>
+
+            .login-left h1 {            
+
+                font-size: 2em;            <div class="features">
+
+            }                <div class="feature-item">
+
+                    <div class="feature-icon">✓</div>
+
+            .features {                    <span>Real-time ECG Classification</span>
+
+                margin-top: 20px;                </div>
+
+            }                <div class="feature-item">
+
+        }                    <div class="feature-icon">✓</div>
+
+    </style>                    <span>6 ECG Pattern Detection</span>
+
+</head>                </div>
+
+<body>                <div class="feature-item">
+
+    <div class="login-container">                    <div class="feature-icon">✓</div>
+
+        <div class="login-left">                    <span>High Accuracy AI Model</span>
+
+            <div class="logo-container">                </div>
+
+                <div class="logo">🫀</div>                <div class="feature-item">
+
+            </div>                    <div class="feature-icon">✓</div>
+
+            <h1>RhythmIQ</h1>                    <span>Instant Severity Assessment</span>
+
+            <p>AI-Powered ECG Analysis Platform</p>                </div>
+
+                        </div>
+
+            <div class="features">        </div>
+
+                <div class="feature-item">
+
+                    <span class="feature-icon">🤖</span>        <div class="login-right">
+
+                    <span>100% Accurate AI Classification</span>            <div class="login-form">
+
+                </div>                <h2>Welcome Back</h2>
+
+                <div class="feature-item">                <p>Please login to access your ECG analysis dashboard</p>
+
+                    <span class="feature-icon">📊</span>
+
+                    <span>6 ECG Rhythm Types Detected</span>                <div th:if="${error}" class="alert alert-error">
+
+                </div>                    <span th:text="${error}">Invalid username or password</span>
+
+                <div class="feature-item">                </div>
+
+                    <span class="feature-icon">⚡</span>
+
+                    <span>Instant Real-Time Analysis</span>                <div th:if="${message}" class="alert alert-success">
+
+                </div>                    <span th:text="${message}">Success message</span>
+
+                <div class="feature-item">                </div>
+
+                    <span class="feature-icon">🔒</span>
+
+                    <span>Secure & Private Processing</span>                <form method="post" action="/login">
+
+                </div>                    <div class="form-group">
+
+            </div>                        <label for="username">Username</label>
+
+        </div>                        <input type="text" id="username" name="username" required autocomplete="username">
+
+                    </div>
+
+        <div class="login-right">
+
+            <div class="login-form">                    <div class="form-group">
+
+                <h2>Welcome Back</h2>                        <label for="password">Password</label>
+
+                <p>Sign in to access your ECG analysis dashboard</p>                        <input type="password" id="password" name="password" required autocomplete="current-password">
+
+                    </div>
+
+                <div th:if="${error}" class="alert alert-danger" role="alert">
+
+                    <span th:text="${error}">Invalid credentials</span>                    <button type="submit" class="btn-login">Sign In</button>
+
+                </div>                </form>
+
+                
+
+                <div th:if="${message}" class="alert alert-success" role="alert">                <div class="demo-credentials">
+
+                    <span th:text="${message}">Success message</span>                    <strong>Demo Credentials:</strong><br>
+
+                </div>                    Username: <strong>demo</strong> | Password: <strong>demo123</strong><br>
+
+                                    Username: <strong>doctor</strong> | Password: <strong>doctor123</strong>
+
+                <div th:if="${info}" class="alert alert-info" role="alert">                </div>
+
+                    <span th:text="${info}">Info message</span>
+
+                </div>                <div class="register-link">
+
+                    Don't have an account? <a href="/register">Create one now</a>
+
+                <form th:action="@{/login}" method="post">                </div>
+
+                    <div class="form-group">            </div>
+
+                        <label for="username">Email Address</label>        </div>
+
+                        <input type="email" id="username" name="username"     </div>
+
+                               placeholder="Enter your email" required></body>
+
+                    </div></html>
+
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" 
+                               placeholder="Enter your password" required>
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        Sign In →
+                    </button>
+                </form>
+
+                <div class="divider">
+                    <span>or</span>
+                </div>
+
+                <p class="text-center">
+                    Don't have an account? 
+                    <a href="/register" class="link">Create Account</a>
+                </p>
+                
+                <p class="text-center" style="margin-top: 20px; font-size: 0.85em; color: #98878F;">
+                    ⚕️ For educational and research purposes only
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

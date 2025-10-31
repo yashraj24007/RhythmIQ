@@ -240,10 +240,10 @@ def main():
     print("🫀 RythmGuard Simple Training Setup")
     print("=" * 40)
     print("Choose training dataset size:")
-    print("1. Quick test (50 images per class) - ~5 minutes")
-    print("2. Small dataset (200 images per class) - ~15 minutes") 
-    print("3. Medium dataset (500 images per class) - ~30 minutes")
-    print("4. Large dataset (1000 images per class) - ~60 minutes")
+    print("1. All available data (50 images per class) - ~5 minutes")
+    print("2. Small dataset (20 images per class) - ~2 minutes") 
+    print("3. Medium dataset (35 images per class) - ~3 minutes")
+    print("4. Large dataset (50 images per class) - ~5 minutes")
     
     try:
         choice = input("\nEnter your choice (1-4) [default: 1]: ").strip()
@@ -252,9 +252,9 @@ def main():
         
         size_map = {
             "1": 50,
-            "2": 200, 
-            "3": 500,
-            "4": 1000
+            "2": 20, 
+            "3": 35,
+            "4": 50
         }
         
         images_per_class = size_map.get(choice, 50)

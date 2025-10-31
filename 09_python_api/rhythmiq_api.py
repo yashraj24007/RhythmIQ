@@ -12,6 +12,10 @@ import numpy as np
 from flask import Flask, request, jsonify
 from PIL import Image
 import io
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Add paths for custom modules (works both locally and on Render)
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -44,12 +48,23 @@ def load_model():
         current_dir = os.path.dirname(os.path.abspath(__file__))
         project_root = os.path.dirname(current_dir)
         
-        # Load model
-        model_path = os.path.join(project_root, '05_trained_models', 'rythmguard_model.joblib')
-        if not os.path.exists(model_path):
-            raise FileNotFoundError(f"Model not found: {model_path}")
+        # Try multiple possible model locations
+        possible_paths = [
+            os.path.join(project_root, '01_data', 'rythmguard_model.joblib'),
+            os.path.join(project_root, '05_trained_models', 'rythmguard_model.joblib'),
+            os.path.join(project_root, 'data', 'rythmguard_model.joblib')
+        ]
         
-        print("📁 Loading trained model...")
+        model_path = None
+        for path in possible_paths:
+            if os.path.exists(path):
+                model_path = path
+                break
+        
+        if not model_path:
+            raise FileNotFoundError(f"Model not found in any of: {possible_paths}")
+        
+        print(f"📁 Loading trained model from: {model_path}")
         model_data = joblib.load(model_path)
         
         if isinstance(model_data, dict):
@@ -59,8 +74,10 @@ def load_model():
             model = model_data
             class_names = ['F', 'M', 'N', 'Q', 'S', 'V']
         
-        # Initialize preprocessor and severity predictor
+        # Initialize preprocessor and severity predictor (use 01_data as primary)
         data_path = os.path.join(project_root, '01_data')
+        if not os.path.exists(data_path):
+            data_path = os.path.join(project_root, 'data')
         preprocessor = ECGPreprocessor(data_path, target_size=(224, 224))
         severity_predictor = SeverityPredictor()
         

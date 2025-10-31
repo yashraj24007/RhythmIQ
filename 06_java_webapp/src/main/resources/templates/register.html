@@ -1,0 +1,469 @@
+<!DOCTYPE html><!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en"><html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head><head>
+
+    <meta charset="UTF-8">    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register - RhythmIQ</title>    <title>Register - RhythmIQ</title>
+
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">    <style>
+
+    <style>        * {
+
+        * {            margin: 0;
+
+            margin: 0;            padding: 0;
+
+            padding: 0;            box-sizing: border-box;
+
+            box-sizing: border-box;        }
+
+        }
+
+        body {
+
+        body {            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+            background: linear-gradient(135deg, #49466B 0%, #98566D 50%, #98878F 100%);            min-height: 100vh;
+
+            min-height: 100vh;            display: flex;
+
+            display: flex;            justify-content: center;
+
+            justify-content: center;            align-items: center;
+
+            align-items: center;            padding: 20px;
+
+            padding: 20px;        }
+
+        }
+
+        .register-container {
+
+        .register-container {            background: white;
+
+            background: white;            border-radius: 20px;
+
+            border-radius: 20px;            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+
+            box-shadow: 0 20px 60px rgba(73, 70, 107, 0.3);            padding: 50px;
+
+            overflow: hidden;            max-width: 500px;
+
+            max-width: 900px;            width: 100%;
+
+            width: 100%;        }
+
+            display: flex;
+
+            flex-direction: column;        .logo-container {
+
+        }            text-align: center;
+
+            margin-bottom: 30px;
+
+        .register-header {        }
+
+            background: linear-gradient(135deg, #49466B 0%, #98566D 100%);
+
+            padding: 40px;        .logo-container img {
+
+            text-align: center;            width: 100px;
+
+            color: white;            height: 100px;
+
+        }        }
+
+
+
+        .logo {        h2 {
+
+            font-size: 3em;            color: #1F2937;
+
+            margin-bottom: 15px;            text-align: center;
+
+        }            margin-bottom: 10px;
+
+            font-size: 2em;
+
+        .register-header h1 {        }
+
+            font-size: 2.2em;
+
+            font-weight: 700;        .subtitle {
+
+            margin-bottom: 10px;            text-align: center;
+
+            color: #F5F3F4;            color: #6B7280;
+
+        }            margin-bottom: 30px;
+
+        }
+
+        .register-header p {
+
+            font-size: 1.05em;        .form-group {
+
+            color: #F5F3F4;            margin-bottom: 20px;
+
+            opacity: 0.95;        }
+
+        }
+
+        .form-group label {
+
+        .register-form {            display: block;
+
+            padding: 50px;            color: #374151;
+
+            background: #F9FAFB;            font-weight: 600;
+
+        }            margin-bottom: 8px;
+
+            font-size: 0.95em;
+
+        .register-form h2 {        }
+
+            font-size: 1.8em;
+
+            color: #49466B;        .form-group input {
+
+            margin-bottom: 30px;            width: 100%;
+
+            font-weight: 700;            padding: 12px 15px;
+
+            text-align: center;            border: 2px solid #E5E7EB;
+
+        }            border-radius: 10px;
+
+            font-size: 1em;
+
+        .alert {            transition: all 0.3s;
+
+            padding: 12px 16px;        }
+
+            border-radius: 10px;
+
+            margin-bottom: 20px;        .form-group input:focus {
+
+            font-size: 0.9em;            outline: none;
+
+            font-weight: 500;            border-color: #4F46E5;
+
+        }            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+
+        }
+
+        .alert-danger {
+
+            background: #FEE2E2;        .btn-register {
+
+            border: 1px solid #FCA5A5;            width: 100%;
+
+            color: #991B1B;            padding: 14px;
+
+        }            background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+
+            color: white;
+
+        .alert-success {            border: none;
+
+            background: #D1FAE5;            border-radius: 10px;
+
+            border: 1px solid #6EE7B7;            font-size: 1.05em;
+
+            color: #065F46;            font-weight: 600;
+
+        }            cursor: pointer;
+
+            transition: all 0.3s;
+
+        .form-group {            margin-top: 10px;
+
+            margin-bottom: 25px;        }
+
+        }
+
+        .btn-register:hover {
+
+        .form-group label {            transform: translateY(-2px);
+
+            display: block;            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+
+            margin-bottom: 8px;        }
+
+            font-weight: 600;
+
+            color: #49466B;        .alert {
+
+            font-size: 0.95em;            padding: 12px 15px;
+
+        }            border-radius: 10px;
+
+            margin-bottom: 20px;
+
+        .form-group input {            font-size: 0.95em;
+
+            width: 100%;        }
+
+            padding: 14px 16px;
+
+            border: 2px solid #E5E7EB;        .alert-error {
+
+            border-radius: 10px;            background: #FEE2E2;
+
+            font-size: 1em;            color: #DC2626;
+
+            transition: all 0.3s;            border: 1px solid #FECACA;
+
+            background: white;        }
+
+        }
+
+        .login-link {
+
+        .form-group input:focus {            text-align: center;
+
+            outline: none;            margin-top: 25px;
+
+            border-color: #49466B;            color: #6B7280;
+
+            box-shadow: 0 0 0 3px rgba(73, 70, 107, 0.1);            font-size: 0.95em;
+
+        }        }
+
+
+
+        .password-requirements {        .login-link a {
+
+            font-size: 0.85em;            color: #4F46E5;
+
+            color: #98878F;            text-decoration: none;
+
+            margin-top: 8px;            font-weight: 600;
+
+            line-height: 1.6;        }
+
+        }
+
+        .login-link a:hover {
+
+        .btn-primary {            text-decoration: underline;
+
+            width: 100%;        }
+
+            padding: 14px;    </style>
+
+            background: linear-gradient(135deg, #49466B 0%, #98566D 100%);</head>
+
+            color: white;<body>
+
+            border: none;    <div class="register-container">
+
+            border-radius: 10px;        <div class="logo-container">
+
+            font-size: 1em;            <img src="/images/logo.svg" alt="RhythmIQ Logo">
+
+            font-weight: 600;        </div>
+
+            cursor: pointer;
+
+            transition: all 0.3s;        <h2>Create Account</h2>
+
+            margin-top: 10px;        <p class="subtitle">Join RhythmIQ for advanced ECG analysis</p>
+
+        }
+
+        <div th:if="${error}" class="alert alert-error">
+
+        .btn-primary:hover {            <span th:text="${error}">Error message</span>
+
+            transform: translateY(-2px);        </div>
+
+            box-shadow: 0 8px 20px rgba(73, 70, 107, 0.3);
+
+        }        <form method="post" action="/register">
+
+            <div class="form-group">
+
+        .divider {                <label for="fullName">Full Name</label>
+
+            display: flex;                <input type="text" id="fullName" name="fullName" required>
+
+            align-items: center;            </div>
+
+            text-align: center;
+
+            margin: 25px 0;            <div class="form-group">
+
+            color: #98878F;                <label for="email">Email Address</label>
+
+            font-size: 0.9em;                <input type="email" id="email" name="email" required>
+
+        }            </div>
+
+
+
+        .divider::before,            <div class="form-group">
+
+        .divider::after {                <label for="username">Username</label>
+
+            content: '';                <input type="text" id="username" name="username" required>
+
+            flex: 1;            </div>
+
+            border-bottom: 1px solid #E5E7EB;
+
+        }            <div class="form-group">
+
+                <label for="password">Password</label>
+
+        .divider span {                <input type="password" id="password" name="password" required minlength="6">
+
+            padding: 0 15px;            </div>
+
+        }
+
+            <button type="submit" class="btn-register">Create Account</button>
+
+        .text-center {        </form>
+
+            text-align: center;
+
+        }        <div class="login-link">
+
+            Already have an account? <a href="/login">Sign in here</a>
+
+        .link {        </div>
+
+            color: #49466B;    </div>
+
+            text-decoration: none;</body>
+
+            font-weight: 600;</html>
+
+            transition: color 0.3s;
+        }
+
+        .link:hover {
+            color: #98566D;
+            text-decoration: underline;
+        }
+
+        .disclaimer {
+            background: #FFF3CD;
+            border: 1px solid #FFC107;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 25px;
+            font-size: 0.9em;
+            color: #856404;
+        }
+
+        .disclaimer strong {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .register-header {
+                padding: 30px 20px;
+            }
+
+            .register-form {
+                padding: 30px 20px;
+            }
+
+            .register-header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-header">
+            <div class="logo">🫀</div>
+            <h1>Join RhythmIQ</h1>
+            <p>Start analyzing ECG rhythms with AI-powered precision</p>
+        </div>
+
+        <div class="register-form">
+            <h2>Create Your Account</h2>
+
+            <div class="disclaimer">
+                <strong>⚕️ Medical Disclaimer</strong>
+                This platform is for educational and research purposes only. Not for clinical diagnosis.
+            </div>
+
+            <div th:if="${error}" class="alert alert-danger" role="alert">
+                <span th:text="${error}">Error message</span>
+            </div>
+            
+            <div th:if="${message}" class="alert alert-success" role="alert">
+                <span th:text="${message}">Success message</span>
+            </div>
+
+            <form th:action="@{/register}" method="post">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" 
+                           placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" 
+                           placeholder="Create a strong password" required minlength="6">
+                    <div class="password-requirements">
+                        • Minimum 6 characters<br>
+                        • Use a mix of letters, numbers, and symbols
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" 
+                           placeholder="Re-enter your password" required minlength="6">
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    Create Account →
+                </button>
+            </form>
+
+            <div class="divider">
+                <span>or</span>
+            </div>
+
+            <p class="text-center">
+                Already have an account? 
+                <a href="/login" class="link">Sign In</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Password confirmation validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                e.preventDefault();
+                alert('Passwords do not match! Please try again.');
+                document.getElementById('confirmPassword').focus();
+            }
+        });
+    </script>
+</body>
+</html>
