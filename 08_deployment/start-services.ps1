@@ -2,9 +2,6 @@
 # Starts Python ML API and Java Web Application
 
 Write-Host "Starting RhythmIQ Services..." -ForegroundColor Cyan
-
-# Load environment variables from .env file
-& "$PSScriptRoot\load-env.ps1"
 Write-Host ""
 
 # Stop any existing services first
@@ -26,7 +23,7 @@ if ($pythonProcesses) {
 
 # Start Python ML API
 Write-Host "`n[Python API] Starting on port 8083..." -ForegroundColor Yellow
-Start-Process -FilePath "python" `
+Start-Process -FilePath "C:/Users/Yash/AppData/Local/Programs/Python/Python313/python.exe" `
               -ArgumentList "rhythmiq_api.py" `
               -WorkingDirectory "$PSScriptRoot\..\09_python_api" `
               -WindowStyle Hidden
