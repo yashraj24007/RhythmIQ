@@ -75,4 +75,4 @@ Write-Host "`n🛑 To stop services, run: .\stop-services.ps1" -ForegroundColor 
 # Open browser
 Start-Sleep -Seconds 2
 Write-Host "`n🌐 Opening browser..." -ForegroundColor Cyan
-Start-Process "http://localhost:8082/"
+Start-Process "http://localhost:8082/dashboard"

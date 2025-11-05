@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - RhythmIQ</title>
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fa;
+            color: #2d3748;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode {
+            background: #1a1a1a;
+            color: #e5e5e5;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background: white;
+            padding: 1rem 5%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .navbar {
+            background: #2a2a2a;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .navbar-brand img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .navbar-brand h1 {
+            font-size: 1.5em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #98566D, #49466B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .navbar-menu a {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        body.dark-mode .navbar-menu a {
+            color: #aaa;
+        }
+
+        .navbar-menu a:hover, .navbar-menu a.active {
+            color: #98566D;
+        }
+
+        .navbar-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .theme-toggle {
+            background: #e2e8f0;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: all 0.3s;
+        }
+
+        body.dark-mode .theme-toggle {
+            background: #333;
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, #98566D, #49466B);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #49466B 0%, #98566D 50%, #98878F 100%);
+            color: white;
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        /* FAQ Content */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 5%;
+        }
+
+        .faq-section {
+            margin-bottom: 40px;
+        }
+
+        .faq-section h2 {
+            color: #98566D;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        body.dark-mode .faq-item {
+            background: #2a2a2a;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #2d3748;
+            transition: all 0.3s;
+        }
+
+        body.dark-mode .faq-question {
+            color: #e5e5e5;
+        }
+
+        .faq-question:hover {
+            background: rgba(152, 86, 109, 0.05);
+        }
+
+        .faq-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 20px;
+            color: #64748b;
+        }
+
+        body.dark-mode .faq-answer {
+            color: #aaa;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 20px 20px;
+        }
+
+        .faq-answer p {
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+
+        .faq-answer ul {
+            margin: 10px 0;
+            padding-left: 30px;
+        }
+
+        .faq-answer li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <img src="/images/logo.svg" alt="RhythmIQ Logo">
+            <h1>RhythmIQ</h1>
+        </div>
+        <div class="navbar-menu">
+            <a href="/dashboard">Home</a>
+            <a href="/upload">Analyze ECG</a>
+            <a href="/about">About</a>
+        </div>
+        <div class="navbar-actions">
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <a href="/login" class="btn-login" title="Login">
+                👤 Login
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>❓ Frequently Asked Questions</h1>
+        <p>Find quick answers to common questions about RhythmIQ</p>
+    </div>
+
+    <!-- FAQ Content -->
+    <div class="container">
+        <!-- General Questions -->
+        <div class="faq-section">
+            <h2>General Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What is RhythmIQ?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>RhythmIQ is an AI-powered ECG analysis platform that uses machine learning to classify cardiac rhythms from ECG images. It can identify six types of rhythms: Normal (N), Supraventricular (S), Ventricular (V), Fusion (F), Unknown (Q), and Paced (M) beats.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is RhythmIQ free to use?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, RhythmIQ is currently free for educational and research purposes. We offer unlimited ECG analyses with no subscription required.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I use RhythmIQ for clinical diagnosis?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>No. RhythmIQ is designed exclusively for educational and research purposes. It should NOT be used for clinical diagnosis, treatment decisions, or patient care. Always consult qualified healthcare professionals for medical advice.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Using RhythmIQ -->
+        <div class="faq-section">
+            <h2>Using RhythmIQ</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What file formats are supported?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We support the following image formats:</p>
+                    <ul>
+                        <li>JPEG (.jpg, .jpeg)</li>
+                        <li>PNG (.png)</li>
+                    </ul>
+                    <p>Maximum file size: 10MB per image</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How long does analysis take?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Most ECG analyses complete in under 2 seconds. Processing time may vary based on image size, network speed, and server load.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What image quality do I need?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>For best results:</p>
+                    <ul>
+                        <li>Use clear, high-resolution images (256x256 pixels minimum)</li>
+                        <li>Ensure ECG waveforms are clearly visible</li>
+                        <li>Avoid blurry or low-quality images</li>
+                        <li>Remove any patient identifying information</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How accurate is RhythmIQ?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Our AI model achieves approximately 98.3% accuracy on test datasets. However, accuracy can vary based on image quality and complexity. Always verify results with professional medical evaluation.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Issues -->
+        <div class="faq-section">
+            <h2>Technical Issues</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Why is my upload failing?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Common reasons for upload failures:</p>
+                    <ul>
+                        <li>File size exceeds 10MB limit</li>
+                        <li>Unsupported file format</li>
+                        <li>Poor internet connection</li>
+                        <li>Browser compatibility issues</li>
+                    </ul>
+                    <p>Try reducing file size, checking your connection, or using a different browser.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Which browsers are supported?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>RhythmIQ works best on modern browsers:</p>
+                    <ul>
+                        <li>Google Chrome (recommended)</li>
+                        <li>Mozilla Firefox</li>
+                        <li>Safari</li>
+                        <li>Microsoft Edge</li>
+                    </ul>
+                    <p>Please ensure your browser is up to date.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Why are results taking longer than expected?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Slow analysis can be caused by:</p>
+                    <ul>
+                        <li>Large image file sizes</li>
+                        <li>Slow internet connection</li>
+                        <li>High server load during peak hours</li>
+                        <li>Browser performance issues</li>
+                    </ul>
+                    <p>Try compressing images, checking your connection speed, or analyzing during off-peak hours.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Privacy & Security -->
+        <div class="faq-section">
+            <h2>Privacy & Security</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is my data secure?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes. We implement industry-standard security measures:</p>
+                    <ul>
+                        <li>All connections use SSL/TLS encryption</li>
+                        <li>Images are processed securely</li>
+                        <li>No permanent storage of uploaded images</li>
+                        <li>Compliance with data protection regulations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do you store my ECG images?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>No. ECG images are processed in real-time and are not permanently stored on our servers. Images are automatically deleted after analysis is complete.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is RhythmIQ HIPAA compliant?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>RhythmIQ is designed for educational purposes and is not HIPAA-certified for clinical use. Do not upload ECG images containing protected health information (PHI) or patient-identifying data.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Still Need Help? -->
+        <div style="background: linear-gradient(135deg, #98566D, #49466B); color: white; padding: 40px; border-radius: 12px; text-align: center; margin-top: 40px;">
+            <h2 style="margin-bottom: 15px;">Still have questions?</h2>
+            <p style="margin-bottom: 20px; font-size: 1.1em;">Can't find the answer you're looking for? Contact our support team.</p>
+            <a href="/contact" style="background: white; color: #98566D; padding: 12px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">Contact Support</a>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.querySelector('.theme-icon');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.theme-icon').textContent = '☀️';
+            }
+
+            // FAQ accordion functionality
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', () => {
+                    const faqItem = question.closest('.faq-item');
+                    const isActive = faqItem.classList.contains('active');
+                    
+                    // Close all other FAQs
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Toggle current FAQ
+                    if (!isActive) {
+                        faqItem.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

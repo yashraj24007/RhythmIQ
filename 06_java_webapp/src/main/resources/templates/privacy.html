@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - RhythmIQ</title>
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f8f9fa; color: #2d3748; line-height: 1.8; transition: all 0.3s ease; }
+        body.dark-mode { background: #1a1a1a; color: #e5e5e5; }
+        .navbar { background: white; padding: 1rem 5%; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; }
+        body.dark-mode .navbar { background: #2a2a2a; }
+        .navbar-brand { display: flex; align-items: center; gap: 12px; }
+        .navbar-brand img { width: 40px; height: 40px; }
+        .navbar-brand h1 { font-size: 1.5em; font-weight: 800; background: linear-gradient(135deg, #98566D, #49466B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .navbar-menu { display: flex; gap: 2rem; }
+        .navbar-menu a { color: #64748b; text-decoration: none; font-weight: 500; transition: all 0.3s; }
+        body.dark-mode .navbar-menu a { color: #aaa; }
+        .navbar-menu a:hover { color: #98566D; }
+        .navbar-actions { display: flex; gap: 1rem; align-items: center; }
+        .theme-toggle { background: #e2e8f0; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.2em; transition: all 0.3s; }
+        body.dark-mode .theme-toggle { background: #333; }
+        .btn-login { background: linear-gradient(135deg, #98566D, #49466B); color: white; padding: 0.6rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; }
+        .hero { background: linear-gradient(135deg, #49466B 0%, #98566D 50%, #98878F 100%); color: white; padding: 80px 5%; text-align: center; }
+        .hero h1 { font-size: 3em; margin-bottom: 1rem; font-weight: 800; }
+        .container { max-width: 900px; margin: 40px auto; padding: 40px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }
+        body.dark-mode .container { background: #2a2a2a; }
+        .container h2 { color: #98566D; margin: 30px 0 15px; }
+        .container p { margin-bottom: 15px; }
+        .container ul { margin: 15px 0; padding-left: 30px; }
+        .container li { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand"><img src="/images/logo.svg" alt="RhythmIQ Logo"><h1>RhythmIQ</h1></div>
+        <div class="navbar-menu"><a href="/dashboard">Home</a><a href="/upload">Analyze ECG</a><a href="/about">About</a></div>
+        <div class="navbar-actions"><button class="theme-toggle" onclick="toggleTheme()"><span class="theme-icon">🌙</span></button><a href="/login" class="btn-login">👤 Login</a></div>
+    </nav>
+    <div class="hero"><h1>🔒 Privacy Policy</h1><p>Last Updated: November 5, 2025</p></div>
+    <div class="container">
+        <p>At RhythmIQ, we take your privacy seriously. This Privacy Policy describes how we collect, use, and protect your information.</p>
+        <h2>Information We Collect</h2>
+        <ul>
+            <li><strong>Account Information:</strong> Email, name, and login credentials</li>
+            <li><strong>Usage Data:</strong> Analysis history, timestamps, and interaction data</li>
+            <li><strong>ECG Images:</strong> Temporarily processed and automatically deleted</li>
+        </ul>
+        <h2>How We Use Your Information</h2>
+        <p>We use collected information to:</p>
+        <ul>
+            <li>Provide and improve our ECG analysis services</li>
+            <li>Communicate with you about your account</li>
+            <li>Ensure platform security and prevent fraud</li>
+            <li>Improve our AI models (with anonymized data only)</li>
+        </ul>
+        <h2>Data Security</h2>
+        <p>We implement industry-standard security measures including SSL/TLS encryption, secure data transmission, regular security audits, and access controls.</p>
+        <h2>Data Retention</h2>
+        <p><strong>ECG Images:</strong> Automatically deleted after analysis completion. <strong>Account Data:</strong> Retained until account deletion requested. <strong>Analysis History:</strong> Can be deleted by users at any time.</p>
+        <h2>Your Rights</h2>
+        <p>You have the right to access, correct, delete your personal data, export your data, and opt-out of communications.</p>
+        <h2>Cookies</h2>
+        <p>We use essential cookies for authentication and session management, preference cookies for theme settings, and analytics cookies to understand usage patterns.</p>
+        <h2>Third-Party Services</h2>
+        <p>We may use third-party services for hosting and analytics. These services are carefully vetted and bound by privacy agreements.</p>
+        <h2>Contact Us</h2>
+        <p>For privacy concerns or questions, contact us at: <a href="mailto:privacy@rhythmiq.com" style="color: #98566D;">privacy@rhythmiq.com</a></p>
+    </div>
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.querySelector('.theme-icon');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.theme-icon').textContent = '☀️';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -63,11 +63,15 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            text-decoration: none;
         }
 
         .navbar-brand img {
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
+            display: block;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
 
         .navbar-brand h1 {
@@ -153,11 +157,15 @@
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, #49466B 0%, #98566D 50%, #98878F 100%);
-            padding: 80px 5% 60px 5%;
+            padding: 100px 5% 100px 5%;
+            min-height: calc(100vh - 50px);
             text-align: center;
             position: relative;
             overflow: hidden;
             margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .hero::before {
@@ -167,9 +175,33 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,0 Q300,40 600,20 T1200,10 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.05)"/></svg>') repeat-x bottom;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(152, 86, 109, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(73, 70, 107, 0.3) 0%, transparent 50%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,0 Q300,40 600,20 T1200,10 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.05)"/></svg>') repeat-x bottom;
             pointer-events: none;
-            opacity: 0.6;
+            opacity: 0.8;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveBackground 20s linear infinite;
+        }
+
+        @keyframes moveBackground {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(50px, 50px);
+            }
         }
 
         .hero-content {
@@ -228,40 +260,97 @@
         }
 
         .btn-primary {
-            background: #98566D;
+            background: linear-gradient(135deg, #98566D 0%, #a05f7a 100%);
             color: white;
             padding: 16px 40px;
-            border-radius: 12px;
+            border-radius: 50px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 1.1em;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(152, 86, 109, 0.3);
-            border: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(152, 86, 109, 0.4), 
+                        0 0 0 0 rgba(152, 86, 109, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.3);
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-primary:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(152, 86, 109, 0.4);
-            background: #a05f7a;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(152, 86, 109, 0.5), 
+                        0 0 0 8px rgba(152, 86, 109, 0.2);
+            border-color: rgba(255, 255, 255, 0.6);
+            background: linear-gradient(135deg, #a05f7a 0%, #b06d87 100%);
+        }
+
+        .btn-primary:active {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(152, 86, 109, 0.4);
         }
 
         .btn-secondary {
-            background: transparent;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             color: white;
             padding: 16px 40px;
-            border-radius: 12px;
+            border-radius: 50px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 1.1em;
-            transition: all 0.3s;
-            border: 2px solid white;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-secondary:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .btn-secondary:active {
+            transform: translateY(-2px) scale(1.02);
         }
 
         /* Medical Disclaimer */
@@ -309,23 +398,48 @@
 
         .feature-card {
             background: white;
-            border: 2px solid #E5E7EB;
-            border-radius: 16px;
+            border: 3px solid #E5E7EB;
+            border-radius: 20px;
             padding: 35px;
             text-align: center;
-            transition: all 0.3s;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #98566D, #49466B, #98566D);
+            transform: scaleX(0);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
         }
 
         .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(152, 86, 109, 0.2);
             border-color: #98566D;
+            background: linear-gradient(135deg, #ffffff 0%, #fef7f9 100%);
         }
 
         .feature-icon {
             font-size: 3.5em;
             margin-bottom: 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2) rotateY(360deg);
         }
 
         .feature-card h3 {
@@ -358,33 +472,58 @@
 
         .action-card {
             background: white;
-            border: 2px solid #E5E7EB;
-            border-radius: 16px;
+            border: 3px solid #E5E7EB;
+            border-radius: 20px;
             padding: 30px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             gap: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(152, 86, 109, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .action-card:hover::before {
+            left: 100%;
         }
 
         .action-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(152, 86, 109, 0.25);
             border-color: #98566D;
+            background: linear-gradient(135deg, #ffffff 0%, #fef7f9 100%);
         }
 
         .action-icon {
             font-size: 3em;
-            width: 70px;
-            height: 70px;
+            width: 75px;
+            height: 75px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #98878F 0%, #98566D 100%);
+            background: linear-gradient(135deg, #98566D 0%, #a05f7a 100%);
             border-radius: 50%;
             flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(152, 86, 109, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .action-card:hover .action-icon {
+            transform: rotate(360deg) scale(1.1);
+            box-shadow: 0 6px 25px rgba(152, 86, 109, 0.5);
         }
 
         .action-content h3 {
@@ -555,6 +694,279 @@
             background: #0f0e15;
         }
 
+        body.dark-mode footer {
+            background: #192231 !important;
+            border-top-color: #49466B !important;
+        }
+
+        body.dark-mode footer h3 {
+            color: #98566D !important;
+        }
+
+        body.dark-mode footer p,
+        body.dark-mode footer a {
+            color: #98878F !important;
+        }
+
+        body.dark-mode footer a:hover {
+            color: #98566D !important;
+        }
+
+        body.dark-mode footer input {
+            background: #49466B !important;
+            border-color: #98878F !important;
+            color: #E5E7EB !important;
+        }
+
+        /* Dark mode for all sections */
+        body.dark-mode .features {
+            background: #192231;
+        }
+
+        body.dark-mode .section-title {
+            color: #98566D;
+        }
+
+        body.dark-mode .medical-disclaimer {
+            background: linear-gradient(135deg, #49466B 0%, #98566D 100%);
+        }
+
+        body.dark-mode .hero {
+            background: linear-gradient(135deg, #192231 0%, #49466B 100%);
+        }
+
+        body.dark-mode .hero h1 {
+            color: #98878F;
+        }
+
+        body.dark-mode .subtitle {
+            color: #98878F;
+        }
+
+        body.dark-mode .hero-stat {
+            background: rgba(152, 86, 109, 0.2);
+            border-color: #98566D;
+        }
+
+        body.dark-mode .number {
+            color: #98566D;
+        }
+
+        body.dark-mode .label {
+            color: #98878F;
+        }
+
+        /* Dark mode for inline styled sections */
+        body.dark-mode section[style*="background: white"] {
+            background: #192231 !important;
+        }
+
+        body.dark-mode section[style*="background: #F9FAFB"] {
+            background: #0f0e15 !important;
+        }
+
+        body.dark-mode section[style*="color: #49466B"] h2,
+        body.dark-mode section[style*="color: #49466B"] h3,
+        body.dark-mode section[style*="color: #49466B"] h4 {
+            color: #98566D !important;
+        }
+
+        body.dark-mode section[style*="color: #6B7280"] p,
+        body.dark-mode section[style*="color: #6B7280"] {
+            color: #98878F !important;
+        }
+
+        body.dark-mode section div[style*="background: white"] {
+            background: #49466B !important;
+        }
+
+        body.dark-mode section div[style*="background: linear-gradient(135deg, #f8f0f4"] {
+            background: linear-gradient(135deg, #49466B 0%, #192231 100%) !important;
+        }
+
+        body.dark-mode section div[style*="border: 3px solid #E5E7EB"],
+        body.dark-mode section div[style*="border: 2px solid #E5E7EB"] {
+            border-color: #98566D !important;
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.15);
+            }
+            50% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Apply Animations */
+        .hero-content h1 {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-content .subtitle {
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero-stat {
+            animation: scaleIn 0.6s ease-out backwards;
+        }
+
+        .hero-stat:nth-child(1) { animation-delay: 0.4s; }
+        .hero-stat:nth-child(2) { animation-delay: 0.5s; }
+        .hero-stat:nth-child(3) { animation-delay: 0.6s; }
+        .hero-stat:nth-child(4) { animation-delay: 0.7s; }
+
+        .hero-stat .number {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .btn-primary {
+            animation: fadeInUp 1s ease-out 0.8s backwards;
+        }
+
+        .btn-secondary {
+            animation: fadeInUp 1s ease-out 0.9s backwards;
+        }
+
+        .feature-card {
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .feature-card:nth-child(4) { animation-delay: 0.4s; }
+        .feature-card:nth-child(5) { animation-delay: 0.5s; }
+        .feature-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .action-card {
+            animation: fadeInLeft 0.8s ease-out backwards;
+        }
+
+        .action-card:nth-child(1) { animation-delay: 0.2s; }
+        .action-card:nth-child(2) { animation-delay: 0.3s; }
+        .action-card:nth-child(3) { animation-delay: 0.4s; }
+
+        .section-title {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .medical-disclaimer {
+            animation: slideDown 0.5s ease-out;
+        }
+
+        .navbar {
+            animation: slideDown 0.6s ease-out 0.2s backwards;
+        }
+
+        /* Continuous Animations */
+        .theme-icon {
+            animation: rotate 20s linear infinite;
+        }
+
+        .theme-toggle:hover .theme-icon {
+            animation: rotate 1s linear infinite;
+        }
+
+        .hero::before {
+            animation: shimmer 8s linear infinite;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
@@ -598,12 +1010,12 @@
             <a href="/about">About</a>
         </div>
         <div class="navbar-actions">
-            <a href="/login" class="btn-login" title="Login">
-                👤 Login
-            </a>
             <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
                 <span class="theme-icon">🌙</span>
             </button>
+            <a href="/login" class="btn-login" title="Login">
+                👤 Login
+            </a>
         </div>
     </nav>
 
@@ -616,19 +1028,15 @@
             <div class="hero-stats">
                 <div class="hero-stat">
                     <div class="number">98.3%</div>
-                    <div class="label">Model Accuracy</div>
+                    <div class="label">Accuracy</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="number">&lt;2s</div>
+                    <div class="label">Fast Analysis</div>
                 </div>
                 <div class="hero-stat">
                     <div class="number">6</div>
                     <div class="label">ECG Types</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="number">&lt;2s</div>
-                    <div class="label">Analysis Time</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="number">87000+</div>
-                    <div class="label">Training Images</div>
                 </div>
             </div>
 
@@ -664,7 +1072,7 @@
             <div class="feature-card">
                 <div class="feature-icon">📊</div>
                 <h3>Medical Grade</h3>
-                <p>83.3% accuracy on test data with continuous model improvements</p>
+                <p>98.3% accuracy on test data with continuous model improvements</p>
             </div>
 
             <div class="feature-card">
@@ -700,6 +1108,189 @@
                     <p>Access your previous ECG analysis results</p>
                 </div>
             </div>
+
+            <div class="action-card" onclick="window.location.href='/ecg-guide'">
+                <div class="action-icon">📚</div>
+                <div class="action-content">
+                    <h3>ECG Guide</h3>
+                    <p>Learn about different ECG types and how to interpret them</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section style="background: linear-gradient(135deg, #49466B 0%, #98566D 100%); padding: 80px 5%; margin: 0; color: white;">
+        <h2 class="section-title" style="color: white; margin-bottom: 60px;">How It Works</h2>
+        <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px;">
+            
+            <div style="text-align: center; animation: fadeInUp 0.8s ease-out 0.2s backwards;">
+                <div style="width: 80px; height: 80px; margin: 0 auto 20px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5em; backdrop-filter: blur(10px); border: 3px solid rgba(255,255,255,0.3);">
+                    1️⃣
+                </div>
+                <h3 style="font-size: 1.4em; margin-bottom: 12px; color: white;">Upload ECG Image</h3>
+                <p style="color: rgba(255,255,255,0.9); line-height: 1.6;">
+                    Simply drag and drop or select your ECG image file from your device
+                </p>
+            </div>
+
+            <div style="text-align: center; animation: fadeInUp 0.8s ease-out 0.4s backwards;">
+                <div style="width: 80px; height: 80px; margin: 0 auto 20px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5em; backdrop-filter: blur(10px); border: 3px solid rgba(255,255,255,0.3);">
+                    2️⃣
+                </div>
+                <h3 style="font-size: 1.4em; margin-bottom: 12px; color: white;">AI Processing</h3>
+                <p style="color: rgba(255,255,255,0.9); line-height: 1.6;">
+                    Our advanced ML model analyzes the ECG patterns in milliseconds
+                </p>
+            </div>
+
+            <div style="text-align: center; animation: fadeInUp 0.8s ease-out 0.6s backwards;">
+                <div style="width: 80px; height: 80px; margin: 0 auto 20px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5em; backdrop-filter: blur(10px); border: 3px solid rgba(255,255,255,0.3);">
+                    3️⃣
+                </div>
+                <h3 style="font-size: 1.4em; margin-bottom: 12px; color: white;">Get Results</h3>
+                <p style="color: rgba(255,255,255,0.9); line-height: 1.6;">
+                    Receive detailed classification with confidence scores instantly
+                </p>
+            </div>
+
+            <div style="text-align: center; animation: fadeInUp 0.8s ease-out 0.8s backwards;">
+                <div style="width: 80px; height: 80px; margin: 0 auto 20px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5em; backdrop-filter: blur(10px); border: 3px solid rgba(255,255,255,0.3);">
+                    4️⃣
+                </div>
+                <h3 style="font-size: 1.4em; margin-bottom: 12px; color: white;">Learn & Improve</h3>
+                <p style="color: rgba(255,255,255,0.9); line-height: 1.6;">
+                    Understand the ECG type with educational resources and insights
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ECG Types Section -->
+    <section style="background: white; padding: 80px 5%; margin: 0;">
+        <h2 class="section-title">ECG Classifications We Detect</h2>
+        <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px;">
+            
+            <div style="background: linear-gradient(135deg, #f8f0f4 0%, #fff 100%); border: 3px solid #E5E7EB; border-radius: 20px; padding: 30px; transition: all 0.4s; animation: fadeInUp 0.8s ease-out 0.1s backwards;" 
+                 onmouseover="this.style.transform='translateY(-8px)'; this.style.borderColor='#98566D'; this.style.boxShadow='0 20px 40px rgba(152,86,109,0.2)'" 
+                 onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#E5E7EB'; this.style.boxShadow='none'">
+                <div style="font-size: 3em; margin-bottom: 15px;">💓</div>
+                <h3 style="color: #49466B; font-size: 1.5em; margin-bottom: 10px;">Normal (N)</h3>
+                <p style="color: #6B7280; line-height: 1.6;">Regular heart rhythm with normal electrical activity patterns</p>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #f8f0f4 0%, #fff 100%); border: 3px solid #E5E7EB; border-radius: 20px; padding: 30px; transition: all 0.4s; animation: fadeInUp 0.8s ease-out 0.2s backwards;" 
+                 onmouseover="this.style.transform='translateY(-8px)'; this.style.borderColor='#98566D'; this.style.boxShadow='0 20px 40px rgba(152,86,109,0.2)'" 
+                 onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#E5E7EB'; this.style.boxShadow='none'">
+                <div style="font-size: 3em; margin-bottom: 15px;">⚡</div>
+                <h3 style="color: #49466B; font-size: 1.5em; margin-bottom: 10px;">Atrial Fibrillation (F)</h3>
+                <p style="color: #6B7280; line-height: 1.6;">Irregular heart rhythm originating from the atria</p>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #f8f0f4 0%, #fff 100%); border: 3px solid #E5E7EB; border-radius: 20px; padding: 30px; transition: all 0.4s; animation: fadeInUp 0.8s ease-out 0.3s backwards;" 
+                 onmouseover="this.style.transform='translateY(-8px)'; this.style.borderColor='#98566D'; this.style.boxShadow='0 20px 40px rgba(152,86,109,0.2)'" 
+                 onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#E5E7EB'; this.style.boxShadow='none'">
+                <div style="font-size: 3em; margin-bottom: 15px;">🌊</div>
+                <h3 style="color: #49466B; font-size: 1.5em; margin-bottom: 10px;">Atrial Flutter (M)</h3>
+                <p style="color: #6B7280; line-height: 1.6;">Rapid but regular atrial rhythm abnormality</p>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #f8f0f4 0%, #fff 100%); border: 3px solid #E5E7EB; border-radius: 20px; padding: 30px; transition: all 0.4s; animation: fadeInUp 0.8s ease-out 0.4s backwards;" 
+                 onmouseover="this.style.transform='translateY(-8px)'; this.style.borderColor='#98566D'; this.style.boxShadow='0 20px 40px rgba(152,86,109,0.2)'" 
+                 onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#E5E7EB'; this.style.boxShadow='none'">
+                <div style="font-size: 3em; margin-bottom: 15px;">⛔</div>
+                <h3 style="color: #49466B; font-size: 1.5em; margin-bottom: 10px;">AV Block (Q)</h3>
+                <p style="color: #6B7280; line-height: 1.6;">Impaired electrical conduction between atria and ventricles</p>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #f8f0f4 0%, #fff 100%); border: 3px solid #E5E7EB; border-radius: 20px; padding: 30px; transition: all 0.4s; animation: fadeInUp 0.8s ease-out 0.5s backwards;" 
+                 onmouseover="this.style.transform='translateY(-8px)'; this.style.borderColor='#98566D'; this.style.boxShadow='0 20px 40px rgba(152,86,109,0.2)'" 
+                 onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#E5E7EB'; this.style.boxShadow='none'">
+                <div style="font-size: 3em; margin-bottom: 15px;">📈</div>
+                <h3 style="color: #49466B; font-size: 1.5em; margin-bottom: 10px;">Supraventricular (S)</h3>
+                <p style="color: #6B7280; line-height: 1.6;">Abnormal rhythm above the ventricles</p>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #f8f0f4 0%, #fff 100%); border: 3px solid #E5E7EB; border-radius: 20px; padding: 30px; transition: all 0.4s; animation: fadeInUp 0.8s ease-out 0.6s backwards;" 
+                 onmouseover="this.style.transform='translateY(-8px)'; this.style.borderColor='#98566D'; this.style.boxShadow='0 20px 40px rgba(152,86,109,0.2)'" 
+                 onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#E5E7EB'; this.style.boxShadow='none'">
+                <div style="font-size: 3em; margin-bottom: 15px;">💥</div>
+                <h3 style="color: #49466B; font-size: 1.5em; margin-bottom: 10px;">Ventricular (V)</h3>
+                <p style="color: #6B7280; line-height: 1.6;">Abnormal rhythm originating from the ventricles</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack Section -->
+    <section style="background: #F9FAFB; padding: 80px 5%; margin: 0;">
+        <h2 class="section-title">Powered By Advanced Technology</h2>
+        <div style="max-width: 1000px; margin: 50px auto 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px;">
+            
+            <div style="text-align: center; padding: 30px; background: white; border-radius: 16px; border: 2px solid #E5E7EB; transition: all 0.3s; animation: scaleIn 0.6s ease-out 0.2s backwards;"
+                 onmouseover="this.style.transform='translateY(-5px) scale(1.05)'; this.style.borderColor='#98566D'"
+                 onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.borderColor='#E5E7EB'">
+                <div style="font-size: 3em; margin-bottom: 12px;">🐍</div>
+                <h4 style="color: #49466B; margin-bottom: 8px;">Python 3.13</h4>
+                <p style="color: #6B7280; font-size: 0.9em;">ML Backend</p>
+            </div>
+
+            <div style="text-align: center; padding: 30px; background: white; border-radius: 16px; border: 2px solid #E5E7EB; transition: all 0.3s; animation: scaleIn 0.6s ease-out 0.3s backwards;"
+                 onmouseover="this.style.transform='translateY(-5px) scale(1.05)'; this.style.borderColor='#98566D'"
+                 onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.borderColor='#E5E7EB'">
+                <div style="font-size: 3em; margin-bottom: 12px;">☕</div>
+                <h4 style="color: #49466B; margin-bottom: 8px;">Java 21</h4>
+                <p style="color: #6B7280; font-size: 0.9em;">Web Application</p>
+            </div>
+
+            <div style="text-align: center; padding: 30px; background: white; border-radius: 16px; border: 2px solid #E5E7EB; transition: all 0.3s; animation: scaleIn 0.6s ease-out 0.4s backwards;"
+                 onmouseover="this.style.transform='translateY(-5px) scale(1.05)'; this.style.borderColor='#98566D'"
+                 onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.borderColor='#E5E7EB'">
+                <div style="font-size: 3em; margin-bottom: 12px;">🍃</div>
+                <h4 style="color: #49466B; margin-bottom: 8px;">Spring Boot</h4>
+                <p style="color: #6B7280; font-size: 0.9em;">Framework</p>
+            </div>
+
+            <div style="text-align: center; padding: 30px; background: white; border-radius: 16px; border: 2px solid #E5E7EB; transition: all 0.3s; animation: scaleIn 0.6s ease-out 0.5s backwards;"
+                 onmouseover="this.style.transform='translateY(-5px) scale(1.05)'; this.style.borderColor='#98566D'"
+                 onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.borderColor='#E5E7EB'">
+                <div style="font-size: 3em; margin-bottom: 12px;">🧠</div>
+                <h4 style="color: #49466B; margin-bottom: 8px;">RandomForest</h4>
+                <p style="color: #6B7280; font-size: 0.9em;">ML Algorithm</p>
+            </div>
+
+            <div style="text-align: center; padding: 30px; background: white; border-radius: 16px; border: 2px solid #E5E7EB; transition: all 0.3s; animation: scaleIn 0.6s ease-out 0.6s backwards;"
+                 onmouseover="this.style.transform='translateY(-5px) scale(1.05)'; this.style.borderColor='#98566D'"
+                 onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.borderColor='#E5E7EB'">
+                <div style="font-size: 3em; margin-bottom: 12px;">📊</div>
+                <h4 style="color: #49466B; margin-bottom: 8px;">OpenCV</h4>
+                <p style="color: #6B7280; font-size: 0.9em;">Image Processing</p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Call to Action -->
+    <section style="background: white; padding: 80px 5%; margin: 0; text-align: center;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2 style="color: #49466B; font-size: 2.5em; font-weight: 700; margin-bottom: 20px; animation: fadeInUp 0.8s ease-out;">
+                Ready to Analyze Your ECG?
+            </h2>
+            <p style="color: #6B7280; font-size: 1.2em; line-height: 1.8; margin-bottom: 40px; animation: fadeInUp 1s ease-out 0.2s backwards;">
+                Experience the power of AI-driven ECG analysis. Upload your ECG image now and get instant, accurate results with detailed classification and confidence scores.
+            </p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="/upload" style="background: linear-gradient(135deg, #98566D 0%, #a05f7a 100%); color: white; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.2em; transition: all 0.4s; box-shadow: 0 8px 25px rgba(152, 86, 109, 0.4); border: 3px solid rgba(255, 255, 255, 0.3); display: inline-block; animation: fadeInUp 1s ease-out 0.4s backwards;"
+                   onmouseover="this.style.transform='translateY(-5px) scale(1.05)'; this.style.boxShadow='0 15px 35px rgba(152, 86, 109, 0.5)'"
+                   onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 8px 25px rgba(152, 86, 109, 0.4)'">
+                    🚀 Start Analyzing Now
+                </a>
+                <a href="/about" style="background: rgba(152, 86, 109, 0.1); color: #98566D; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.2em; transition: all 0.4s; border: 3px solid #98566D; display: inline-block; animation: fadeInUp 1s ease-out 0.5s backwards;"
+                   onmouseover="this.style.background='rgba(152, 86, 109, 0.2)'; this.style.transform='translateY(-5px) scale(1.05)'"
+                   onmouseout="this.style.background='rgba(152, 86, 109, 0.1)'; this.style.transform='translateY(0) scale(1)'">
+                    📖 Learn More
+                </a>
+            </div>
         </div>
     </section>
 
@@ -732,60 +1323,846 @@
         });
     </script>
 
-    <!-- Footer -->
-    <footer style="background: #192231; color: #98878F; padding: 30px 5% 20px 5%; margin-top: 40px;">
-        <div style="max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px;">
-            <!-- About Section -->
-            <div>
-                <h3 style="color: #98566D; margin-bottom: 12px; font-size: 1.1em;">RhythmIQ</h3>
-                <p style="line-height: 1.5; margin-bottom: 8px; font-size: 0.9em;">
-                    AI-powered ECG analysis for research and education.
-                </p>
-                <p style="font-size: 0.8em; opacity: 0.8; margin-top: 8px;">© 2025 RhythmIQ. All rights reserved.</p>
-            </div>
-
-            <!-- Quick Links -->
-            <div>
-                <h3 style="color: #98566D; margin-bottom: 12px; font-size: 1.1em;">Quick Links</h3>
-                <ul style="list-style: none; padding: 0; line-height: 1.8;">
-                    <li><a href="/dashboard" style="color: #98878F; text-decoration: none; transition: color 0.3s; font-size: 0.9em;">Home</a></li>
-                    <li><a href="/upload" style="color: #98878F; text-decoration: none; transition: color 0.3s; font-size: 0.9em;">Analyze ECG</a></li>
-                    <li><a href="/about" style="color: #98878F; text-decoration: none; transition: color 0.3s; font-size: 0.9em;">About Us</a></li>
-                </ul>
-            </div>
-
-            <!-- Connect With Us -->
-            <div>
-                <h3 style="color: #98566D; margin-bottom: 12px; font-size: 1.1em;">Connect With Us</h3>
-                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-                    <a href="https://facebook.com" target="_blank" style="width: 35px; height: 35px; background: #49466B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.1em; transition: all 0.3s;">📘</a>
-                    <a href="https://instagram.com" target="_blank" style="width: 35px; height: 35px; background: #49466B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.1em; transition: all 0.3s;">📷</a>
-                    <a href="https://twitter.com" target="_blank" style="width: 35px; height: 35px; background: #49466B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.1em; transition: all 0.3s;">🐦</a>
-                    <a href="https://linkedin.com" target="_blank" style="width: 35px; height: 35px; background: #49466B; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1.1em; transition: all 0.3s;">💼</a>
+    <!-- Modern Professional Footer -->
+    <footer class="professional-dark-footer">
+        <div class="footer-container">
+            <!-- Main Footer Content -->
+            <div class="footer-content">
+                <!-- Company Info Column -->
+                <div class="footer-column footer-about">
+                    <div class="footer-logo-section">
+                        <h2 class="footer-logo-text">RhythmIQ</h2>
+                        <p class="footer-tagline">Transforming Cardiac Care</p>
+                    </div>
+                    <p class="footer-description">
+                        Advanced AI-powered ECG analysis platform delivering accurate, real-time cardiac diagnostics for healthcare professionals worldwide.
+                    </p>
+                    <div class="footer-contact">
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <span>support@rhythmiq.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📞</span>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <span>San Francisco, CA 94102</span>
+                        </div>
+                    </div>
+                    <div class="footer-social">
+                        <a href="https://facebook.com" target="_blank" class="social-link" title="Facebook">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" class="social-link" title="Twitter">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="social-link" title="LinkedIn">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <a href="https://github.com" target="_blank" class="social-link" title="GitHub">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                        </a>
+                        <a href="https://youtube.com" target="_blank" class="social-link" title="YouTube">
+                            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                    </div>
                 </div>
-                <p style="font-size: 0.85em; line-height: 1.4;">Stay updated with latest features</p>
+
+                <!-- Explore Column -->
+                <div class="footer-column">
+                    <h3 class="footer-column-title">Explore</h3>
+                    <ul class="footer-links">
+                        <li><a href="/dashboard">Home</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/upload">ECG Analysis</a></li>
+                        <li><a href="/ecg-guide">ECG Guide</a></li>
+                        <li><a href="/results">Results</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support Column -->
+                <div class="footer-column">
+                    <h3 class="footer-column-title">Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="/help-center">Help Center</a></li>
+                        <li><a href="/documentation">Documentation</a></li>
+                        <li><a href="/faq">FAQ</a></li>
+                        <li><a href="/contact">Contact Us</a></li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- Subscribe Section -->
-            <div>
-                <h3 style="color: #98566D; margin-bottom: 12px; font-size: 1.1em;">Subscribe</h3>
-                <p style="margin-bottom: 10px; line-height: 1.5; font-size: 0.85em;">
-                    Get updates on ECG analysis and AI in healthcare.
-                </p>
-                <form style="display: flex; flex-direction: column; gap: 8px;">
-                    <input type="email" placeholder="Enter your email" style="padding: 8px; border: 2px solid #49466B; border-radius: 6px; background: #192231; color: #98878F; font-size: 0.9em;">
-                    <button type="submit" style="padding: 8px 16px; background: linear-gradient(135deg, #98566D 0%, #49466B 100%); color: white; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-size: 0.9em;">Subscribe</button>
-                </form>
+            <!-- Medical Disclaimer -->
+            <div class="footer-disclaimer">
+                <div class="disclaimer-icon">⚕️</div>
+                <p><strong>Medical Disclaimer:</strong> RhythmIQ is for educational and research purposes only. Not intended for clinical diagnosis or treatment. Always consult qualified healthcare professionals for medical decisions.</p>
             </div>
-        </div>
-        
-        <hr style="border: none; border-top: 1px solid #49466B; margin: 25px 0 15px 0;">
-        
-        <div style="text-align: center; font-size: 0.85em; color: #98878F;">
-            <p style="margin: 0;">
-                <strong style="color: #98566D;">⚕️ Medical Notice:</strong> For educational purposes only • Not for clinical diagnosis • Always consult qualified healthcare professionals
-            </p>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-bottom-left">
+                    <p>&copy; 2025 RhythmIQ Technologies. All rights reserved.</p>
+                </div>
+                <div class="footer-bottom-right">
+                    <a href="/privacy">Privacy Policy</a>
+                    <span class="divider">|</span>
+                    <a href="/terms">Terms of Service</a>
+                    <span class="divider">|</span>
+                    <a href="/cookies">Cookie Policy</a>
+                    <span class="divider">|</span>
+                    <a href="/accessibility">Accessibility</a>
+                </div>
+            </div>
         </div>
     </footer>
+
+    <style>
+        /* Professional Footer Styles - Light Mode (Default) */
+        .professional-dark-footer {
+            background: #f8f9fa;
+            color: #2d3748;
+            margin-top: 0;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Main Footer Content */
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            padding: 40px 40px 30px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        /* Company Info Column (Larger) */
+        .footer-about {
+            padding-right: 20px;
+        }
+
+        .footer-logo-section {
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-text {
+            font-size: 1.8em;
+            font-weight: 800;
+            margin: 0 0 8px 0;
+            background: linear-gradient(135deg, #98566D, #49466B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-tagline {
+            font-size: 0.95em;
+            color: #64748b;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .footer-description {
+            color: #475569;
+            font-size: 0.9em;
+            line-height: 1.6;
+            margin: 0 0 18px 0;
+        }
+
+        .footer-contact {
+            margin: 18px 0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 0.85em;
+            color: #64748b;
+        }
+
+        .contact-icon {
+            font-size: 1em;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            background: #e2e8f0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, #98566D, #49466B);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Footer Columns */
+        .footer-column {
+            min-width: 0;
+        }
+
+        .footer-column-title {
+            font-size: 0.9em;
+            font-weight: 700;
+            margin: 0 0 15px 0;
+            color: #1e293b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: #98566D;
+            padding-left: 5px;
+        }
+
+        /* Medical Disclaimer */
+        .footer-disclaimer {
+            background: #f1f5f9;
+            padding: 18px 40px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .disclaimer-icon {
+            font-size: 1.5em;
+            flex-shrink: 0;
+        }
+
+        .footer-disclaimer p {
+            font-size: 0.8em;
+            color: #64748b;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .footer-disclaimer strong {
+            color: #98566D;
+            font-weight: 700;
+        }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 40px;
+            background: #f8f9fa;
+        }
+
+        .footer-bottom-left p {
+            margin: 0;
+            font-size: 0.8em;
+            color: #64748b;
+        }
+
+        .footer-bottom-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.8em;
+        }
+
+        .footer-bottom-right a {
+            color: #64748b;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-bottom-right a:hover {
+            color: #98566D;
+        }
+
+        .divider {
+            color: #cbd5e1;
+        }
+
+        /* Dark Mode Compatibility */
+        body.dark-mode .professional-dark-footer {
+            background: #1a1a1a;
+            color: #e5e5e5;
+        }
+
+        body.dark-mode .footer-content {
+            border-bottom-color: #333;
+        }
+
+        body.dark-mode .footer-tagline {
+            color: #999;
+        }
+
+        body.dark-mode .footer-description {
+            color: #aaa;
+        }
+
+        body.dark-mode .contact-item {
+            color: #aaa;
+        }
+
+        body.dark-mode .social-link {
+            background: #2a2a2a;
+            color: #aaa;
+        }
+
+        body.dark-mode .social-link:hover {
+            background: linear-gradient(135deg, #98566D, #49466B);
+            color: white;
+        }
+
+        body.dark-mode .footer-column-title {
+            color: #fff;
+        }
+
+        body.dark-mode .footer-links a {
+            color: #aaa;
+        }
+
+        body.dark-mode .footer-links a:hover {
+            color: #98566D;
+        }
+
+        body.dark-mode .footer-disclaimer {
+            background: #151515;
+            border-bottom-color: #333;
+        }
+
+        body.dark-mode .footer-disclaimer p {
+            color: #aaa;
+        }
+
+        body.dark-mode .footer-bottom {
+            background: #151515;
+        }
+
+        body.dark-mode .footer-bottom-left p {
+            color: #888;
+        }
+
+        body.dark-mode .footer-bottom-right a {
+            color: #888;
+        }
+
+        body.dark-mode .footer-bottom-right a:hover {
+            color: #98566D;
+        }
+
+        body.dark-mode .divider {
+            color: #444;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+
+            .footer-about {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 40px 20px;
+            }
+
+            .footer-about {
+                padding-right: 0;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .footer-disclaimer {
+                flex-direction: column;
+                text-align: center;
+                padding: 25px 20px;
+            }
+
+            .disclaimer-icon {
+                margin: 0 auto;
+            }
+        }
+    </style>
+
+    <style>
+        /* Modern Professional Footer Styles */
+        .modern-footer {
+            background: white;
+            margin-top: 0;
+        }
+
+        /* Newsletter Section */
+        .footer-newsletter {
+            background: linear-gradient(135deg, #98566D, #49466B);
+            padding: 50px 5%;
+            border-top: 4px solid #98566D;
+        }
+
+        .newsletter-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-text h3 {
+            color: white;
+            font-size: 2em;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+        }
+
+        .newsletter-text p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.05em;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+            min-width: 400px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 16px 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            color: white;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+
+        .newsletter-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: white;
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .newsletter-btn {
+            padding: 16px 32px;
+            background: white;
+            color: #98566D;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .newsletter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Main Footer Content */
+        .footer-main {
+            padding: 70px 5% 50px;
+            background: white;
+        }
+
+        .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            gap: 50px;
+        }
+
+        .footer-col-wide {
+            padding-right: 40px;
+        }
+
+        .footer-brand {
+            color: #49466B;
+            font-size: 2.2em;
+            font-weight: 800;
+            margin: 0 0 12px 0;
+            background: linear-gradient(135deg, #98566D, #49466B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-tagline {
+            color: #98566D;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin: 0 0 20px 0;
+        }
+
+        .footer-desc {
+            color: #6B7280;
+            line-height: 1.8;
+            font-size: 0.95em;
+            margin: 0 0 25px 0;
+        }
+
+        .footer-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, rgba(152, 86, 109, 0.1), rgba(73, 70, 107, 0.1));
+            color: #49466B;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            border: 2px solid rgba(152, 86, 109, 0.2);
+        }
+
+        .footer-title {
+            color: #49466B;
+            font-size: 1.1em;
+            font-weight: 700;
+            margin: 0 0 25px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+            height: 3px;
+            background: linear-gradient(90deg, #98566D, #49466B);
+            border-radius: 2px;
+        }
+
+        .footer-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-menu li {
+            margin-bottom: 14px;
+        }
+
+        .footer-menu a {
+            color: #6B7280;
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            position: relative;
+            padding-left: 0;
+        }
+
+        .footer-menu a::before {
+            content: '→';
+            position: absolute;
+            left: -20px;
+            opacity: 0;
+            color: #98566D;
+            transition: all 0.3s;
+        }
+
+        .footer-menu a:hover {
+            color: #98566D;
+            padding-left: 20px;
+            font-weight: 600;
+        }
+
+        .footer-menu a:hover::before {
+            left: 0;
+            opacity: 1;
+        }
+
+        /* Medical Disclaimer */
+        .footer-disclaimer {
+            background: linear-gradient(135deg, #FFF5F7, #F9FAFB);
+            border-top: 2px solid #E5E7EB;
+            border-bottom: 2px solid #E5E7EB;
+            padding: 30px 5%;
+        }
+
+        .disclaimer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .disclaimer-icon-box {
+            background: linear-gradient(135deg, #98566D, #49466B);
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .disclaimer-icon {
+            font-size: 1.8em;
+        }
+
+        .disclaimer-text {
+            color: #6B7280;
+            font-size: 0.9em;
+            line-height: 1.8;
+        }
+
+        .disclaimer-text strong {
+            color: #98566D;
+            font-weight: 700;
+            font-size: 1.05em;
+        }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            background: #F9FAFB;
+            padding: 25px 5%;
+        }
+
+        .footer-bottom-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-copyright {
+            color: #6B7280;
+            font-size: 0.9em;
+        }
+
+        .footer-copyright p {
+            margin: 0;
+        }
+
+        .footer-legal {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 0.9em;
+        }
+
+        .footer-legal a {
+            color: #6B7280;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-legal a:hover {
+            color: #98566D;
+            text-decoration: underline;
+        }
+
+        .separator {
+            color: #D1D5DB;
+        }
+
+        .footer-social-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #98566D, #49466B);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 10px rgba(152, 86, 109, 0.2);
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(152, 86, 109, 0.4);
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode .modern-footer {
+            background: #192231;
+        }
+
+        body.dark-mode .footer-newsletter {
+            background: linear-gradient(135deg, #98566D, #49466B);
+        }
+
+        body.dark-mode .footer-main {
+            background: #192231;
+        }
+
+        body.dark-mode .footer-brand,
+        body.dark-mode .footer-title {
+            color: #98566D;
+        }
+
+        body.dark-mode .footer-tagline {
+            color: #98878F;
+        }
+
+        body.dark-mode .footer-desc,
+        body.dark-mode .footer-menu a,
+        body.dark-mode .footer-copyright,
+        body.dark-mode .footer-legal a {
+            color: #98878F;
+        }
+
+        body.dark-mode .footer-menu a:hover,
+        body.dark-mode .footer-legal a:hover {
+            color: #98566D;
+        }
+
+        body.dark-mode .badge {
+            background: rgba(152, 86, 109, 0.2);
+            color: #98878F;
+            border-color: rgba(152, 86, 109, 0.3);
+        }
+
+        body.dark-mode .footer-disclaimer {
+            background: #0f0e15;
+            border-top-color: #49466B;
+            border-bottom-color: #49466B;
+        }
+
+        body.dark-mode .disclaimer-text {
+            color: #98878F;
+        }
+
+        body.dark-mode .disclaimer-text strong {
+            color: #98566D;
+        }
+
+        body.dark-mode .footer-bottom {
+            background: #0f0e15;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 40px;
+            }
+
+            .footer-col-wide {
+                grid-column: 1 / -1;
+                padding-right: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .newsletter-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .newsletter-form {
+                min-width: 100%;
+                flex-direction: column;
+            }
+
+            .newsletter-btn {
+                width: 100%;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .footer-bottom-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-legal {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .disclaimer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .disclaimer-icon-box {
+                margin: 0 auto;
+            }
+        }
+    </style>
 </body>
 </html>

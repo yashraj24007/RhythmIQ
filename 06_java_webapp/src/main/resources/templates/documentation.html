@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - RhythmIQ</title>
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fa;
+            color: #2d3748;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode {
+            background: #1a1a1a;
+            color: #e5e5e5;
+        }
+
+        /* Navbar - Same as help-center */
+        .navbar {
+            background: white;
+            padding: 1rem 5%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .navbar {
+            background: #2a2a2a;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .navbar-brand img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .navbar-brand h1 {
+            font-size: 1.5em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #98566D, #49466B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .navbar-menu a {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        body.dark-mode .navbar-menu a {
+            color: #aaa;
+        }
+
+        .navbar-menu a:hover, .navbar-menu a.active {
+            color: #98566D;
+        }
+
+        .navbar-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .theme-toggle {
+            background: #e2e8f0;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: all 0.3s;
+        }
+
+        body.dark-mode .theme-toggle {
+            background: #333;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, #98566D, #49466B);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(152, 86, 109, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #49466B 0%, #98566D 50%, #98878F 100%);
+            color: white;
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        /* Documentation Content */
+        .doc-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 40px;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .sidebar-nav {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .sidebar-nav {
+            background: #2a2a2a;
+        }
+
+        .sidebar-nav h3 {
+            color: #98566D;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar-nav a {
+            color: #64748b;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: block;
+            padding: 5px 10px;
+            border-radius: 6px;
+        }
+
+        body.dark-mode .sidebar-nav a {
+            color: #aaa;
+        }
+
+        .sidebar-nav a:hover, .sidebar-nav a.active {
+            background: rgba(152, 86, 109, 0.1);
+            color: #98566D;
+        }
+
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .content {
+            background: #2a2a2a;
+        }
+
+        .content h2 {
+            color: #98566D;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        body.dark-mode .content h2 {
+            border-bottom-color: #333;
+        }
+
+        .content h2:first-child {
+            margin-top: 0;
+        }
+
+        .content h3 {
+            color: #49466B;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .content p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .content ul, .content ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        .content li {
+            margin-bottom: 8px;
+        }
+
+        .code-block {
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        body.dark-mode .code-block {
+            background: #1a1a1a;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        body.dark-mode .warning-box {
+            background: #3a3a1a;
+            border-left-color: #ffc107;
+        }
+
+        .info-box {
+            background: #d1ecf1;
+            border-left: 4px solid #0dcaf0;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        body.dark-mode .info-box {
+            background: #1a2a2a;
+            border-left-color: #0dcaf0;
+        }
+
+        @media (max-width: 768px) {
+            .doc-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: relative;
+                top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <img src="/images/logo.svg" alt="RhythmIQ Logo">
+            <h1>RhythmIQ</h1>
+        </div>
+        <div class="navbar-menu">
+            <a href="/dashboard">Home</a>
+            <a href="/upload">Analyze ECG</a>
+            <a href="/about">About</a>
+        </div>
+        <div class="navbar-actions">
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <a href="/login" class="btn-login" title="Login">
+                👤 Login
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>📚 Documentation</h1>
+        <p>Complete guide to using RhythmIQ for ECG analysis</p>
+    </div>
+
+    <!-- Documentation Content -->
+    <div class="doc-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <h3>Contents</h3>
+                <ul>
+                    <li><a href="#getting-started" class="active">Getting Started</a></li>
+                    <li><a href="#uploading">Uploading ECGs</a></li>
+                    <li><a href="#analysis">Understanding Analysis</a></li>
+                    <li><a href="#results">Interpreting Results</a></li>
+                    <li><a href="#security">Security & Privacy</a></li>
+                    <li><a href="#troubleshooting">Troubleshooting</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <h2 id="getting-started">🚀 Getting Started</h2>
+            <p>Welcome to RhythmIQ! This guide will help you get started with our AI-powered ECG analysis platform.</p>
+            
+            <h3>What is RhythmIQ?</h3>
+            <p>RhythmIQ is an advanced machine learning platform that analyzes electrocardiogram (ECG) images to identify six types of cardiac rhythms:</p>
+            <ul>
+                <li><strong>N (Normal):</strong> Regular sinus rhythm</li>
+                <li><strong>S (Supraventricular):</strong> Supraventricular premature beat</li>
+                <li><strong>V (Ventricular):</strong> Ventricular ectopic beat</li>
+                <li><strong>F (Fusion):</strong> Fusion of ventricular and normal beat</li>
+                <li><strong>Q (Unknown):</strong> Unclassifiable beat</li>
+                <li><strong>M (Paced):</strong> Paced beat</li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>⚠️ Medical Disclaimer:</strong> RhythmIQ is designed for educational and research purposes only. It should NOT be used for clinical diagnosis or treatment decisions. Always consult qualified healthcare professionals for medical advice.
+            </div>
+
+            <h3>System Requirements</h3>
+            <ul>
+                <li>Modern web browser (Chrome, Firefox, Safari, Edge)</li>
+                <li>Stable internet connection</li>
+                <li>ECG images in JPG, PNG, or JPEG format</li>
+                <li>Recommended image size: 256x256 pixels or higher</li>
+            </ul>
+
+            <h2 id="uploading">📤 Uploading ECG Images</h2>
+            
+            <h3>Step 1: Navigate to Analysis Page</h3>
+            <p>Click on "Analyze ECG" in the navigation menu to access the upload page.</p>
+
+            <h3>Step 2: Select Your ECG Image</h3>
+            <p>Click the upload button or drag and drop your ECG image file into the upload area.</p>
+
+            <h3>Step 3: Supported Formats</h3>
+            <p>We accept the following image formats:</p>
+            <ul>
+                <li>JPEG (.jpg, .jpeg)</li>
+                <li>PNG (.png)</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>💡 Tip:</strong> For best results, use high-quality ECG images with clear waveforms and minimal noise. Images should be well-lit and in focus.
+            </div>
+
+            <h3>Image Quality Guidelines</h3>
+            <ul>
+                <li>Ensure the ECG trace is clearly visible</li>
+                <li>Avoid blurry or low-resolution images</li>
+                <li>Remove any identifying patient information</li>
+                <li>Use standard 12-lead ECG format when possible</li>
+            </ul>
+
+            <h2 id="analysis">🔬 Understanding the Analysis Process</h2>
+            
+            <h3>How It Works</h3>
+            <p>Our AI model uses deep learning techniques to analyze ECG patterns:</p>
+            <ol>
+                <li><strong>Image Preprocessing:</strong> Your image is normalized and prepared for analysis</li>
+                <li><strong>Feature Extraction:</strong> The model identifies key ECG characteristics</li>
+                <li><strong>Classification:</strong> The rhythm type is determined with confidence scores</li>
+                <li><strong>Results Generation:</strong> You receive a detailed report with recommendations</li>
+            </ol>
+
+            <h3>Analysis Time</h3>
+            <p>Most analyses complete in under 2 seconds. Factors that may affect processing time:</p>
+            <ul>
+                <li>Image file size</li>
+                <li>Network connection speed</li>
+                <li>Server load</li>
+            </ul>
+
+            <h2 id="results">📊 Interpreting Results</h2>
+            
+            <h3>Confidence Scores</h3>
+            <p>Each analysis provides a confidence score (0-100%) indicating how certain the model is about its prediction:</p>
+            <ul>
+                <li><strong>90-100%:</strong> Very high confidence</li>
+                <li><strong>70-89%:</strong> High confidence</li>
+                <li><strong>50-69%:</strong> Moderate confidence</li>
+                <li><strong>Below 50%:</strong> Low confidence - may require manual review</li>
+            </ul>
+
+            <h3>Result Types</h3>
+            <p>Your results will indicate one of six rhythm classifications along with:</p>
+            <ul>
+                <li>Primary diagnosis</li>
+                <li>Confidence percentage</li>
+                <li>Severity indicator (if applicable)</li>
+                <li>General recommendations</li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>Important:</strong> Even high confidence scores do not replace professional medical evaluation. Always consult with healthcare professionals for diagnosis and treatment.
+            </div>
+
+            <h2 id="security">🔒 Security & Privacy</h2>
+            
+            <h3>Data Protection</h3>
+            <p>We take your privacy seriously:</p>
+            <ul>
+                <li>All data transmissions are encrypted using SSL/TLS</li>
+                <li>Images are processed securely and not permanently stored</li>
+                <li>We comply with GDPR and healthcare data protection regulations</li>
+                <li>No patient-identifying information should be included in uploads</li>
+            </ul>
+
+            <h3>HIPAA Compliance</h3>
+            <p>While RhythmIQ implements security measures, it is designed for educational use and is not HIPAA-certified for clinical patient data. Do not upload images containing PHI (Protected Health Information).</p>
+
+            <h2 id="troubleshooting">🔧 Troubleshooting</h2>
+            
+            <h3>Common Issues</h3>
+            
+            <h4>Upload Fails</h4>
+            <ul>
+                <li>Check your internet connection</li>
+                <li>Ensure file format is supported (JPG, PNG)</li>
+                <li>Verify file size is under 10MB</li>
+                <li>Try a different browser</li>
+            </ul>
+
+            <h4>Slow Analysis</h4>
+            <ul>
+                <li>Check your internet speed</li>
+                <li>Try uploading during off-peak hours</li>
+                <li>Reduce image file size if very large</li>
+                <li>Clear browser cache and cookies</li>
+            </ul>
+
+            <h4>Unexpected Results</h4>
+            <ul>
+                <li>Verify image quality is sufficient</li>
+                <li>Ensure ECG trace is clearly visible</li>
+                <li>Check that image shows standard ECG format</li>
+                <li>Try uploading a different image for comparison</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Need More Help?</strong> Visit our <a href="/help-center">Help Center</a> or <a href="/contact">contact support</a> for additional assistance.
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const icon = document.querySelector('.theme-icon');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.theme-icon').textContent = '☀️';
+            }
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        
+                        // Update active link
+                        document.querySelectorAll('.sidebar-nav a').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
